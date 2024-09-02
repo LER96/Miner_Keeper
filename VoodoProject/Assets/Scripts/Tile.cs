@@ -6,7 +6,6 @@ using System;
 
 public class Tile : MonoBehaviour
 {
-    public Action OnTileClicked;
     [SerializeField] Button _tileButton;
     [SerializeField] Image _tileImage;
 
@@ -24,11 +23,6 @@ public class Tile : MonoBehaviour
     private void Start()
     {
         _tileButton.onClick.AddListener(ButtonPress);
-
-        //if (_tileParent != null)
-        //    OnTileClicked += _tileParent.OnChildTaken;
-        //if (_tileChild != null)
-        //    OnTileClicked += _tileChild.OnParentTaken;
         
     }
 
@@ -41,19 +35,25 @@ public class Tile : MonoBehaviour
 
     void ButtonPress()
     {
-        OnTileClicked.Invoke();
+
+        if (_tileChild != null)
+        {
+            _tileChild = null;
+        }
+        if (_tileParent != null)
+        {
+            _tileParent.OnChildTaken();
+            _tileParent = null;
+        }
     }
 
     public void OnChildTaken()
     {
-        if(_tileChild != null)
-            _tileChild = null;
+        
     }
 
     public void OnParentTaken()
     {
-        if(_tileParent != null)
-            _tileParent= null;
     }
 
 }
