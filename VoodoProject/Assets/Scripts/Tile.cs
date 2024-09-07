@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System;
+using DG.Tweening;
 
 public class Tile : MonoBehaviour
 {
@@ -10,15 +11,13 @@ public class Tile : MonoBehaviour
     [SerializeField] Image _tileImage;
 
     [Header("TilesConnected")]
-    [SerializeField] Tile _tileChild;
     [SerializeField] Tile _tileParent;
+    [SerializeField] int tileSpawnIndex;
 
     Sprite _tileSprite;
     float _points;
 
     public Tile Parent { get=> _tileParent; set=> _tileParent = value; }
-    public Tile Neighbor { get => _tileChild; set => _tileChild = value; }
-
 
     private void Start()
     {
@@ -35,25 +34,16 @@ public class Tile : MonoBehaviour
 
     void ButtonPress()
     {
-
-        if (_tileChild != null)
-        {
-            _tileChild = null;
-        }
         if (_tileParent != null)
         {
-            _tileParent.OnChildTaken();
+            _tileParent.OnChildTaken(this.transform);
             _tileParent = null;
         }
     }
 
-    public void OnChildTaken()
+    public void OnChildTaken(Transform child)
     {
-        
-    }
-
-    public void OnParentTaken()
-    {
+        transform.DOMove(child.position, 0.5f);
     }
 
 }

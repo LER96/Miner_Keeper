@@ -12,22 +12,21 @@ public class GridManager : MonoBehaviour
     [SerializeField] int _numberOfXTiles;
     [SerializeField] float _tileGap;
 
-    [Header("References")]
+    [Header("Tiles")]
     [SerializeField] GameObject _tilePrefab;
     [SerializeField] GameObject _spawnPointPreFab;
+    [SerializeField] List<Transform> spawnPoints= new List<Transform>();
     [SerializeField] List<TileSO> tilesData=new List<TileSO>();
 
     [Header("Spawn Parent")]
     [SerializeField] RectTransform _spawnPointsParent;
     [SerializeField] GridLayoutGroup _gridLayoutGroup;
 
-    List<Transform> spawnPoints= new List<Transform>();
     List<Tile> tiles = new List<Tile>();
 
     private void Awake()
     {
         Instance = this;
-        
     }
 
     private void Start()
@@ -47,6 +46,9 @@ public class GridManager : MonoBehaviour
 
     public void CreateTiles()
     {
+        for (int i = 0; i < spawnPoints.Count; i++)
+        {
 
+        }
     }
 }
