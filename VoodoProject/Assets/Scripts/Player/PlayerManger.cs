@@ -4,15 +4,24 @@ using UnityEngine;
 
 public class PlayerManger : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public static PlayerManger Instance;
+
+    [SerializeField] PlayerMovement playerMovement;
+    [SerializeField] PlayerMining playerMining;
+    [SerializeField] Inventory inventory;
+
+    public PlayerMovement MovementScript => playerMovement;
+    public PlayerMining MiningScript => playerMining;
+    public Inventory PlayerInventory => inventory;
+
+    private void Awake()
     {
-        
+        Instance = this;
+
+        playerMovement = GetComponent<PlayerMovement>();
+        playerMining = GetComponent<PlayerMining>();
+        inventory = GetComponent<Inventory>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+
 }
