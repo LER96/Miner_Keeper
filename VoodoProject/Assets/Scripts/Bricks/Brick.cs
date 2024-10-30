@@ -9,7 +9,6 @@ public class Brick : MonoBehaviour
     [SerializeField] List<GameObject> _brickStages = new List<GameObject>();
     [SerializeField] Item item;
     [SerializeField] ParticleSystem _hitvfx;
-    [SerializeField] BrickType _brickType;
 
     bool _canCollect;
     Inventory _inventory;
@@ -31,17 +30,15 @@ public class Brick : MonoBehaviour
                 return;
             HideAllVariants(_brickHp-1);
         }
-        else if(_brickHp == 0 && _brickType == BrickType.Break)
-        {
-            this.gameObject.SetActive(false);
-        }
-        else if(_brickType == BrickType.Resource && _canCollect)
+        else if(_brickHp == 0)
         {
             _canCollect = false;
             if (item != null)
             {
                 _inventory.AddItem(item);
             }
+
+            this.gameObject.SetActive(false);
         }
     }
 
