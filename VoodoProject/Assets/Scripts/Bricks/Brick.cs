@@ -5,22 +5,24 @@ using static EnumHandler;
 
 public class Brick : MonoBehaviour
 {
-    [SerializeField] int _brickHp;
-    [SerializeField] List<GameObject> _brickStages = new List<GameObject>();
-    [SerializeField] Item item;
-    [SerializeField] ParticleSystem _hitvfx;
+    [SerializeField] protected int _brickHp;
+    [SerializeField] protected List<GameObject> _brickStages = new List<GameObject>();
+    [SerializeField] protected ParticleSystem _hitvfx;
 
-    bool _canCollect;
-    Inventory _inventory;
+    protected bool _canCollect;
+    protected Inventory _inventory;
+    protected int _startHp;
 
-    private void Start()
+    protected virtual void Start()
     {
         _canCollect = true;
+        _startHp = _brickHp;
+        //_brickHp = _brickStages.Count;
         _inventory = PlayerManger.Instance.PlayerInventory;
         HideAllVariants(_brickHp-1);
     }
 
-    public void TakeDamage(int dmg)
+    public virtual void TakeDamage(int dmg)
     {
         _brickHp -= dmg;
         if (_brickHp > 0)
@@ -32,17 +34,12 @@ public class Brick : MonoBehaviour
         }
         else if(_brickHp == 0)
         {
-            _canCollect = false;
-            if (item != null)
-            {
-                _inventory.AddItem(item);
-            }
-
+            ResetData();
             this.gameObject.SetActive(false);
         }
     }
 
-    void HideAllVariants(int index)
+    protected void HideAllVariants(int index)
     {
         for (int i = 0; i < _brickStages.Count; i++)
         {
@@ -50,5 +47,10 @@ public class Brick : MonoBehaviour
         }
 
         _brickStages[index].SetActive(true);
+    }
+
+    protected virtual void ResetData()
+    {
+        _brickHp = _startHp;
     }
 }

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Inventory : MonoBehaviour
@@ -20,7 +21,7 @@ public class Inventory : MonoBehaviour
                 return;
             }
         }
-
+        _allItems.Add(item);
         ItemUISlot itemUISlot = Instantiate(slotItemPrefab, _slotParent);
         itemUISlot.SetData(item);
         itemUISlot.UpdateResouceCount(item.Value);
@@ -41,14 +42,17 @@ public class Inventory : MonoBehaviour
 
     private void UpdateAmount(Item item, int count)
     {
-        foreach(var slotItem in _inventory.Keys)
+        foreach (var slotItem in _inventory.ToArray())
         {
-            Item slot = slotItem.CurrentItem;
+            Item slot = slotItem.Key.CurrentItem;
             if (item.ItemName == slot.ItemName)
             {
-                _inventory[slotItem] += count;
-                if (_inventory[slotItem] < 0)
-                    _inventory[slotItem] = 0;
+                _inventory[slotItem.Key] += count;
+                ItemUISlot itemUISlot = slotItem.Key;
+                itemUISlot.UpdateResouceCount(_inventory[slotItem.Key]);
+
+                if (_inventory[slotItem.Key] < 0)
+                    _inventory[slotItem.Key] = 0;
             }
         }
     }
