@@ -11,10 +11,12 @@ public class Brick : MonoBehaviour
     [SerializeField] ParticleSystem _hitvfx;
     [SerializeField] BrickType _brickType;
 
+    bool _canCollect;
     Inventory _inventory;
 
     private void Start()
     {
+        _canCollect = true;
         _inventory = PlayerManger.Instance.PlayerInventory;
         HideAllVariants(_brickHp-1);
     }
@@ -29,13 +31,17 @@ public class Brick : MonoBehaviour
                 return;
             HideAllVariants(_brickHp-1);
         }
-        else if(_brickHp == 0)
+        else if(_brickHp == 0 && _brickType == BrickType.Break)
         {
-            if(item!=null)
+            this.gameObject.SetActive(false);
+        }
+        else if(_brickType == BrickType.Resource && _canCollect)
+        {
+            _canCollect = false;
+            if (item != null)
             {
                 _inventory.AddItem(item);
             }
-            this.gameObject.SetActive(false);
         }
     }
 
