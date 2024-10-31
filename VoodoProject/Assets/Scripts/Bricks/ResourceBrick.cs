@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -39,11 +40,21 @@ public class ResourceBrick : Brick
         }
         else if (_brickHp == 0&& _canCollect)
         {
+            item.gameObject.SetActive(true);
             if (item != null)
             {
                 _inventory.AddItem(item);
+                item.transform.DOJump(_inventory.transform.position, 2, 1, 0.3f).OnComplete(HideItem);
             }
             StartCoroutine(ReviveDelay());
+        }
+    }
+
+    void HideItem()
+    {
+        if(item!=null)
+        {
+            item.gameObject.SetActive(false);
         }
     }
 
@@ -74,5 +85,6 @@ public class ResourceBrick : Brick
         currentStage = 1;
         _currentTime = 0;
         _canCollect = true;
+        //item.gameObject.SetActive(true);
     }
 }

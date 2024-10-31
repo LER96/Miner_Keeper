@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9cbea3be4fb6a9649aeae7a9e23616f0, type: 3}
   m_Name: Item2
   m_EditorClassIdentifier: 
-  _itemSprite: {fileID: 21300000, guid: 6fd0b649401ca5b419a5ebf5df170c0f, type: 3}
-  _itemName: Jelly
+  _itemSprite: {fileID: 2125737359283935466, guid: f7043b7291f49844b9671b3d3dedcbb5,
+    type: 3}
+  _itemName: Shield

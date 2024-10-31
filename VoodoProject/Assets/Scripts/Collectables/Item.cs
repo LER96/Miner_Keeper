@@ -15,6 +15,12 @@ public class Item : MonoBehaviour
     public Sprite ItemSprite => _itemSprite.sprite;
     public int Value => value;
 
+
+    private void OnEnable()
+    {
+        SetData();
+    }
+
     private void Start()
     {
         SetData();
@@ -24,5 +30,10 @@ public class Item : MonoBehaviour
     {
         _itemName = _itemData.ItemName;
         _itemSprite.sprite = _itemData.ItemSprite;
+    }
+
+    private void OnDisable()
+    {
+        transform.localPosition = Vector3.zero;
     }
 }
