@@ -131,7 +131,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 818317c5404c1fe4d938217192eb8d16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _itemData: {fileID: 11400000, guid: 7a0e0ba4a7fbaf04e91cf9d9d7cf1754, type: 2}
+  _itemData: {fileID: 11400000, guid: 87c66457bcc96fc469373631a9fe64f2, type: 2}
   _itemSprite: {fileID: 4663273439359475240}
   value: 1
 --- !u!1 &4981235846336537321
@@ -209,7 +209,7 @@ SpriteRenderer:
   m_SortingOrder: 1
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6,
     type: 3}
-  m_Color: {r: 0, g: 0.16399999, b: 0.16399999, a: 1}
+  m_Color: {r: 0.154, g: 0, b: 0.034517217, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -5124,7 +5124,7 @@ SpriteRenderer:
   m_SortingOrder: 1
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6,
     type: 3}
-  m_Color: {r: 0, g: 0.45490196, b: 0.4541084, a: 1}
+  m_Color: {r: 0.45490196, g: 0, b: 0.10291384, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -5146,7 +5146,7 @@ GameObject:
   - component: {fileID: 397450020605534151}
   - component: {fileID: 226297530400560865}
   m_Layer: 0
-  m_Name: ResourceBrick
+  m_Name: ResourceBrick 1
   m_TagString: Brick
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5311,7 +5311,7 @@ SpriteRenderer:
   m_SortingOrder: 1
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6,
     type: 3}
-  m_Color: {r: 0, g: 0.273, b: 0.273, a: 1}
+  m_Color: {r: 0.33, g: 0, b: 0.073965475, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
