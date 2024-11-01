@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[CreateAssetMenu(fileName = "TowerCostSO", menuName = "ScriptableObjects/Tower/Cost")]
 public class TowerCostSO : ScriptableObject
 {
     [System.Serializable]
