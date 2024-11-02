@@ -36,17 +36,23 @@ public class ResourceBrick : Brick
             _hitvfx.Play();
             if (_brickHp > _brickStages.Count)
                 return;
+
+            Collect();
             HideAllVariants(_brickHp - 1);
         }
         else if (_brickHp == 0&& _canCollect)
         {
-            item.gameObject.SetActive(true);
-            if (item != null)
-            {
-                _inventory.AddItem(item);
-                item.transform.DOJump(_inventory.transform.position, 2, 1, 0.3f).OnComplete(HideItem);
-            }
             StartCoroutine(ReviveDelay());
+        }
+    }
+
+    void Collect()
+    {
+        item.gameObject.SetActive(true);
+        if (item != null)
+        {
+            _inventory.AddItem(item);
+            item.transform.DOJump(_inventory.transform.position, 2, 1, 0.3f).OnComplete(HideItem);
         }
     }
 

@@ -13,6 +13,7 @@ public class TorretHandler : MonoBehaviour
     }
     [SerializeField] int _levelIndex;
     [SerializeField] List<TowerBodyData> _towersBodies = new List<TowerBodyData>();
+    private TowerCostSO _nextUpgrade;
 
     [Header("Tower Pool")]
     [SerializeField] int _bulletNumber;
@@ -21,9 +22,11 @@ public class TorretHandler : MonoBehaviour
     private Queue<Bullet> _bulletQueue = new Queue<Bullet>();
 
     public Queue<Bullet> Bullets => _bulletQueue;
+    public TowerCostSO NextUpgrade => _nextUpgrade; 
 
     private void Start()
     {
+        UpgradeManager.Instance.TorretHandler = this;
         InitPool();
         SetLevel(1);
     }
@@ -42,6 +45,10 @@ public class TorretHandler : MonoBehaviour
         _levelIndex = index;
         if(index> _towersBodies.Count)
             return;
+        else if(index== _towersBodies.Count)
+        {
+
+        }
 
         Tower tower = _towersBodies[index-1].towerBody;
         TowerSO data = _towersBodies[index-1].towerData;
