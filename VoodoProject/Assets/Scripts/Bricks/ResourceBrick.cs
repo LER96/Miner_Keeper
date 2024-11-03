@@ -53,7 +53,7 @@ public class ResourceBrick : Brick
         if (item != null)
         {
             _inventory.AddItem(item);
-            item.transform.DOJump(_inventory.transform.position, 2, 1, 0.3f).OnComplete(HideItem);
+            item.transform.DOJump(_inventory.transform.position, 2, 1, 0.1f).OnComplete(HideItem);
         }
     }
 
