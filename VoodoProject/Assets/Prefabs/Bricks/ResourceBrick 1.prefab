@@ -5084,9 +5084,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _brickHp: 3
   _brickStages:
-  - {fileID: 6548426291940078179}
-  - {fileID: 8212516865219336569}
   - {fileID: 4981235846336537321}
+  - {fileID: 8212516865219336569}
+  - {fileID: 6548426291940078179}
   _hitvfx: {fileID: 6641225256682208525}
   item: {fileID: 7303110000710487934}
   _reviveDelay: 2
