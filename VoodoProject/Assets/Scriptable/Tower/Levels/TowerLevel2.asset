@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43d57b91f403afb42955e1be87035561, type: 3}
   m_Name: TowerLevel2
   m_EditorClassIdentifier: 
+  _level: 0
   _towerSprite: {fileID: 0}
   _gunSprite: {fileID: 0}
-  _attackRate: 1.5
+  _attackRate: 1.3
   _damage: 2.5

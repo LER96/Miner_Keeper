@@ -42,6 +42,7 @@ public class ResourceBrick : Brick
         }
         else if (_brickHp == 0&& _canCollect)
         {
+            Collect();
             StartCoroutine(ReviveDelay());
         }
     }
@@ -91,6 +92,5 @@ public class ResourceBrick : Brick
         currentStage = 1;
         _currentTime = 0;
         _canCollect = true;
-        //item.gameObject.SetActive(true);
     }
 }

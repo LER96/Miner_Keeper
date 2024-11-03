@@ -24,9 +24,8 @@ public class TorretHandler : MonoBehaviour
     public Queue<Bullet> Bullets => _bulletQueue;
     public TowerCostSO NextUpgrade => _nextUpgrade; 
 
-    private void Start()
+    public void SetHandler()
     {
-        UpgradeManager.Instance.TorretHandler = this;
         InitPool();
         SetLevel(1);
     }
@@ -45,15 +44,29 @@ public class TorretHandler : MonoBehaviour
         _levelIndex = index;
         if(index> _towersBodies.Count)
             return;
-        else if(index== _towersBodies.Count)
-        {
-
-        }
-
+        _towersBodies[index - 1].towerBody.gameObject.SetActive(true);
+        CheckNextUpgrade(index);
         Tower tower = _towersBodies[index-1].towerBody;
         TowerSO data = _towersBodies[index-1].towerData;
         tower.TorretHandler = this;
         tower.SetData(data);
+    }
+
+    public void Upgrade()
+    {
+        _towersBodies[_levelIndex - 1].towerBody.gameObject.SetActive(false);
+        _levelIndex++;
+        SetLevel(_levelIndex);
+    }
+
+    void CheckNextUpgrade(int index)
+    {
+        if (index < _towersBodies.Count)
+        {
+            _nextUpgrade = _towersBodies[index].towerCost;
+            if (_nextUpgrade != null)
+                UpgradeManager.Instance.UpgradeHandler.CreateItems(_nextUpgrade);
+        }
     }
 
 }

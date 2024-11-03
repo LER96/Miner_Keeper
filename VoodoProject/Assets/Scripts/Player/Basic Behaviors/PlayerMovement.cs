@@ -57,7 +57,7 @@ public class PlayerMovement : MonoBehaviour
         float absX = Mathf.Abs(_movmentInput.x);
         float absY = Mathf.Abs(_movmentInput.y);
 
-        if (absX>absY)
+        if (absX > absY)
         {
             if (_movmentInput.x > 0) { _dirrectionX = Mathf.CeilToInt(_movmentInput.x); transform.localScale = Vector3.one; }
             else if (_movmentInput.x < 0)
@@ -65,16 +65,17 @@ public class PlayerMovement : MonoBehaviour
                 //_dirrectionX = Mathf.FloorToInt(_movmentInput.x);
                 transform.localScale = new Vector3(-1, 1, 1);
             }
-                _newPos = new Vector3(_ditectorOffset * _dirrectionX, 0, 0);
+            _newPos = new Vector3(_ditectorOffset * _dirrectionX, 0, 0);
             _ditector.localPosition = _newPos;
             _playerDirrection = PlayerDirrection.Side;
         }
+
         else if (absX < absY)
         {
             if (_movmentInput.y > 0) { _dirrectionY = Mathf.CeilToInt(_movmentInput.y); _playerDirrection = PlayerDirrection.Up; }
             else if (_movmentInput.y < 0) { _dirrectionY = Mathf.FloorToInt(_movmentInput.y); _playerDirrection = PlayerDirrection.Dowm; }
 
-            _newPos = new Vector3(0,_ditectorOffset * _dirrectionY, 0);
+            _newPos = new Vector3(0, _ditectorOffset * _dirrectionY, 0);
             _ditector.localPosition = _newPos;
         }
         else
