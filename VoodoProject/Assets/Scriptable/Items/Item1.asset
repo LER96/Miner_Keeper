@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _itemSprite: {fileID: 5524590292671962877, guid: f7043b7291f49844b9671b3d3dedcbb5,
     type: 3}
-  _itemName: Dimond
+  _itemName: Quartz
