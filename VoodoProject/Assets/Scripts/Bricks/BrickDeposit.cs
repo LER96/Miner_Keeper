@@ -5,7 +5,7 @@ using UnityEngine;
 public class BrickDeposit : MonoBehaviour
 {
     [SerializeField] float _itemDepositDelay;
-    [SerializeField] bool canCollect;
+    private bool canCollect;
     private Transform _target;
     private UpgradeHandler _upgradeHandler;
     private Inventory _playerInventory;

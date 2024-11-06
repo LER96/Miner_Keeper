@@ -9,16 +9,19 @@ public class TorretHandler : MonoBehaviour
     {
         public Tower towerBody;
         public TowerSO towerData;
-        public TowerCostSO towerCost;
     }
     [SerializeField] int _levelIndex;
     [SerializeField] List<TowerBodyData> _towersBodies = new List<TowerBodyData>();
-    private TowerCostSO _nextUpgrade;
 
     [Header("Tower Pool")]
     [SerializeField] int _bulletNumber;
     [SerializeField] Bullet _bulletPrefab;
     [SerializeField] Transform _bulletHolder;
+
+
+    private Tower _currentTower;
+    private TowerSO _currentData;
+    private TowerCostSO _nextUpgrade;
     private Queue<Bullet> _bulletQueue = new Queue<Bullet>();
 
     public Queue<Bullet> Bullets => _bulletQueue;
@@ -27,7 +30,30 @@ public class TorretHandler : MonoBehaviour
     public void SetHandler()
     {
         InitPool();
-        SetLevel(1);
+        SetLevelData(1);
+    }
+
+    public void Upgrade()
+    {
+        _towersBodies[_levelIndex - 1].towerBody.gameObject.SetActive(false);
+        _levelIndex++;
+        SetLevelData(_levelIndex);
+    }
+
+    public void SetLevelData(int index)
+    {
+        _levelIndex = index;
+        if (index > _towersBodies.Count)
+        {
+            ClearUpgradeSlots();
+            return;
+        }
+        _towersBodies[index - 1].towerBody.gameObject.SetActive(true);
+        CheckNextUpgrade(index);
+        _currentTower = _towersBodies[index - 1].towerBody;
+        _currentData = _towersBodies[index - 1].towerData;
+        _currentTower.TorretHandler = this;
+        _currentTower.SetData(_currentData);
     }
 
     void InitPool()
@@ -39,34 +65,23 @@ public class TorretHandler : MonoBehaviour
         }
     }
 
-    public void SetLevel(int index)
-    {
-        _levelIndex = index;
-        if(index> _towersBodies.Count)
-            return;
-        _towersBodies[index - 1].towerBody.gameObject.SetActive(true);
-        CheckNextUpgrade(index);
-        Tower tower = _towersBodies[index-1].towerBody;
-        TowerSO data = _towersBodies[index-1].towerData;
-        tower.TorretHandler = this;
-        tower.SetData(data);
-    }
-
-    public void Upgrade()
-    {
-        _towersBodies[_levelIndex - 1].towerBody.gameObject.SetActive(false);
-        _levelIndex++;
-        SetLevel(_levelIndex);
-    }
-
     void CheckNextUpgrade(int index)
     {
         if (index < _towersBodies.Count)
         {
-            _nextUpgrade = _towersBodies[index].towerCost;
+            _nextUpgrade = _towersBodies[index].towerData.TowerCost;
             if (_nextUpgrade != null)
                 UpgradeManager.Instance.UpgradeHandler.CreateItems(_nextUpgrade);
+            else
+                ClearUpgradeSlots();
         }
+        else
+            ClearUpgradeSlots();
+    }
+
+    void ClearUpgradeSlots()
+    {
+        UpgradeManager.Instance.UpgradeHandler.ClearAll();
     }
 
 }

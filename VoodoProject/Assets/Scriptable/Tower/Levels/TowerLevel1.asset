@@ -15,6 +15,8 @@ MonoBehaviour:
   _level: 1
   _towerSprite: {fileID: 0}
   _gunSprite: {fileID: 0}
-  _attackRate: 2
   _damage: 2
+  _attackRate: 2
   _rotationSpeed: 0
+  _maxCapacity: 20
+  _towerCostData: {fileID: 0}
