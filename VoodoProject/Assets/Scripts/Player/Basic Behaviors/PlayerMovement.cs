@@ -19,6 +19,8 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 _newPos;
 
     public PlayerDirrection PlayerDirrection => _playerDirrection;
+    public float MovementSpeed { get => _speed; set => _speed = value; }
+
 
     private void Update()
     {
@@ -62,7 +64,6 @@ public class PlayerMovement : MonoBehaviour
             if (_movmentInput.x > 0) { _dirrectionX = Mathf.CeilToInt(_movmentInput.x); transform.localScale = Vector3.one; }
             else if (_movmentInput.x < 0)
             {
-                //_dirrectionX = Mathf.FloorToInt(_movmentInput.x);
                 transform.localScale = new Vector3(-1, 1, 1);
             }
             _newPos = new Vector3(_ditectorOffset * _dirrectionX, 0, 0);
@@ -77,10 +78,6 @@ public class PlayerMovement : MonoBehaviour
 
             _newPos = new Vector3(0, _ditectorOffset * _dirrectionY, 0);
             _ditector.localPosition = _newPos;
-        }
-        else
-        {
-            _ditector.localPosition = _ditector.localPosition;
         }
     }
 
