@@ -1094,7 +1094,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &4753610867594738380
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1134,7 +1134,7 @@ MonoBehaviour:
   _gun: {fileID: 8888784463105252669}
   _gunHolder: {fileID: 4804818499564222108}
   _gunPoint: {fileID: 7500441952588127165}
-  _damage: 0
-  _attackRate: 0
+  _damage: 2
+  _attackRate: 0.5
   _rotationSpeed: 0
-  _maxCapacity: 0
+  _maxCapacity: 20

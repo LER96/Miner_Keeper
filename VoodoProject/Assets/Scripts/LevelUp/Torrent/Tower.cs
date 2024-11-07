@@ -59,7 +59,7 @@ public class Tower : MonoBehaviour
         {
             Bullet bullet = _torretHandler.Bullets.Dequeue();
             bullet.gameObject.SetActive(true);
-            bullet.Damage = _damage;
+            //bullet.Damage = _damage;
             bullet.transform.position = _gunPoint.position;
             bullet.transform.localEulerAngles = new Vector3(0,0,_gunHolder.eulerAngles.z-90);
 
