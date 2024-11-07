@@ -63,7 +63,7 @@ public class UpgradeHandler : MonoBehaviour
         }
     }
 
-    void ClearAll()
+    public void ClearAll()
     {
         _activeItems.Clear();
         for (int i = 0; i < _itemsUI.Count; i++)

@@ -17,16 +17,14 @@ public class Tower : MonoBehaviour
     [SerializeField] float _damage;
     [SerializeField] float _attackRate;
     [SerializeField] float _rotationSpeed;
+    [SerializeField] int _maxCapacity;
 
-    TorretHandler _torretHandler;
+    bool _canShoot;
     float _currentTime;
+    int _currentCapacity=0;
+    TorretHandler _torretHandler;
 
     public TorretHandler TorretHandler { set => _torretHandler = value; }
-
-    private void Start()
-    {
-        _currentTime = _attackRate;
-    }
 
     private void Update()
     {
@@ -49,9 +47,10 @@ public class Tower : MonoBehaviour
     public void SetData(TowerSO data)
     {
         _damage = data.Damage;
-        _attackRate = data.AttackRate;
+        _attackRate = 1/data.AttackRate;
         _towerBody.sprite = data.TowerSprit;
         _gun.sprite = data.GunSprite;
+        _maxCapacity = data.MaxCapacity;
     }
 
     void Shoot()
@@ -60,11 +59,16 @@ public class Tower : MonoBehaviour
         {
             Bullet bullet = _torretHandler.Bullets.Dequeue();
             bullet.gameObject.SetActive(true);
-            bullet.Damage = _damage;
+            //bullet.Damage = _damage;
             bullet.transform.position = _gunPoint.position;
             bullet.transform.localEulerAngles = new Vector3(0,0,_gunHolder.eulerAngles.z-90);
 
             _torretHandler.Bullets.Enqueue(bullet);
+            _currentCapacity--;
+            if(_currentCapacity<=0)
+            {
+                _currentCapacity = 0;
+            }
         }
     }
 

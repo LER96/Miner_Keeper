@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _towerCostItems:
   - item: {fileID: 11400000, guid: 7a0e0ba4a7fbaf04e91cf9d9d7cf1754, type: 2}
-    amount: 5
+    amount: 30
   - item: {fileID: 11400000, guid: 87c66457bcc96fc469373631a9fe64f2, type: 2}
-    amount: 5
+    amount: 40

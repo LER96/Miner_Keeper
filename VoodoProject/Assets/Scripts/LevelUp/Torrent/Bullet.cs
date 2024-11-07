@@ -6,13 +6,23 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     public event Action OnHit;
-    [SerializeField] float _damage;
-    [SerializeField] float _speed;
+    [SerializeField] BulletSO _mainBulletData;
+    [SerializeField] BulletSO _specailBulletData;
     [SerializeField] float _timeAlive;
 
-    float _currentTimer;
+    private BulletSO _currentBulletData;
+    private float _damage;
+    private float _speed;
+    private float _currentTimer;
 
     public float Damage { get => _damage; set => _damage = value; }
+    public float Speed { get => _speed; set => _speed = value; }
+
+    private void Start()
+    {
+        _currentBulletData = _mainBulletData;
+        SetData();
+    }
 
     private void Update()
     {
@@ -22,6 +32,12 @@ public class Bullet : MonoBehaviour
     private void FixedUpdate()
     {
         Move();
+    }
+
+    void SetData()
+    {
+        _damage = _mainBulletData.Damage;
+        _speed = _mainBulletData.Speed;
     }
 
     void Move()
@@ -48,7 +64,7 @@ public class Bullet : MonoBehaviour
             this.gameObject.SetActive(false);
         //else if(collision.transform.CompareTag("Enemy"))
         //{
-        //    OnHit.Invoke();
+        //    
         //}
     }
 
