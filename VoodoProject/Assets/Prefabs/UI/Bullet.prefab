@@ -135,8 +135,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 470bc030324016041b097410a1d21028, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 10
-  _timeAlive: 1.5
+  _bulletImg: {fileID: 6109001936711681576}
+  _mainBulletData: {fileID: 11400000, guid: 01825c0292de4fb418e57fdadc57c561, type: 2}
+  _specailBulletData: {fileID: 11400000, guid: 5353ed754ae7bc7499582e54b30779f1, type: 2}
+  _timeAlive: 3
 --- !u!50 &946053467472460260
 Rigidbody2D:
   serializedVersion: 4

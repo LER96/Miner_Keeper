@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using static EnumHandler;
 
 public class Tower : MonoBehaviour
 {
-    private TowerSO _towerData;
+    [SerializeField] private TowerSO _towerData;
 
     [Header("Tower Object")]
     [SerializeField] Image _towerBody;
@@ -13,22 +15,56 @@ public class Tower : MonoBehaviour
     [SerializeField] Transform _gunHolder;
     [SerializeField] Transform _gunPoint;
 
+    [Header("Slider")]
+    [SerializeField] Slider _specialAmmoSlider;
+    [SerializeField] Slider _HpSlider;
+    [SerializeField] TMP_Text _hpText;
+    [SerializeField] TMP_Text _ammoText;
+    BulletType _currentType;
+
     [Header("Tower Variable")]
     [SerializeField] float _damage;
     [SerializeField] float _attackRate;
     [SerializeField] float _rotationSpeed;
-    [SerializeField] int _maxCapacity;
+    [SerializeField] float _maxCapacity;
 
-    bool _canShoot;
     float _currentTime;
-    int _currentCapacity=0;
+    float _currentSpecialAmmoCapacity;
     TorretHandler _torretHandler;
 
-    public TorretHandler TorretHandler { set => _torretHandler = value; }
+    public TorretHandler TorretHandler { get => _torretHandler; set => _torretHandler = value; }
 
     private void Update()
     {
         Timer();
+    }
+
+
+    public bool CanRelaod()
+    {
+        if (_currentSpecialAmmoCapacity < _maxCapacity)
+            return true;
+        else
+        {
+            _currentSpecialAmmoCapacity = _maxCapacity;
+            return false;
+        }
+    }
+    public void ReloadSpecialAmmo(int amount)
+    {
+        _currentSpecialAmmoCapacity+=amount;
+        UpdateSpecailAmmo();
+    }
+
+    public void SetData(TowerSO data)
+    {
+        _towerData = data;
+        _damage = _towerData.Damage;
+        _attackRate = 1/ _towerData.AttackRate;
+        _towerBody.sprite = _towerData.TowerSprit;
+        _gun.sprite = _towerData.GunSprite;
+        _maxCapacity = _towerData.MaxCapacity;
+        UpdateSpecailAmmo();
     }
 
     void Timer()
@@ -44,13 +80,11 @@ public class Tower : MonoBehaviour
         }
     }
 
-    public void SetData(TowerSO data)
+    void UpdateSpecailAmmo()
     {
-        _damage = data.Damage;
-        _attackRate = 1/data.AttackRate;
-        _towerBody.sprite = data.TowerSprit;
-        _gun.sprite = data.GunSprite;
-        _maxCapacity = data.MaxCapacity;
+        float precnet = _currentSpecialAmmoCapacity / _maxCapacity;
+        _specialAmmoSlider.value = precnet;
+        _ammoText.text = $"{_currentSpecialAmmoCapacity}/{_maxCapacity}";
     }
 
     void Shoot()
@@ -59,16 +93,23 @@ public class Tower : MonoBehaviour
         {
             Bullet bullet = _torretHandler.Bullets.Dequeue();
             bullet.gameObject.SetActive(true);
-            //bullet.Damage = _damage;
+            bullet.SetBulletType(_currentType);
             bullet.transform.position = _gunPoint.position;
             bullet.transform.localEulerAngles = new Vector3(0,0,_gunHolder.eulerAngles.z-90);
 
             _torretHandler.Bullets.Enqueue(bullet);
-            _currentCapacity--;
-            if(_currentCapacity<=0)
+            if (_currentSpecialAmmoCapacity > 0)
             {
-                _currentCapacity = 0;
+                _currentType = BulletType.Special;
+                _currentSpecialAmmoCapacity--;
             }
+            else
+            {
+                _currentType = BulletType.Regular;
+                _currentSpecialAmmoCapacity = 0;
+            }
+            UpdateSpecailAmmo();
+
         }
     }
 

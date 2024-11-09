@@ -25,7 +25,8 @@ public class TorretHandler : MonoBehaviour
     private Queue<Bullet> _bulletQueue = new Queue<Bullet>();
 
     public Queue<Bullet> Bullets => _bulletQueue;
-    public TowerCostSO NextUpgrade => _nextUpgrade; 
+    public TowerCostSO NextUpgrade => _nextUpgrade;
+    public Tower CurrentTower => _currentTower;
 
     public void SetHandler()
     {
