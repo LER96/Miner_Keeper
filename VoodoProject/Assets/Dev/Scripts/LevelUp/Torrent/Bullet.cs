@@ -84,10 +84,13 @@ public class Bullet : MonoBehaviour
     {
         if(collision.transform.CompareTag("Floor"))
             this.gameObject.SetActive(false);
-        //else if(collision.transform.CompareTag("Enemy"))
-        //{
-        //    
-        //}
+        else if (collision.transform.CompareTag("Enemy"))
+        {
+            Enemy enemy = collision.GetComponent<Enemy>();
+            if (enemy != null)
+                enemy.TakeDamage(_damage);
+            this.gameObject.SetActive(false);
+        }
     }
 
     private void OnDisable()

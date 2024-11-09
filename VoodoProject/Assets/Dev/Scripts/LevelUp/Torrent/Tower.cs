@@ -30,13 +30,23 @@ public class Tower : MonoBehaviour
 
     float _currentTime;
     float _currentSpecialAmmoCapacity;
+    Transform _target;
     TorretHandler _torretHandler;
 
     public TorretHandler TorretHandler { get => _torretHandler; set => _torretHandler = value; }
+    public Transform Target { get => _target; set => _target = value; }
 
     private void Update()
     {
         Timer();
+    }
+
+    private void FixedUpdate()
+    {
+        if (_target != null)
+        {
+            RotateTo();
+        }
     }
 
 
@@ -60,6 +70,7 @@ public class Tower : MonoBehaviour
     {
         _towerData = data;
         _damage = _towerData.Damage;
+        _rotationSpeed = _towerData.Agility;
         _attackRate = 1/ _towerData.AttackRate;
         _towerBody.sprite = _towerData.TowerSprit;
         _gun.sprite = _towerData.GunSprite;
@@ -85,6 +96,17 @@ public class Tower : MonoBehaviour
         float precnet = _currentSpecialAmmoCapacity / _maxCapacity;
         _specialAmmoSlider.value = precnet;
         _ammoText.text = $"{_currentSpecialAmmoCapacity}/{_maxCapacity}";
+    }
+
+    void RotateTo()
+    {
+        Vector3 dir = (_target.position - _gunHolder.position);
+        float _angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+
+        Quaternion desireRotation = Quaternion.Euler(0,0, _angle);
+        _gunHolder.rotation = Quaternion.Slerp(_gunHolder.rotation, desireRotation, _rotationSpeed * Time.deltaTime);
+        //_gunHolder.localEulerAngles = new Vector3(0, 0, _angle);
+
     }
 
     void Shoot()
