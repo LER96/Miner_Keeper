@@ -167,7 +167,7 @@ RectTransform:
   m_Father: {fileID: 7126871294354570607}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -242,7 +242,7 @@ RectTransform:
   m_Father: {fileID: 4718385758881672969}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -600,7 +600,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
+  m_Transition: 0
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -620,7 +620,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 0}
   m_FillRect: {fileID: 4919117164029935325}
   m_HandleRect: {fileID: 0}
@@ -690,7 +690,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
+  m_Transition: 0
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -710,8 +710,8 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
-  m_TargetGraphic: {fileID: 0}
+  m_Interactable: 0
+  m_TargetGraphic: {fileID: 4993015045533808859}
   m_FillRect: {fileID: 5553180584371289565}
   m_HandleRect: {fileID: 0}
   m_Direction: 0
@@ -1130,11 +1130,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d8f0160d90553d478427e0f6ae82795, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _towerData: {fileID: 0}
   _towerBody: {fileID: 1352083441601716860}
   _gun: {fileID: 8888784463105252669}
   _gunHolder: {fileID: 4804818499564222108}
   _gunPoint: {fileID: 7500441952588127165}
+  _specialAmmoSlider: {fileID: 4433348191593685685}
+  _HpSlider: {fileID: 8969473633746259930}
+  _hpText: {fileID: 4451902363703031334}
+  _ammoText: {fileID: 6912655883326938050}
   _damage: 2
   _attackRate: 0.5
   _rotationSpeed: 0
   _maxCapacity: 20
+  _currentSpecialAmmoCapacity: 0

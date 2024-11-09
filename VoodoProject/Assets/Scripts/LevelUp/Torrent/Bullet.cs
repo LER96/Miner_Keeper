@@ -2,26 +2,30 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using static EnumHandler;
 
 public class Bullet : MonoBehaviour
 {
     public event Action OnHit;
+    [SerializeField] Image _bulletImg;
     [SerializeField] BulletSO _mainBulletData;
     [SerializeField] BulletSO _specailBulletData;
     [SerializeField] float _timeAlive;
 
+    BulletType _currentType;
     private BulletSO _currentBulletData;
     private float _damage;
     private float _speed;
     private float _currentTimer;
 
-    public float Damage { get => _damage; set => _damage = value; }
-    public float Speed { get => _speed; set => _speed = value; }
+    public float Damage => _damage;// { get => _damage; set => _damage = value; }
+    public float Speed => _speed; //{ get => _speed; set => _speed = value; }
 
     private void Start()
     {
         _currentBulletData = _mainBulletData;
-        SetData();
+        SetData(_mainBulletData);
     }
 
     private void Update()
@@ -34,10 +38,28 @@ public class Bullet : MonoBehaviour
         Move();
     }
 
-    void SetData()
+    public void SetBulletType(BulletType bulletType)
     {
-        _damage = _mainBulletData.Damage;
-        _speed = _mainBulletData.Speed;
+        _currentType = bulletType;
+        switch(_currentType)
+        {
+            case BulletType.Regular:
+                SetData(_mainBulletData);
+                break;
+            case BulletType.Special:
+                SetData(_specailBulletData);
+                break;
+        }
+    }
+
+    void SetData(BulletSO data)
+    {
+        _currentBulletData = data;
+        _bulletImg.sprite = _currentBulletData.BulletSprite;
+        _bulletImg.color = _currentBulletData.BulletColor;
+        _damage = _currentBulletData.Damage;
+        _speed = _currentBulletData.Speed;
+
     }
 
     void Move()

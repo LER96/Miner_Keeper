@@ -5,6 +5,6 @@ using UnityEngine;
 public class EnumHandler 
 {
     public enum PlayerDirrection { Side, Up, Dowm};
-    public enum BrickType { Break, Resource};
+    public enum BulletType { Regular, Special};
 
 }
