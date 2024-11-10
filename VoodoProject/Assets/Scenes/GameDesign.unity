@@ -628,7 +628,9 @@ MonoBehaviour:
   _enemyPreFab: {fileID: 6343556598757835996, guid: 2dab865209c63e14a9fade5d137c1c58,
     type: 3}
   _enemyHolder: {fileID: 1945301022}
-  _wavesData: []
+  _wavesData:
+  - {fileID: 11400000, guid: 629d143a7baacc84cb94fb02a3a4c87f, type: 2}
+  _enemyToActive: []
 --- !u!1 &479376132
 GameObject:
   m_ObjectHideFlags: 0

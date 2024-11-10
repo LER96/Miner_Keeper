@@ -22,13 +22,16 @@ public class Enemy : MonoBehaviour
 
     protected Transform _target;
 
+    public EnemySO EnemyData => _enemyData;
+
     protected virtual void Start()
     {
-        SetData();
+        SetData(_enemyData);
     }
 
-    protected virtual void SetData()
+    public virtual void SetData(EnemySO enemySO)
     {
+        _enemyData = enemySO;
         _enemyName = _enemyData.EnemyName;
         _enemyHp = _enemyData.HP;
         _maxHp = _enemyHp;

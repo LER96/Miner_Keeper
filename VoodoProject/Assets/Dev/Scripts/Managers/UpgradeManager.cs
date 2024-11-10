@@ -7,16 +7,16 @@ public class UpgradeManager : MonoBehaviour
     public static UpgradeManager Instance;
 
     [SerializeField] TorretHandler _torretHandler;
-    [SerializeField] UpgradeHandler _upgradeHandler;
+    [SerializeField] TowerUpgradeHandler _upgradeHandler;
 
     public TorretHandler TorretHandler=> _torretHandler;
-    public UpgradeHandler UpgradeHandler => _upgradeHandler;
+    public TowerUpgradeHandler UpgradeHandler => _upgradeHandler;
 
     private void Awake()
     {
         Instance = this;
         _torretHandler = GetComponent<TorretHandler>();
-        _upgradeHandler = GetComponent<UpgradeHandler>();
+        _upgradeHandler = GetComponent<TowerUpgradeHandler>();
 
         _upgradeHandler.SetHandler();
         _torretHandler.SetHandler();

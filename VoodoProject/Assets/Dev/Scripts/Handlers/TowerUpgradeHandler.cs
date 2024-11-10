@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UpgradeHandler : MonoBehaviour
+public class TowerUpgradeHandler : MonoBehaviour
 {
 
     [SerializeField] int slotsNumber;

@@ -10,17 +10,20 @@ public class WaveHandler : MonoBehaviour
     [SerializeField] Transform _enemyHolder;
 
     [SerializeField] List<WaveSO> _wavesData = new List<WaveSO>();
+    private List<WaveVariables> _waveData = new List<WaveVariables>();
     private WaveSO _currentWave;
     private float _waveSpawnRate=3;
     private float _currentRate;
+    private bool _gameStart;
 
     Queue<Enemy> _enemyQueue = new Queue<Enemy>();
+    [SerializeField] List<Enemy> _enemyToActive = new List<Enemy>();
     List<Enemy> _activeEnemy = new List<Enemy>();
 
     private void Start()
     {
         InitPool();
-        _currentRate = _waveSpawnRate;
+        SetData(1);
     }
 
     void InitPool()
@@ -39,14 +42,28 @@ public class WaveHandler : MonoBehaviour
             return;
 
         _currentWave = _wavesData[index-1];
+        _waveData = _currentWave.WaveData;
+
+        for (int i = 0; i < _waveData.Count; i++)
+        {
+            int numberToSpawn = _waveData[i].enemyNumber;
+            for (int j = 0; j < numberToSpawn; j++)
+            {
+                Enemy enemy = _enemyQueue.Dequeue();
+                enemy.SetData(_waveData[i].enemyPrefab.EnemyData);
+                _enemyToActive.Add(enemy);
+                _enemyQueue.Enqueue(enemy);
+            }
+        }
+
         _waveSpawnRate = _currentWave.SpawnRate;
-
-
+        _gameStart = true;
     }
 
     private void Update()
     {
-        SpawnTimer();
+        if (_gameStart)
+            SpawnTimer();
     }
 
     void SpawnTimer()
@@ -81,11 +98,25 @@ public class WaveHandler : MonoBehaviour
 
     void Spawn()
     {
-        Enemy enemy = _enemyQueue.Dequeue();
+        if (_enemyToActive.Count == 0)
+            return;
+
+        int rndPos = 0;
+        if (_enemyToActive.Count > 1)
+        {
+            rndPos = Random.Range(0, _enemyToActive.Count);
+        }
+        else
+        {
+            rndPos = 0;
+        }
+
+        Enemy enemy = _enemyToActive[rndPos];
         enemy.gameObject.SetActive(true);
+        _enemyToActive.Remove(_enemyToActive[rndPos]);
         _activeEnemy.Add(enemy);
         SetFirstTarget();
-        _enemyQueue.Enqueue(enemy);
+
     }
 
     void SetFirstTarget()

@@ -7,7 +7,7 @@ public class DepositBrick : MonoBehaviour
     [SerializeField] protected float _itemDepositDelay;
     protected bool canCollect;
     protected Transform _target;
-    protected UpgradeHandler _upgradeHandler;
+    protected TowerUpgradeHandler _upgradeHandler;
     protected Inventory _playerInventory;
 
     protected virtual void Start()
