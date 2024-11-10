@@ -18,5 +18,5 @@ MonoBehaviour:
   _damage: 2
   _attackRate: 1
   _rotationSpeed: 0.5
-  _maxCapacity: 20
+  _maxCapacity: 30
   _towerCostData: {fileID: 0}

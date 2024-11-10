@@ -3,10 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using static StructHandler;
 
 public class Enemy : MonoBehaviour
 {
     public Action<Enemy> OnEnemyDied;
+    [SerializeField] List<EnemyVariable> _enemyVariable = new List<EnemyVariable>();
     [SerializeField] protected EnemySO _enemyData;
     bool inRange;
     //[SerializeField] Slider _enemyHPBar;
@@ -29,7 +31,22 @@ public class Enemy : MonoBehaviour
         SetData(_enemyData);
     }
 
-    public virtual void SetData(EnemySO enemySO)
+    public void SetBody(EnemySO enemy)
+    {
+        for (int i = 0; i < _enemyVariable.Count; i++)
+        {
+            EnemySO _enemy = _enemyVariable[i].EnemyData;
+            if (enemy.EnemyName == _enemy.EnemyName)
+            {
+                _enemyVariable[i].EnemyBody.gameObject.SetActive(true);
+                SetData(enemy);
+            }
+            else
+                _enemyVariable[i].EnemyBody.gameObject.SetActive(false);
+        }
+    }
+
+    void SetData(EnemySO enemySO)
     {
         _enemyData = enemySO;
         _enemyName = _enemyData.EnemyName;

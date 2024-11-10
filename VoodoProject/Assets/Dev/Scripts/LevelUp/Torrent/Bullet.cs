@@ -22,11 +22,11 @@ public class Bullet : MonoBehaviour
     public float Damage => _damage;// { get => _damage; set => _damage = value; }
     public float Speed => _speed; //{ get => _speed; set => _speed = value; }
 
-    private void Start()
-    {
-        _currentBulletData = _mainBulletData;
-        SetData(_mainBulletData);
-    }
+    //private void Start()
+    //{
+    //    _currentBulletData = _mainBulletData;
+    //    SetData(_mainBulletData);
+    //}
 
     private void Update()
     {

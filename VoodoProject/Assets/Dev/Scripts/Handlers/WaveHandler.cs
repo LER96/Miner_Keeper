@@ -53,7 +53,7 @@ public class WaveHandler : MonoBehaviour
             for (int j = 0; j < numberToSpawn; j++)
             {
                 Enemy enemy = _enemyQueue.Dequeue();
-                enemy.SetData(_waveData[i].enemyPrefab.EnemyData);
+                enemy.SetBody(_waveData[i].enemydata);
                 _enemyToActive.Add(enemy);
                 _enemyQueue.Enqueue(enemy);
             }
@@ -96,12 +96,10 @@ public class WaveHandler : MonoBehaviour
                     _activeEnemy.Remove(_activeEnemy[i]);
                     if (_activeEnemy.Count == 0)
                         SetData(_currentIndex + 1);
-
                     return;
                 }  
             }
         }
-
     }
 
     void Spawn()

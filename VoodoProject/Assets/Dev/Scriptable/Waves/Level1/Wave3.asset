@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4c9f8a3421911d04ebe6694f55e46cd1, type: 3}
-  m_Name: Wave2
+  m_Name: Wave3
   m_EditorClassIdentifier: 
   waveInfo:
-  - enemyNumber: 6
+  - enemyNumber: 10
     enemydata: {fileID: 11400000, guid: 8b668a09b555b744e87cf953b162ed7a, type: 2}
-  - enemyNumber: 5
+  - enemyNumber: 6
     enemydata: {fileID: 11400000, guid: 07a61a836af05cb408286fa2bacc72d6, type: 2}
   _spawnDelay: 5
