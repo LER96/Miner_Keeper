@@ -36,6 +36,7 @@ public class TorretHandler : MonoBehaviour
 
     public void Upgrade()
     {
+        PlayerManger.Instance.CurrentHP = _currentTower.CurentHP;
         _towersBodies[_levelIndex - 1].towerBody.gameObject.SetActive(false);
         _levelIndex++;
         SetLevelData(_levelIndex);
@@ -43,12 +44,13 @@ public class TorretHandler : MonoBehaviour
 
     public void SetLevelData(int index)
     {
-        _levelIndex = index;
+
         if (index > _towersBodies.Count)
         {
             ClearUpgradeSlots();
             return;
         }
+        _levelIndex = index;
         _towersBodies[index - 1].towerBody.gameObject.SetActive(true);
         CheckNextUpgrade(index);
         _currentTower = _towersBodies[index - 1].towerBody;

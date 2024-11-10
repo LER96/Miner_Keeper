@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using static StructHandler;
 
@@ -15,6 +16,7 @@ public class WaveHandler : MonoBehaviour
     private float _waveSpawnRate=3;
     private float _currentRate;
     private bool _gameStart;
+    private int _currentIndex = 1;
 
     Queue<Enemy> _enemyQueue = new Queue<Enemy>();
     [SerializeField] List<Enemy> _enemyToActive = new List<Enemy>();
@@ -41,6 +43,7 @@ public class WaveHandler : MonoBehaviour
         if (index > _wavesData.Count)
             return;
 
+        _currentIndex = index;
         _currentWave = _wavesData[index-1];
         _waveData = _currentWave.WaveData;
 
@@ -63,7 +66,10 @@ public class WaveHandler : MonoBehaviour
     private void Update()
     {
         if (_gameStart)
+        {
             SpawnTimer();
+            SetFirstTarget();
+        }
     }
 
     void SpawnTimer()
@@ -88,9 +94,11 @@ public class WaveHandler : MonoBehaviour
                 if (_activeEnemy[i] == enemy)
                 {
                     _activeEnemy.Remove(_activeEnemy[i]);
-                    SetFirstTarget();
+                    if (_activeEnemy.Count == 0)
+                        SetData(_currentIndex + 1);
+
                     return;
-                }   
+                }  
             }
         }
 
@@ -112,16 +120,15 @@ public class WaveHandler : MonoBehaviour
         }
 
         Enemy enemy = _enemyToActive[rndPos];
-        enemy.gameObject.SetActive(true);
         _enemyToActive.Remove(_enemyToActive[rndPos]);
+        enemy.gameObject.SetActive(true);
         _activeEnemy.Add(enemy);
-        SetFirstTarget();
-
     }
 
     void SetFirstTarget()
     {
-        UpgradeManager.Instance.TorretHandler.CurrentTower.Target = _activeEnemy[0].transform;
+        if (_activeEnemy.Count > 0)
+            UpgradeManager.Instance.TorretHandler.CurrentTower.Target = _activeEnemy[0].transform;
     }
 
 }

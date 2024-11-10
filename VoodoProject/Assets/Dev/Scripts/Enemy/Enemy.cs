@@ -20,7 +20,7 @@ public class Enemy : MonoBehaviour
     protected float _currentAttackRate;
     protected float _maxHp;
 
-    protected Transform _target;
+    protected Tower _target;
 
     public EnemySO EnemyData => _enemyData;
 
@@ -38,13 +38,13 @@ public class Enemy : MonoBehaviour
         _enemySpeed = _enemyData.MovementSpeed;
         _enemyDamage = _enemyData.Damage;
         _enemyAttackRange = _enemyData.AttackRange*100;
-        _attackRate = 1/_enemyData.AttackRate;
+        _attackRate = _enemyData.AttackRate;
     }
 
     protected virtual void InitData()
     {
         _enemyHp = _maxHp;
-        _currentAttackRate = 0;
+        _currentAttackRate = _attackRate;
         transform.localPosition = Vector3.zero;
 
     }
@@ -56,9 +56,9 @@ public class Enemy : MonoBehaviour
 
     void Decide()
     {
-        _target = UpgradeManager.Instance.TorretHandler.CurrentTower.transform;
-        float dist = Vector2.Distance(transform.position, _target.position);
-        if (dist < _enemyAttackRange)
+        _target = UpgradeManager.Instance.TorretHandler.CurrentTower;
+        float dist = Vector2.Distance(transform.position, _target.transform.position);
+        if (dist <= _enemyAttackRange)
         {
             inRange = true;
             AttackCD();
@@ -91,7 +91,7 @@ public class Enemy : MonoBehaviour
 
     protected virtual void Attack()
     {
-
+        _target.TakeDamage(_enemyDamage); 
     }
 
     public virtual void TakeDamage(float dmg)
