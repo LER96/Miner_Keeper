@@ -222,7 +222,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 29.106144
+  orthographic size: 25
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -680,7 +680,7 @@ MonoBehaviour:
   m_Follow: {fileID: 2062805592}
   m_Lens:
     FieldOfView: 60
-    OrthographicSize: 29.106144
+    OrthographicSize: 25
     NearClipPlane: 0.01
     FarClipPlane: 1000
     Dutch: 0
@@ -2145,6 +2145,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: BreakableBrick
+      objectReference: {fileID: 0}
+    - target: {fileID: 8045590880815517242, guid: a70af18851481a348b1376db77340016,
+        type: 3}
+      propertyPath: _brickHp
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4123,8 +4128,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -160.5}
-  m_SizeDelta: {x: 600, y: 321}
+  m_AnchoredPosition: {x: 0, y: -125}
+  m_SizeDelta: {x: 600, y: 250}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &7346844221684699191
 PrefabInstance:
