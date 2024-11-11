@@ -12,7 +12,7 @@ public class PlayerMovement : MonoBehaviour
     [Header("Ditector")]
     [SerializeField] Transform _ditector;
     [SerializeField] float _ditectorOffset;
-
+    private Vector2 playerDimention;
     private PlayerDirrection _playerDirrection;
     private Vector2 _movmentInput;
     private int _dirrectionX, _dirrectionY;
@@ -21,7 +21,10 @@ public class PlayerMovement : MonoBehaviour
     public PlayerDirrection PlayerDirrection => _playerDirrection;
     public float MovementSpeed { get => _speed; set => _speed = value; }
 
-
+    private void Start()
+    {
+        playerDimention = new Vector2(transform.localScale.x, transform.localScale.y);
+    }
     private void Update()
     {
         CheckInput();
@@ -61,10 +64,10 @@ public class PlayerMovement : MonoBehaviour
 
         if (absX > absY)
         {
-            if (_movmentInput.x > 0) { _dirrectionX = Mathf.CeilToInt(_movmentInput.x); transform.localScale = Vector3.one; }
+            if (_movmentInput.x > 0) { _dirrectionX = Mathf.CeilToInt(_movmentInput.x); transform.localScale = transform.localScale = new Vector3(playerDimention.x, playerDimention.y, 1); }
             else if (_movmentInput.x < 0)
             {
-                transform.localScale = new Vector3(-1, 1, 1);
+                transform.localScale = new Vector3(-playerDimention.x, playerDimention.y, 1);
             }
             _newPos = new Vector3(_ditectorOffset * _dirrectionX, 0, 0);
             _ditector.localPosition = _newPos;
