@@ -8,6 +8,13 @@ public class StructHandler : MonoBehaviour
     public struct WaveVariables
     {
         public int enemyNumber;
-        public Enemy enemyPrefab;
+        public EnemySO enemydata;
+    }
+
+    [System.Serializable]
+    public struct EnemyVariable
+    {
+        public GameObject EnemyBody;
+        public EnemySO EnemyData;
     }
 }

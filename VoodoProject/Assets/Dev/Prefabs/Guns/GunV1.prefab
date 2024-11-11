@@ -1142,8 +1142,8 @@ MonoBehaviour:
   _hpText: {fileID: 4451902363703031334}
   _ammoText: {fileID: 6912655883326938050}
   _damage: 2
-  _attackRate: 0.5
-  _rotationSpeed: 0
+  _attackRate: 1
+  _rotationSpeed: 2
   _maxCapacity: 20
 --- !u!61 &1666109018627141749
 BoxCollider2D:

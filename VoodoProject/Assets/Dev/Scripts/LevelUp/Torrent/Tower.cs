@@ -66,6 +66,7 @@ public class Tower : MonoBehaviour
     public void ReloadSpecialAmmo(int amount)
     {
         _currentSpecialAmmoCapacity+=amount;
+        _currentType = BulletType.Special;
         UpdateSpecailAmmo();
     }
 
@@ -127,12 +128,12 @@ public class Tower : MonoBehaviour
         {
             Bullet bullet = _torretHandler.Bullets.Dequeue();
             bullet.gameObject.SetActive(true);
-            SetType();
             bullet.SetBulletType(_currentType);
             bullet.transform.position = _gunPoint.position;
             bullet.transform.localEulerAngles = new Vector3(0,0,_gunHolder.eulerAngles.z-90);
 
             _torretHandler.Bullets.Enqueue(bullet);
+            SetType();
             UpdateSpecailAmmo();
 
         }
@@ -142,7 +143,6 @@ public class Tower : MonoBehaviour
     {
         if (_currentSpecialAmmoCapacity > 0)
         {
-            _currentType = BulletType.Special;
             _currentSpecialAmmoCapacity--;
         }
         else
