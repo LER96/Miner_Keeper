@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using static EnumHandler;
 using static StructHandler;
 
 public class WaveHandler : MonoBehaviour
@@ -12,11 +13,18 @@ public class WaveHandler : MonoBehaviour
 
     [SerializeField] List<WaveSO> _wavesData = new List<WaveSO>();
     private List<WaveVariables> _waveData = new List<WaveVariables>();
+    private WaveType _waveType;
     private WaveSO _currentWave;
-    private float _waveSpawnRate=3;
+
+    private int _deathToSpawn;
+    private int _currentDied;
+
+    private float _timerTillNextSpawn;
+    private float _waveSpawnRate;
     private float _currentRate;
+
     private bool _gameStart;
-    private int _currentIndex = 1;
+    private int _currentIndex;
 
     Queue<Enemy> _enemyQueue = new Queue<Enemy>();
     [SerializeField] List<Enemy> _enemyToActive = new List<Enemy>();
@@ -26,6 +34,13 @@ public class WaveHandler : MonoBehaviour
     {
         InitPool();
         SetData(1);
+    }
+    private void Update()
+    {
+        if (_gameStart)
+        {
+            DecideSpawnBehavior();
+        }
     }
 
     void InitPool()
@@ -43,33 +58,62 @@ public class WaveHandler : MonoBehaviour
         if (index > _wavesData.Count)
             return;
 
+        _currentRate = 0;
         _currentIndex = index;
         _currentWave = _wavesData[index-1];
         _waveData = _currentWave.WaveData;
+        _waveType = _currentWave.WaveType;
+        _timerTillNextSpawn = _currentWave.TimerNextWave;
+        _deathToSpawn = _currentWave.KillAmount;
+        _waveSpawnRate = _currentWave.SpawnRate;
+        SetSpawnList();
+        _gameStart = true;
+    }
 
+    void SetSpawnList()
+    {
         for (int i = 0; i < _waveData.Count; i++)
         {
             int numberToSpawn = _waveData[i].enemyNumber;
             for (int j = 0; j < numberToSpawn; j++)
             {
                 Enemy enemy = _enemyQueue.Dequeue();
-                enemy.SetData(_waveData[i].enemyPrefab.EnemyData);
+                enemy.SetBody(_waveData[i].enemydata);
                 _enemyToActive.Add(enemy);
                 _enemyQueue.Enqueue(enemy);
             }
         }
-
-        _waveSpawnRate = _currentWave.SpawnRate;
-        _gameStart = true;
     }
 
-    private void Update()
+    void DecideSpawnBehavior()
     {
-        if (_gameStart)
+        switch(_waveType)
         {
-            SpawnTimer();
-            SetFirstTarget();
+            case WaveType.KillingAmount:
+                 
+                break;
+            case WaveType.Timer:
+                if(_enemyToActive.Count==0)
+                {
+                    SetData(_currentIndex + 1);
+                    return;
+                }
+                break;
+            case WaveType.Clear:
+                if (_activeEnemy.Count == 0)
+                {
+                    SetData(_currentIndex + 1);
+                    return;
+                }
+                break;
         }
+        DefaultWaveBehavior();
+    }
+
+    void DefaultWaveBehavior()
+    {
+        SpawnTimer();
+        SetFirstTarget();
     }
 
     void SpawnTimer()
@@ -94,14 +138,10 @@ public class WaveHandler : MonoBehaviour
                 if (_activeEnemy[i] == enemy)
                 {
                     _activeEnemy.Remove(_activeEnemy[i]);
-                    if (_activeEnemy.Count == 0)
-                        SetData(_currentIndex + 1);
-
                     return;
                 }  
             }
         }
-
     }
 
     void Spawn()
