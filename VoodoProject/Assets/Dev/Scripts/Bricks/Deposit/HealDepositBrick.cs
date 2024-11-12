@@ -7,6 +7,13 @@ public class HealDepositBrick : DepositBrick
     [SerializeField] ItemSO _ammoItem;
     private TorretHandler _torretHandler;
 
+    protected override void Start()
+    {
+        base.Start();
+        _torretHandler = UpgradeManager.Instance.TorretHandler;
+
+    }
+
     protected override void CheckResources()
     {
         if (_playerInventory.AllItems.Count > 0)
