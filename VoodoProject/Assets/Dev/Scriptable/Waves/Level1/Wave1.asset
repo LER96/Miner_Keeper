@@ -17,7 +17,8 @@ MonoBehaviour:
     enemydata: {fileID: 11400000, guid: 8b668a09b555b744e87cf953b162ed7a, type: 2}
   - enemyNumber: 3
     enemydata: {fileID: 11400000, guid: 07a61a836af05cb408286fa2bacc72d6, type: 2}
-  waveType: 2
-  killAmount: 0
-  timerToLaunchNext: 0
-  spawnDelay: 0
+  waveVariable:
+    waveType: 2
+    killAmount: 0
+    timerToLaunchNext: 0
+  spawnDelay: 6
