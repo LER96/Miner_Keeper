@@ -268,7 +268,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2.5, y: 2.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4802829896608455564}
@@ -288,6 +288,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13f19fb74d432ce4d88217a103c97b10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _playerData: {fileID: 11400000, guid: 7d2bec790a9c70847886feb8f61a350d, type: 2}
   playerMovement: {fileID: 0}
   playerMining: {fileID: 0}
   inventory: {fileID: 0}
@@ -320,7 +321,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _animator: {fileID: 5887289237204796452}
-  _miningRate: 0.2
+  _miningRate: 10
 --- !u!114 &1999865005677964928
 MonoBehaviour:
   m_ObjectHideFlags: 0
