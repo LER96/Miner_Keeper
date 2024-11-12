@@ -16,7 +16,7 @@ public class WaveHandler : MonoBehaviour
     private WaveType _waveType;
     private WaveSO _currentWave;
 
-    private int _deathToSpawn;
+    private int _deathsToSpawnNext;
     private int _currentDied;
 
     private float _timerTillNextSpawn;
@@ -33,7 +33,7 @@ public class WaveHandler : MonoBehaviour
     private void Start()
     {
         InitPool();
-        SetData(1);
+        InitData(1);
     }
     private void Update()
     {
@@ -53,7 +53,7 @@ public class WaveHandler : MonoBehaviour
         }
     }
 
-    void SetData(int index)
+    void InitData(int index)
     {
         if (index > _wavesData.Count)
             return;
@@ -64,9 +64,11 @@ public class WaveHandler : MonoBehaviour
         _waveData = _currentWave.WaveData;
         _waveType = _currentWave.WaveType;
         _timerTillNextSpawn = _currentWave.TimerNextWave;
-        _deathToSpawn = _currentWave.KillAmount;
-        _waveSpawnRate = _currentWave.SpawnRate;
+        _deathsToSpawnNext = _currentWave.KillAmount;
+        _currentDied = 0;
+
         SetSpawnList();
+        _waveSpawnRate = _currentWave.SpawnRate;
         _gameStart = true;
     }
 
@@ -90,21 +92,20 @@ public class WaveHandler : MonoBehaviour
         switch(_waveType)
         {
             case WaveType.KillingAmount:
-                 
+                 if(_currentDied>= _deathsToSpawnNext)
+                {
+                    InitData(_currentIndex + 1);
+                    return;
+                }
                 break;
             case WaveType.Timer:
                 if(_enemyToActive.Count==0)
                 {
-                    SetData(_currentIndex + 1);
+                    InitData(_currentIndex + 1);
                     return;
                 }
                 break;
-            case WaveType.Clear:
-                if (_activeEnemy.Count == 0)
-                {
-                    SetData(_currentIndex + 1);
-                    return;
-                }
+            default:
                 break;
         }
         DefaultWaveBehavior();
@@ -138,6 +139,12 @@ public class WaveHandler : MonoBehaviour
                 if (_activeEnemy[i] == enemy)
                 {
                     _activeEnemy.Remove(_activeEnemy[i]);
+                    _currentDied++;
+                    if (_activeEnemy.Count == 0 && _waveType== WaveType.Clear)
+                    {
+                        InitData(_currentIndex + 1);
+                        return;
+                    }
                     return;
                 }  
             }

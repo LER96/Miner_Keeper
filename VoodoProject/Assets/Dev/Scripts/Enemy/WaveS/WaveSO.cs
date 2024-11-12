@@ -10,15 +10,13 @@ public class WaveSO : ScriptableObject
 {
     [SerializeField] List<WaveVariables> waveInfo = new List<WaveVariables>();
 
-    [SerializeField] WaveType waveType;
-    private int killAmount;
-    private float timerToLaunchNext;
-    private float spawnDelay;
+    [SerializeField] WaveTypeVariable waveVariable;
+    [SerializeField] float spawnDelay;
 
     public List<WaveVariables> WaveData => waveInfo;
-    public WaveType WaveType => waveType;
-    public int KillAmount => killAmount;
-    public float TimerNextWave => timerToLaunchNext;
+    public WaveType WaveType => waveVariable.waveType;
+    public int KillAmount => waveVariable.killAmount;
+    public float TimerNextWave => waveVariable.timerToLaunchNext;
     public float SpawnRate => spawnDelay;
-
+    
 }
