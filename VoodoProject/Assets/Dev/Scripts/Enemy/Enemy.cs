@@ -62,7 +62,7 @@ public class Enemy : MonoBehaviour
     {
         _enemyHp = _maxHp;
         _currentAttackRate = _attackRate;
-        transform.localPosition = Vector3.zero;
+        transform.localPosition = new Vector3(0,25,0);
 
     }
 
@@ -108,7 +108,7 @@ public class Enemy : MonoBehaviour
 
     protected virtual void Attack()
     {
-        _target.TakeDamage(_enemyDamage); 
+        _target.HpChange(-_enemyDamage); 
     }
 
     public virtual void TakeDamage(float dmg)

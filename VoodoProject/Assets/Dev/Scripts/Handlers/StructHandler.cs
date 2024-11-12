@@ -1,6 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Search;
 using UnityEngine;
+using static EnumHandler;
 
 public class StructHandler : MonoBehaviour
 {
@@ -16,5 +19,13 @@ public class StructHandler : MonoBehaviour
     {
         public GameObject EnemyBody;
         public EnemySO EnemyData;
+    }
+
+    [System.Serializable]
+    public struct WaveTypeVariable
+    {
+        public WaveType waveType;
+        public int killAmount;
+        public float timerToLaunchNext;
     }
 }

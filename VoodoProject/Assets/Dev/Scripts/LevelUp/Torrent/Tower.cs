@@ -63,6 +63,9 @@ public class Tower : MonoBehaviour
             return false;
         }
     }
+
+
+
     public void ReloadSpecialAmmo(int amount)
     {
         _currentSpecialAmmoCapacity+=amount;
@@ -152,15 +155,20 @@ public class Tower : MonoBehaviour
         }
     }
 
-    public void TakeDamage(float damage)
+    public void HpChange(float damage)
     {
-        _currentHP-=damage;
+        _currentHP+=damage;
+
         if (_currentHP < 0)
         {
             gameObject.SetActive(false);
         }
+        else if (_currentHP > _maxHP)
+            _currentHP = _maxHP;
         else
             UpdateHPBar();
+
+        PlayerManger.Instance.CurrentHP = _currentHP;
     }
 
 }
