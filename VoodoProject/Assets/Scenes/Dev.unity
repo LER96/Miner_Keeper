@@ -5041,6 +5041,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6276321235397242825}
+  - component: {fileID: 8149922800232511690}
   m_Layer: 0
   m_Name: Environment
   m_TagString: Untagged
@@ -5048,6 +5049,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &8149922800232511690
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8149922800232511689}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1ef4a27e503efa42b43de76c36395fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  waveType: 0
+  killAmount: 0
+  timerToLaunchNext: 0
 --- !u!1001 &8267476764841052384
 PrefabInstance:
   m_ObjectHideFlags: 0

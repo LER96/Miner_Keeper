@@ -18,5 +18,5 @@ public class WaveSO : ScriptableObject
     public int KillAmount => waveVariable.killAmount;
     public float TimerNextWave => waveVariable.timerToLaunchNext;
     public float SpawnRate => spawnDelay;
-
+    
 }
