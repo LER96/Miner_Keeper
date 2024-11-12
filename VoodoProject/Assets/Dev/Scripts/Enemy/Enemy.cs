@@ -108,7 +108,7 @@ public class Enemy : MonoBehaviour
 
     protected virtual void Attack()
     {
-        _target.TakeDamage(_enemyDamage); 
+        _target.HpChange(-_enemyDamage); 
     }
 
     public virtual void TakeDamage(float dmg)
