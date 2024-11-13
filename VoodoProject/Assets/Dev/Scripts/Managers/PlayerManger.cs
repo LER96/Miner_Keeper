@@ -6,45 +6,19 @@ public class PlayerManger : MonoBehaviour
 {
     public static PlayerManger Instance;
 
-    [SerializeField] PlayerSO _playerData;
-    [SerializeField] PlayerMovement playerMovement;
-    [SerializeField] PlayerMining playerMining;
-    [SerializeField] Inventory inventory;
+    [SerializeField] PlayerHandler _playerHandler;
 
-    private float _maxHp;
-    private float _currentHp;
-
-    public float MaxHP=> _maxHp;
-    public float CurrentHP { get=> _currentHp; set => _currentHp = value; }
-    public PlayerSO PlayerData=> _playerData;
-    public PlayerMovement MovementScript => playerMovement;
-    public PlayerMining MiningScript => playerMining;
-    public Inventory PlayerInventory => inventory;
+    public float MaxHP=> _playerHandler.MaxHP;
+    public float CurrentHP { get=> _playerHandler.CurrentHP; set => _playerHandler.CurrentHP = value; }
+    public PlayerHandler PlayerHandler { get => _playerHandler; set => _playerHandler = value; }
+    public PlayerMovement MovementScript => _playerHandler.MovementScript;
+    public PlayerMining MiningScript => _playerHandler.MiningScript;
+    public Inventory PlayerInventory => _playerHandler.PlayerInventory;
 
 
     private void Awake()
     {
         Instance = this;
-
-        playerMovement = GetComponent<PlayerMovement>();
-        playerMining = GetComponent<PlayerMining>();
-        inventory = GetComponent<Inventory>();
-        SetData();
-        _currentHp = _maxHp;
-    }
-
-    public void SetDataLevel(PlayerSO data)
-    {
-        _playerData = data;
-        SetData();
-    }
-
-    void SetData()
-    {
-        _maxHp = _playerData.HP;
-        playerMovement.MovementSpeed = _playerData.MovementSpeed;
-        playerMining.MiningRate = _playerData.MiningRate;
-
     }
 
 

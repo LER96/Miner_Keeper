@@ -12564,6 +12564,7 @@ Transform:
   - {fileID: 583487156}
   - {fileID: 497425936}
   - {fileID: 443685668}
+  - {fileID: 1146584058}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &480124994
@@ -31772,6 +31773,51 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1144434282}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1146584057
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1146584058}
+  - component: {fileID: 1146584059}
+  m_Layer: 0
+  m_Name: PlayerManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1146584058
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1146584057}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 479376133}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1146584059
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1146584057}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13f19fb74d432ce4d88217a103c97b10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playerHandler: {fileID: 8858123513632249531}
 --- !u!1001 &1147187657
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -46289,12 +46335,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1628461982}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.28, y: 0.55, z: 0.55}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 4453392508647784578}
+  m_Father: {fileID: 6276321235397242825}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1628461984
 SpriteRenderer:
@@ -46361,7 +46407,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 7397686736049881218}
-  _distance: {x: 1.5, y: 10}
+  _distance: {x: 1.5, y: 9}
   isOffScreen: 0
 --- !u!1001 &1639874432
 PrefabInstance:
@@ -60667,16 +60713,6 @@ PrefabInstance:
       objectReference: {fileID: 629471492}
     - target: {fileID: 6958342824435517545, guid: e1aa474467332e34cb29f65f5439100f,
         type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6958342824435517545, guid: e1aa474467332e34cb29f65f5439100f,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6958342824435517545, guid: e1aa474467332e34cb29f65f5439100f,
-        type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -61047,7 +61083,6 @@ Transform:
   - {fileID: 750261179}
   - {fileID: 1141257604}
   - {fileID: 1990148807}
-  - {fileID: 1628461983}
   m_Father: {fileID: 6276321235397242825}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!222 &4462719296203644603
@@ -61624,6 +61659,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2007656475597496379}
+  - {fileID: 1628461983}
   - {fileID: 4453392508647784578}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -62289,6 +62325,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1909138705718435539}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &8858123513632249531 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7513152487583532108, guid: e1aa474467332e34cb29f65f5439100f,
+    type: 3}
+  m_PrefabInstance: {fileID: 1909138705718435539}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 558e1d904a080ef4e9960326da3735fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!222 &8915992794889052829
 CanvasRenderer:
   m_ObjectHideFlags: 0
