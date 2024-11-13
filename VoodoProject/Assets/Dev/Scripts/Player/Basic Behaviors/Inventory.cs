@@ -45,8 +45,10 @@ public class Inventory : MonoBehaviour
             string slotName = slotItem.Key.ItemName;
             if (itemName == slotName)
             {
+                
                 _inventory[slotItem.Key] += count;
                 ItemUISlot itemUISlot = slotItem.Key;
+                itemUISlot.transform.SetAsFirstSibling();
                 itemUISlot.UpdateResouceCount(_inventory[slotItem.Key]);
 
                 if (_inventory[slotItem.Key] < 0)
@@ -73,7 +75,7 @@ public class Inventory : MonoBehaviour
         {
             if (item.CompareItem(currentItem))
             {
-                UpdateAmount(item.ItemName, -1);
+                UpdateAmount(item.ItemName, -item.Value);
                 _allItems.Remove(currentItem);
                 return;
             }

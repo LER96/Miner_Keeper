@@ -5089,7 +5089,7 @@ MonoBehaviour:
   - {fileID: 6548426291940078179}
   _hitvfx: {fileID: 6641225256682208525}
   item: {fileID: 7303110000710487934}
-  _reviveDelay: 2
+  _reviveDelay: 1
   _reviveTime: 5
 --- !u!61 &226297530400560865
 BoxCollider2D:

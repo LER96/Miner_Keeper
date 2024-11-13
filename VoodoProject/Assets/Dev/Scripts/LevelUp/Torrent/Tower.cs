@@ -64,6 +64,17 @@ public class Tower : MonoBehaviour
         }
     }
 
+    public bool CanHeal()
+    {
+        if (_currentHP < _maxHP)
+            return true;
+        else
+        {
+            _currentHP = _maxHP;
+            return false;
+        }
+    }
+
 
 
     public void ReloadSpecialAmmo(int amount)

@@ -8,10 +8,11 @@ using static StructHandler;
 public class Enemy : MonoBehaviour
 {
     public Action<Enemy> OnEnemyDied;
+    [SerializeField] Slider _enemyHPBar;
     [SerializeField] List<EnemyVariable> _enemyVariable = new List<EnemyVariable>();
     [SerializeField] protected EnemySO _enemyData;
-    bool inRange;
-    //[SerializeField] Slider _enemyHPBar;
+
+    protected bool inRange;
     protected string _enemyName;
     protected float _enemyHp;
     protected float _enemySpeed;
@@ -28,7 +29,7 @@ public class Enemy : MonoBehaviour
 
     protected virtual void Start()
     {
-        SetData(_enemyData);
+        SetBody(_enemyData);
     }
 
     public void SetBody(EnemySO enemy)
@@ -89,7 +90,7 @@ public class Enemy : MonoBehaviour
 
     protected void Move()
     {
-        transform.localPosition -= new Vector3(_enemySpeed, 0, 0);
+        transform.localPosition -= new Vector3(_enemySpeed*Time.fixedDeltaTime, 0, 0);
 
     }
 

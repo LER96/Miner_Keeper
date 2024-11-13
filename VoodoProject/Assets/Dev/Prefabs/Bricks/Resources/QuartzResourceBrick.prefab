@@ -109,7 +109,7 @@ SpriteRenderer:
   m_SortingOrder: 1
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6,
     type: 3}
-  m_Color: {r: 0.154, g: 0, b: 0.034517217, a: 1}
+  m_Color: {r: 0, g: 0.16399999, b: 0.16399999, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -5024,7 +5024,7 @@ SpriteRenderer:
   m_SortingOrder: 1
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6,
     type: 3}
-  m_Color: {r: 0.45490196, g: 0, b: 0.10291384, a: 1}
+  m_Color: {r: 0, g: 0.45490196, b: 0.4541084, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -5046,7 +5046,7 @@ GameObject:
   - component: {fileID: 397450020605534151}
   - component: {fileID: 226297530400560865}
   m_Layer: 0
-  m_Name: ResourceBrick 1
+  m_Name: QuartzResourceBrick
   m_TagString: Brick
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5067,7 +5067,7 @@ Transform:
   m_Children:
   - {fileID: 6836515232278007426}
   - {fileID: 8362129613813940246}
-  - {fileID: 2448727084191650103}
+  - {fileID: 2406580973252405557}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &397450020605534151
@@ -5084,13 +5084,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _brickHp: 3
   _brickStages:
-  - {fileID: 4981235846336537321}
-  - {fileID: 8212516865219336569}
   - {fileID: 6548426291940078179}
+  - {fileID: 8212516865219336569}
+  - {fileID: 4981235846336537321}
   _hitvfx: {fileID: 6641225256682208525}
-  item: {fileID: 7303110000710487934}
-  _reviveDelay: 2
-  _reviveTime: 5
+  item: {fileID: 7334005546820892540}
+  _reviveDelay: 1
+  _reviveTime: 3
 --- !u!61 &226297530400560865
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5211,7 +5211,7 @@ SpriteRenderer:
   m_SortingOrder: 1
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6,
     type: 3}
-  m_Color: {r: 0.33, g: 0, b: 0.073965475, a: 1}
+  m_Color: {r: 0, g: 0.273, b: 0.273, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -5221,7 +5221,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1001 &1186884548059191275
+--- !u!1001 &1217922292903096297
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -5312,18 +5312,18 @@ PrefabInstance:
     - target: {fileID: 5787595712901263809, guid: 955dcaeaaffd32844b24ed5d5a14aaa6,
         type: 3}
       propertyPath: m_Size.x
-      value: 0.58
+      value: 0.78
       objectReference: {fileID: 0}
     - target: {fileID: 5787595712901263809, guid: 955dcaeaaffd32844b24ed5d5a14aaa6,
         type: 3}
       propertyPath: m_Size.y
-      value: 0.69
+      value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 5787595712901263809, guid: 955dcaeaaffd32844b24ed5d5a14aaa6,
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 2125737359283935466, guid: f7043b7291f49844b9671b3d3dedcbb5,
+      objectReference: {fileID: 5524590292671962877, guid: f7043b7291f49844b9671b3d3dedcbb5,
         type: 3}
     - target: {fileID: 5787595712901263809, guid: 955dcaeaaffd32844b24ed5d5a14aaa6,
         type: 3}
@@ -5334,24 +5334,24 @@ PrefabInstance:
         type: 3}
       propertyPath: _itemData
       value: 
-      objectReference: {fileID: 11400000, guid: 87c66457bcc96fc469373631a9fe64f2,
+      objectReference: {fileID: 11400000, guid: 7a0e0ba4a7fbaf04e91cf9d9d7cf1754,
         type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 955dcaeaaffd32844b24ed5d5a14aaa6, type: 3}
---- !u!4 &2448727084191650103 stripped
+--- !u!4 &2406580973252405557 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3567705751032481500, guid: 955dcaeaaffd32844b24ed5d5a14aaa6,
     type: 3}
-  m_PrefabInstance: {fileID: 1186884548059191275}
+  m_PrefabInstance: {fileID: 1217922292903096297}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &7303110000710487934 stripped
+--- !u!114 &7334005546820892540 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8440153549228497045, guid: 955dcaeaaffd32844b24ed5d5a14aaa6,
     type: 3}
-  m_PrefabInstance: {fileID: 1186884548059191275}
+  m_PrefabInstance: {fileID: 1217922292903096297}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1

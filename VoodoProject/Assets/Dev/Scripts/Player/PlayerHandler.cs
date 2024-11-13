@@ -20,7 +20,7 @@ public class PlayerHandler : MonoBehaviour
     public Inventory PlayerInventory => inventory;
 
 
-    private void Start()
+    private void Awake()
     {
         playerMovement = GetComponent<PlayerMovement>();
         playerMining = GetComponent<PlayerMining>();
