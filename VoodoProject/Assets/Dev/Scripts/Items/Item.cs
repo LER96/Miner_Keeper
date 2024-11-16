@@ -33,6 +33,7 @@ public class Item : MonoBehaviour
         {
             _itemName = itemData.ItemName;
             _itemSprite.sprite = itemData.ItemSprite;
+            value = itemData.Value;
         }
     }
 

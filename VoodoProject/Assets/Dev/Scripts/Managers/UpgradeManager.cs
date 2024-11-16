@@ -17,7 +17,10 @@ public class UpgradeManager : MonoBehaviour
         Instance = this;
         _torretHandler = GetComponent<TorretHandler>();
         _upgradeHandler = GetComponent<TowerUpgradeHandler>();
+    }
 
+    private void Start()
+    {
         _upgradeHandler.SetHandler();
         _torretHandler.SetHandler();
     }
