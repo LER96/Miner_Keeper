@@ -25,7 +25,7 @@ public class PlayerHandler : MonoBehaviour
         playerMovement = GetComponent<PlayerMovement>();
         playerMining = GetComponent<PlayerMining>();
         inventory = GetComponent<Inventory>();
-        SetData();
+        SetDataLevel(_playerData);
         _currentHp = _maxHp;
 
         PlayerManger.Instance.PlayerHandler = this;

@@ -15,13 +15,8 @@ public class PlayerManger : MonoBehaviour
     public PlayerMining MiningScript => _playerHandler.MiningScript;
     public Inventory PlayerInventory => _playerHandler.PlayerInventory;
 
-
     private void Awake()
     {
         Instance = this;
     }
-
-
-
-
 }

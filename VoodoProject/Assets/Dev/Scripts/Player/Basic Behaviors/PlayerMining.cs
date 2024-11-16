@@ -13,15 +13,9 @@ public class PlayerMining : MonoBehaviour
     bool _canMine;
     bool _alreadyMine;
     float _currentMiningTime;
-    float _rate;
 
     public bool CanMine { set => _canMine = value; }
     public float MiningRate { get => _miningRate; set => _miningRate = 1/value; }
-
-    private void Start()
-    {
-        _currentMiningTime = _rate;
-    }
 
     private void Update()
     {
@@ -35,7 +29,7 @@ public class PlayerMining : MonoBehaviour
 
     void MiningRateTimer()
     {
-        if(_currentMiningTime < _rate && _alreadyMine==false)
+        if(_currentMiningTime < _miningRate && _alreadyMine==false)
         {
             _currentMiningTime += Time.deltaTime;
         }
