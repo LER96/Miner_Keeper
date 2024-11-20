@@ -24,7 +24,7 @@ public class MinerDitector : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.CompareTag("Brick") && _target==null)
+        if (collision.CompareTag("Brick")&& _target==null)
         {
             _playerMining.CanMine = true;
             _target = collision.GetComponent<Brick>();
