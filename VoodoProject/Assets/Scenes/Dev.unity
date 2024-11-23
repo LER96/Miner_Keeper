@@ -535,6 +535,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a9465e8a8d890dc4aacba9181c754bd7, type: 2}
   - {fileID: 11400000, guid: c83d3bb36ae9489408509b0e7e567c42, type: 2}
   - {fileID: 11400000, guid: 99032b7602a107441ac0238ee2f16468, type: 2}
+  - {fileID: 11400000, guid: f43d327179570794b9f69368d525ec81, type: 2}
   _enemyToActive: []
 --- !u!1 &479376132
 GameObject:
@@ -709,6 +710,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: Map 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3662811758519525030, guid: a6f8a9cb483c1e84d87175eec857c4b1,
+        type: 3}
+      propertyPath: m_CellSize.x
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3662811758519525030, guid: a6f8a9cb483c1e84d87175eec857c4b1,
+        type: 3}
+      propertyPath: m_CellSize.y
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3662811758519525030, guid: a6f8a9cb483c1e84d87175eec857c4b1,
+        type: 3}
+      propertyPath: m_CellSize.z
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7875909038817341587, guid: a6f8a9cb483c1e84d87175eec857c4b1,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -759,7 +775,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 151524307582933244, guid: a6f8a9cb483c1e84d87175eec857c4b1, type: 3}
     m_RemovedGameObjects:
     - {fileID: 4076011409744414919, guid: a6f8a9cb483c1e84d87175eec857c4b1, type: 3}
     m_AddedGameObjects: []
@@ -1797,6 +1814,21 @@ PrefabInstance:
       propertyPath: _joystick
       value: 
       objectReference: {fileID: 1017141972}
+    - target: {fileID: 341856203522984409, guid: e1aa474467332e34cb29f65f5439100f,
+        type: 3}
+      propertyPath: _ditectorOffset.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 341856203522984409, guid: e1aa474467332e34cb29f65f5439100f,
+        type: 3}
+      propertyPath: _ditectorOffset.y
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1527683309315109873, guid: e1aa474467332e34cb29f65f5439100f,
+        type: 3}
+      propertyPath: _layer.m_Bits
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 1999865005677964928, guid: e1aa474467332e34cb29f65f5439100f,
         type: 3}
       propertyPath: _slotParent

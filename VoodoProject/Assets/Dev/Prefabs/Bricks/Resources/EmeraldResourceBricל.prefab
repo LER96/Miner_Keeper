@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6836515232278007426}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Bodies
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44,7 +44,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3570788991374843468}
   - component: {fileID: 8402524001535272159}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Body (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -130,7 +130,7 @@ GameObject:
   - component: {fileID: 8362129613813940246}
   - component: {fileID: 6641225256682208525}
   - component: {fileID: 4610507639635165340}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Particle System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4959,7 +4959,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2856980057012522001}
   - component: {fileID: 5466324352444699579}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5045,7 +5045,7 @@ GameObject:
   - component: {fileID: 4275279533184458183}
   - component: {fileID: 397450020605534151}
   - component: {fileID: 226297530400560865}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: "EmeraldResourceBric\u05DC"
   m_TagString: Brick
   m_Icon: {fileID: 0}
@@ -5146,7 +5146,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1616822606752073638}
   - component: {fileID: 22339455593122492}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Body (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5303,6 +5303,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Item
+      objectReference: {fileID: 0}
+    - target: {fileID: 5771029352237617902, guid: 955dcaeaaffd32844b24ed5d5a14aaa6,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5771029352237617902, guid: 955dcaeaaffd32844b24ed5d5a14aaa6,
         type: 3}

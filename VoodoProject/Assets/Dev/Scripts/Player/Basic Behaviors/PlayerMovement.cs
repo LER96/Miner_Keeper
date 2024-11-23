@@ -11,7 +11,8 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Ditector")]
     [SerializeField] Transform _ditector;
-    [SerializeField] float _ditectorOffset;
+    [SerializeField] Vector2 _ditectorOffset;
+
     private Vector2 playerDimention;
     private PlayerDirrection _playerDirrection;
     private Vector2 _movmentInput;
@@ -39,13 +40,6 @@ public class PlayerMovement : MonoBehaviour
 
     void CheckInput()
     {
-
-        //Touch touch = Input.GetTouch(0);
-        //if (touch.phase == TouchPhase.Began)
-        //{
-        //    Vector3 pointWorldPos = Camera.main.ScreenToWorldPoint(touch.position);
-        //    _joystick.transform.position = new Vector3(pointWorldPos.x, pointWorldPos.y,-5);
-        //}
         _movmentInput.x = _joystick.Horizontal;
         _movmentInput.y = _joystick.Vertical;
         SetDitector();
@@ -68,29 +62,31 @@ public class PlayerMovement : MonoBehaviour
             {
                 transform.localScale = new Vector3(-playerDimention.x, playerDimention.y, 1);
             }
-            _newPos = new Vector3(_ditectorOffset * _dirrectionX, 0, 0);
-            _ditector.localPosition = _newPos;
+
             _playerDirrection = PlayerDirrection.Side;
+            _newPos = new Vector3(_ditectorOffset.x * _dirrectionX, 0, 0);
+            _ditector.localPosition = _newPos;
         }
+
         //Up-Down
         else if (absX < absY)
         {
+            //UP
             if (_movmentInput.y > 0)
             {
                 _dirrectionY = Mathf.CeilToInt(_movmentInput.y);
                 _playerDirrection = PlayerDirrection.Up;
             }
-            else if (_movmentInput.y < 0) 
-            { 
-                _dirrectionY = Mathf.FloorToInt(_movmentInput.y); 
+            //Down
+            else if (_movmentInput.y < 0)
+            {
+                _dirrectionY = Mathf.FloorToInt(_movmentInput.y);
                 _playerDirrection = PlayerDirrection.Dowm;
             }
 
-            _newPos = new Vector3(0, _ditectorOffset * _dirrectionY, 0);
+            _newPos = new Vector3(0, _ditectorOffset.y * _dirrectionY, 0);
             _ditector.localPosition = _newPos;
         }
     }
-
-
 
 }

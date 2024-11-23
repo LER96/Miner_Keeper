@@ -57,6 +57,7 @@ public class Enemy : MonoBehaviour
         _enemyDamage = _enemyData.Damage;
         _enemyAttackRange = _enemyData.AttackRange*100;
         _attackRate = _enemyData.AttackRate;
+
     }
 
     protected virtual void InitData()
@@ -67,7 +68,7 @@ public class Enemy : MonoBehaviour
 
     }
 
-    private void FixedUpdate()
+    protected virtual void FixedUpdate()
     {
         Decide();
     }
@@ -90,7 +91,7 @@ public class Enemy : MonoBehaviour
 
     protected void Move()
     {
-        transform.localPosition -= new Vector3(_enemySpeed*Time.fixedDeltaTime, 0, 0);
+        transform.localPosition -= new Vector3(_enemySpeed*10*Time.deltaTime, 0, 0);
 
     }
 
@@ -115,14 +116,21 @@ public class Enemy : MonoBehaviour
     public virtual void TakeDamage(float dmg)
     {
         _enemyHp -= dmg;
+        HPSlider();
         //Hit VFX
-        if(_enemyHp<0)
+        if (_enemyHp<0)
         {
             _enemyHp = 0;
             OnEnemyDied.Invoke(this);
             gameObject.SetActive(false);
         }
         
+    }
+
+    protected virtual void HPSlider()
+    {
+        _enemyHPBar.gameObject.SetActive(true);
+        _enemyHPBar.value = _enemyHp / _maxHp;
     }
 
     protected virtual void OnDisable()

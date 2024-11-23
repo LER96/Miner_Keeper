@@ -18,5 +18,5 @@ public class EnemySO : ScriptableObject
     public float MovementSpeed => _speed;
     public float Damage => _damage;
     public float AttackRange => _attackRange;
-    public float AttackRate => _attackRate;
+    public float AttackRate => 1/_attackRate;
 }

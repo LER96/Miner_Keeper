@@ -22,7 +22,7 @@ public class ResourceBrick : Brick
 
     private void Update()
     {
-        if(_canCollect==false)
+        if (_canCollect == false || (_isTarget==false && _brickHp< _startHp))
         {
             Revive();
         }

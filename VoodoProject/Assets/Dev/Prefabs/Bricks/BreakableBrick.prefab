@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8200206549446131314}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Bodies
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44,7 +44,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7556637184907731308}
   - component: {fileID: 7582112397880369122}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Body (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -131,7 +131,7 @@ GameObject:
   - component: {fileID: 8045590880815517242}
   - component: {fileID: 4965566668646180855}
   - component: {fileID: 4876191148054192146}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BreakableBrick
   m_TagString: Brick
   m_Icon: {fileID: 0}
@@ -246,7 +246,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1079521671558521999}
   - component: {fileID: 6547499084502262289}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Body (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -331,7 +331,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5399058659231976191}
   - component: {fileID: 8397706254958400295}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -417,7 +417,7 @@ GameObject:
   - component: {fileID: 5458443347705645390}
   - component: {fileID: 3740515619355906425}
   - component: {fileID: 667080324220819162}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Particle System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
