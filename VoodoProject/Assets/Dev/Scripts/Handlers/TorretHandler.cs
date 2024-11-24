@@ -74,7 +74,7 @@ public class TorretHandler : MonoBehaviour
         {
             _nextUpgrade = _towersBodies[index].towerData.TowerCost;
             if (_nextUpgrade != null)
-                UpgradeManager.Instance.UpgradeHandler.CreateItems(_nextUpgrade);
+                UpgradeManager.Instance.TowerUpgradeHandler.CreateItems(_nextUpgrade);
             else
                 ClearUpgradeSlots();
         }
@@ -84,7 +84,7 @@ public class TorretHandler : MonoBehaviour
 
     void ClearUpgradeSlots()
     {
-        UpgradeManager.Instance.UpgradeHandler.ClearAll();
+        UpgradeManager.Instance.TowerUpgradeHandler.ClearAll();
     }
 
 }

@@ -93,7 +93,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2191580536691805241
 RectTransform:
   m_ObjectHideFlags: 0
@@ -138,6 +138,7 @@ MonoBehaviour:
   - EnemyBody: {fileID: 6958408306274763577}
     EnemyData: {fileID: 11400000, guid: ccb0f5902805a1942b1c4717ee6d64bc, type: 2}
   _enemyData: {fileID: 0}
+  _item: {fileID: 0}
 --- !u!61 &4564636892121372615
 BoxCollider2D:
   m_ObjectHideFlags: 0

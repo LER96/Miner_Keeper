@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9cbea3be4fb6a9649aeae7a9e23616f0, type: 3}
   m_Name: XP
   m_EditorClassIdentifier: 
-  _itemSprite: {fileID: 0}
+  _itemSprite: {fileID: 21300102, guid: 9bd9265533309304db171aa9f916554a, type: 3}
   _itemName: XP
   _value: 1

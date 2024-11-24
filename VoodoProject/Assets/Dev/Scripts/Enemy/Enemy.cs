@@ -27,10 +27,10 @@ public class Enemy : MonoBehaviour
 
     public EnemySO EnemyData => _enemyData;
 
-    protected virtual void Start()
-    {
-        SetBody(_enemyData);
-    }
+    //protected virtual void Start()
+    //{
+    //    SetBody(_enemyData);
+    //}
 
     public void SetBody(EnemySO enemy)
     {
@@ -57,7 +57,6 @@ public class Enemy : MonoBehaviour
         _enemyDamage = _enemyData.Damage;
         _enemyAttackRange = _enemyData.AttackRange*100;
         _attackRate = _enemyData.AttackRate;
-
     }
 
     protected virtual void InitData()
@@ -120,11 +119,17 @@ public class Enemy : MonoBehaviour
         //Hit VFX
         if (_enemyHp<0)
         {
-            _enemyHp = 0;
-            OnEnemyDied.Invoke(this);
-            gameObject.SetActive(false);
+            UpgradeManager.Instance.UpgradeHandler.DropItem(this);
+            HandleDeath();
         }
         
+    }
+
+    protected virtual void HandleDeath()
+    {
+        _enemyHp = 0;
+        OnEnemyDied.Invoke(this);
+        gameObject.SetActive(false);
     }
 
     protected virtual void HPSlider()

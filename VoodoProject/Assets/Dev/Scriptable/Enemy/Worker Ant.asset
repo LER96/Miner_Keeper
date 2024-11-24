@@ -18,3 +18,4 @@ MonoBehaviour:
   _damage: 2
   _attackRange: 2
   _attackRate: 0.3
+  _dropItem: {fileID: 11400000, guid: 641aff0baa6de4c46ab1e6d8da745322, type: 2}

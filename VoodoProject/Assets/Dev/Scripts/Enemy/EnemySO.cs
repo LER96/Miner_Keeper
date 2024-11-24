@@ -13,10 +13,13 @@ public class EnemySO : ScriptableObject
     [SerializeField] float _attackRange;
     [SerializeField] float _attackRate;
 
+    [SerializeField] ItemSO _dropItem;
+
     public string EnemyName => _enemyName;
     public float HP => _hp;
     public float MovementSpeed => _speed;
     public float Damage => _damage;
     public float AttackRange => _attackRange;
     public float AttackRate => 1/_attackRate;
+    public ItemSO DropItem => _dropItem;
 }
