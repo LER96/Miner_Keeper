@@ -49,6 +49,7 @@ public class WaveHandler : MonoBehaviour
         {
             Enemy enemy = Instantiate(_enemyPreFab, _enemyHolder);
             enemy.OnEnemyDied += DealEnemy;
+            enemy.gameObject.SetActive(false);
             _enemyQueue.Enqueue(enemy);
         }
     }

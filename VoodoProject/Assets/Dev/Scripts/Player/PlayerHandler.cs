@@ -19,7 +19,6 @@ public class PlayerHandler : MonoBehaviour
     public PlayerMining MiningScript => playerMining;
     public Inventory PlayerInventory => inventory;
 
-
     private void Awake()
     {
         playerMovement = GetComponent<PlayerMovement>();

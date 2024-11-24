@@ -89,7 +89,7 @@ public class Bullet : MonoBehaviour
             Enemy enemy = collision.GetComponent<Enemy>();
             if (enemy != null)
                 enemy.TakeDamage(_damage);
-            this.gameObject.SetActive(false);
+            gameObject.SetActive(false);
         }
     }
 

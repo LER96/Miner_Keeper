@@ -32,7 +32,7 @@ public class Tower : MonoBehaviour
     float _currentHP;
     float _currentTime;
     float _currentSpecialAmmoCapacity;
-    Transform _target;
+    [SerializeField] Transform _target;
     TorretHandler _torretHandler;
 
     public float CurentHP=> _currentHP;
