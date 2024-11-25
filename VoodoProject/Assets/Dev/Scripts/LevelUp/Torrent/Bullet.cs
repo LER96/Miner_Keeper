@@ -82,19 +82,18 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if(collision.transform.CompareTag("Floor"))
+        if (collision.transform.CompareTag("Floor"))
+        {
+            transform.localPosition = Vector3.zero;
             this.gameObject.SetActive(false);
+        }
         else if (collision.transform.CompareTag("Enemy"))
         {
             Enemy enemy = collision.GetComponent<Enemy>();
             if (enemy != null)
                 enemy.TakeDamage(_damage);
+            transform.localPosition = Vector3.zero;
             gameObject.SetActive(false);
         }
-    }
-
-    private void OnDisable()
-    {
-        transform.localPosition = Vector3.zero;
     }
 }

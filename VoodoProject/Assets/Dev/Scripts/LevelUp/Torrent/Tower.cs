@@ -96,6 +96,7 @@ public class Tower : MonoBehaviour
         _towerBody.sprite = _towerData.TowerSprit;
         _gun.sprite = _towerData.GunSprite;
         _maxCapacity = _towerData.MaxCapacity;
+
         UpdateSpecailAmmo();
         UpdateHPBar();
     }
@@ -133,7 +134,7 @@ public class Tower : MonoBehaviour
         float _angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
 
         Quaternion desireRotation = Quaternion.Euler(0,0, _angle);
-        _gunHolder.rotation = Quaternion.Slerp(_gunHolder.rotation, desireRotation, _rotationSpeed * Time.deltaTime);
+        _gunHolder.rotation = Quaternion.Slerp(_gunHolder.rotation, desireRotation, _rotationSpeed*10 * Time.deltaTime);
     }
 
     void Shoot()
@@ -149,7 +150,6 @@ public class Tower : MonoBehaviour
             _torretHandler.Bullets.Enqueue(bullet);
             SetType();
             UpdateSpecailAmmo();
-
         }
     }
 
