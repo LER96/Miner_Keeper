@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 43d57b91f403afb42955e1be87035561, type: 3}
-  m_Name: TowerLevel1
+  m_Name: TowerLevel 2
   m_EditorClassIdentifier: 
-  _level: 1
+  _level: 0
   _towerSprite: {fileID: 0}
   _gunSprite: {fileID: 0}
-  _damage: 2
-  _attackRate: 1
-  _rotationSpeed: 0.5
-  _maxCapacity: 30
-  _towerCostData: {fileID: 0}
+  _damage: 2.5
+  _attackRate: 2.5
+  _rotationSpeed: 0.7
+  _maxCapacity: 40
+  _towerCostData: {fileID: 11400000, guid: aeb752bd1af112c4b93b8db5888eccf1, type: 2}

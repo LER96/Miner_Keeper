@@ -5046,7 +5046,7 @@ GameObject:
   - component: {fileID: 397450020605534151}
   - component: {fileID: 226297530400560865}
   m_Layer: 3
-  m_Name: QuartzResourceBrick
+  m_Name: QuartzBrick
   m_TagString: Brick
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

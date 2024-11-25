@@ -75,8 +75,7 @@ public class Bullet : MonoBehaviour
         }
         else
         {
-            _currentTimer = 0;
-            gameObject.SetActive(false);
+            ResetBullet();
         }    
     }
 
@@ -84,16 +83,21 @@ public class Bullet : MonoBehaviour
     {
         if (collision.transform.CompareTag("Floor"))
         {
-            transform.localPosition = Vector3.zero;
-            this.gameObject.SetActive(false);
+            ResetBullet();
         }
         else if (collision.transform.CompareTag("Enemy"))
         {
             Enemy enemy = collision.GetComponent<Enemy>();
             if (enemy != null)
                 enemy.TakeDamage(_damage);
-            transform.localPosition = Vector3.zero;
-            gameObject.SetActive(false);
+            ResetBullet();
         }
+    }
+
+    void ResetBullet()
+    {
+        _currentTimer = 0;
+        transform.localPosition = Vector3.zero;
+        gameObject.SetActive(false);
     }
 }
