@@ -23,4 +23,5 @@ MonoBehaviour:
     waveType: 2
     killAmount: 0
     timerToLaunchNext: 0
-  spawnDelay: 6
+  _spawnRate: 2
+  _waveDelay: 5

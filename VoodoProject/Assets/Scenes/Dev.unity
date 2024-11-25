@@ -568,7 +568,7 @@ GameObject:
   - component: {fileID: 443685668}
   - component: {fileID: 443685669}
   m_Layer: 0
-  m_Name: WaveManager
+  m_Name: WaveHandler
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -801,8 +801,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _torretHandler: {fileID: 583487158}
-  _towerUpgradeHandler: {fileID: 0}
-  _upgradeHandler: {fileID: 0}
+  _towerUpgradeHandler: {fileID: 583487159}
+  _upgradeHandler: {fileID: 583487160}
 --- !u!114 &583487158
 MonoBehaviour:
   m_ObjectHideFlags: 0
