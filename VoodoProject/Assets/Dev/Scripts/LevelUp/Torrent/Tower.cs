@@ -13,8 +13,8 @@ public class Tower : MonoBehaviour
     [Header("Tower Object")]
     [SerializeField] Image _towerBody;
     [SerializeField] Image _gun;
-    [SerializeField] Transform _gunHolder;
-    [SerializeField] Transform _gunPoint;
+    [SerializeField] List<Gun> _gunHolders = new List<Gun>();
+    int index=0;
 
     [Header("Slider")]
     [SerializeField] Slider _specialAmmoSlider;
@@ -130,11 +130,10 @@ public class Tower : MonoBehaviour
 
     void RotateTo()
     {
-        Vector3 dir = (_target.position - _gunHolder.position);
-        float _angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-
-        Quaternion desireRotation = Quaternion.Euler(0,0, _angle);
-        _gunHolder.rotation = Quaternion.Slerp(_gunHolder.rotation, desireRotation, _rotationSpeed*10 * Time.deltaTime);
+        for (int i = 0; i < _gunHolders.Count; i++)
+        {
+            _gunHolders[i].RotateToTarget(_target, _rotationSpeed);
+        }
     }
 
     void Shoot()
@@ -144,8 +143,16 @@ public class Tower : MonoBehaviour
             Bullet bullet = _torretHandler.Bullets.Dequeue();
             bullet.gameObject.SetActive(true);
             bullet.SetBulletType(_currentType);
-            bullet.transform.position = _gunPoint.position;
-            bullet.transform.localEulerAngles = new Vector3(0,0,_gunHolder.eulerAngles.z-90);
+
+            _gunHolders[index].ShootFrom(bullet.transform);
+
+            if (index+1 < _gunHolders.Count)
+            {
+                index++;
+            }
+            else
+                index = 0;
+
 
             _torretHandler.Bullets.Enqueue(bullet);
             SetType();
