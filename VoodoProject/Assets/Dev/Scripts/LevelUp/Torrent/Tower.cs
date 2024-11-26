@@ -140,21 +140,17 @@ public class Tower : MonoBehaviour
     {
         if (_torretHandler != null)
         {
-            Bullet bullet = _torretHandler.Bullets.Dequeue();
-            bullet.gameObject.SetActive(true);
-            bullet.SetBulletType(_currentType);
-
-            _gunHolders[index].ShootFrom(bullet.transform);
-
-            if (index+1 < _gunHolders.Count)
+            for (int i = 0; i < _gunHolders.Count; i++)
             {
-                index++;
+                Bullet bullet = _torretHandler.Bullets.Dequeue();
+                bullet.gameObject.SetActive(true);
+                bullet.Damage = _damage;
+                bullet.SetBulletType(_currentType);
+
+                _gunHolders[i].ShootFrom(bullet.transform);
+                _torretHandler.Bullets.Enqueue(bullet);
             }
-            else
-                index = 0;
 
-
-            _torretHandler.Bullets.Enqueue(bullet);
             SetType();
             UpdateSpecailAmmo();
         }
@@ -164,11 +160,13 @@ public class Tower : MonoBehaviour
     {
         if (_currentSpecialAmmoCapacity > 0)
         {
+            _damage = _towerData.SpecialDamage;
             _currentSpecialAmmoCapacity--;
         }
         else
         {
             _currentType = BulletType.Regular;
+            _damage = _towerData.Damage;
             _currentSpecialAmmoCapacity = 0;
         }
     }
