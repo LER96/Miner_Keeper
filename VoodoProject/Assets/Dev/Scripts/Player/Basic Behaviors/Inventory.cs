@@ -75,9 +75,16 @@ public class Inventory : MonoBehaviour
         {
             if (item.CompareItem(currentItem))
             {
-                UpdateAmount(item.ItemName, -item.Value);
-                _allItems.Remove(currentItem);
-                return;
+                if (currentItem.Value > 0)
+                {
+                    currentItem.Value -= 1;
+                    UpdateAmount(item.ItemName, -1);
+                }
+                else
+                {
+                    _allItems.Remove(currentItem);
+                    return;
+                }
             }
         }
     }

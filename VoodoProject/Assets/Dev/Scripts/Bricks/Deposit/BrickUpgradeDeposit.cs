@@ -16,8 +16,8 @@ public class BrickUpgradeDeposit : DepositBrick
                     ItemUISlot itemUI = _upgradeHandler.ActiveSlots[i];
                     if (item.CompareItem(itemUI.ItemName))
                     {
-                        _upgradeHandler.UpgradeProgress(item);
                         _playerInventory.Deposit(item,this.transform);
+                        _upgradeHandler.UpgradeProgress(item);
                         StartCoroutine(DepositCD());
                         return;
                     }
