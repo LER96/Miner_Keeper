@@ -4,7 +4,15 @@ using UnityEngine;
 
 public class Gun : MonoBehaviour
 {
+    [SerializeField] float _attackRate;
     [SerializeField] Transform _shootPoint;
+
+
+    private void Update()
+    {
+        
+    }
+
     public void RotateToTarget(Transform target, float rotationSpeed)
     {
         Vector3 dir = (target.position - transform.position);

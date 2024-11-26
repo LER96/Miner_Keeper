@@ -16,11 +16,11 @@ public class Inventory : MonoBehaviour
     [SerializeField] Transform _slotParent;
     [SerializeField] ItemUISlot slotItemPrefab;
 
-    Item _itemToRemove;
-    Item _item;
-    Queue<Item> _actualItems = new Queue<Item>();
-    List<Item> _allItems = new List<Item>();
-    Dictionary<ItemUISlot, int> _inventory = new Dictionary<ItemUISlot, int>();
+    private Item _itemToRemove;
+    private Item _item;
+    private Queue<Item> _actualItems = new Queue<Item>();
+    private List<Item> _allItems = new List<Item>();
+    private Dictionary<ItemUISlot, int> _inventory = new Dictionary<ItemUISlot, int>();
 
     public List<Item> AllItems => _allItems;
 
@@ -45,7 +45,6 @@ public class Inventory : MonoBehaviour
             string slotName = slotItem.Key.ItemName;
             if (itemName == slotName)
             {
-                
                 _inventory[slotItem.Key] += count;
                 ItemUISlot itemUISlot = slotItem.Key;
                 itemUISlot.transform.SetAsFirstSibling();
@@ -75,16 +74,9 @@ public class Inventory : MonoBehaviour
         {
             if (item.CompareItem(currentItem))
             {
-                if (currentItem.Value > 0)
-                {
-                    currentItem.Value -= 1;
-                    UpdateAmount(item.ItemName, -1);
-                }
-                else
-                {
-                    _allItems.Remove(currentItem);
-                    return;
-                }
+                UpdateAmount(item.ItemName, -item.Value);
+                _allItems.Remove(currentItem);
+                return;
             }
         }
     }
