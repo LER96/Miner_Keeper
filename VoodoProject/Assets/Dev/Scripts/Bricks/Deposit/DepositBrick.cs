@@ -13,7 +13,7 @@ public class DepositBrick : MonoBehaviour
     protected virtual void Start()
     {
         _playerInventory = PlayerManger.Instance.PlayerInventory;
-        _upgradeHandler = UpgradeManager.Instance.UpgradeHandler;
+        _upgradeHandler = UpgradeManager.Instance.TowerUpgradeHandler;
         canCollect = true;
     }
     protected virtual void Update()

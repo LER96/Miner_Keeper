@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6836515232278007426}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Bodies
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44,7 +44,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3570788991374843468}
   - component: {fileID: 8402524001535272159}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Body (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -109,7 +109,7 @@ SpriteRenderer:
   m_SortingOrder: 1
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6,
     type: 3}
-  m_Color: {r: 0.003672435, g: 0.142, b: 0, a: 1}
+  m_Color: {r: 0.154, g: 0, b: 0.034517217, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -130,7 +130,7 @@ GameObject:
   - component: {fileID: 8362129613813940246}
   - component: {fileID: 6641225256682208525}
   - component: {fileID: 4610507639635165340}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Particle System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4959,7 +4959,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2856980057012522001}
   - component: {fileID: 5466324352444699579}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5024,7 +5024,7 @@ SpriteRenderer:
   m_SortingOrder: 1
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6,
     type: 3}
-  m_Color: {r: 0.01273926, g: 0.45490196, b: 0, a: 1}
+  m_Color: {r: 0.45490196, g: 0, b: 0.10291384, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -5045,8 +5045,8 @@ GameObject:
   - component: {fileID: 4275279533184458183}
   - component: {fileID: 397450020605534151}
   - component: {fileID: 226297530400560865}
-  m_Layer: 0
-  m_Name: HealGemResourceBrick
+  m_Layer: 3
+  m_Name: NitreBrick
   m_TagString: Brick
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5089,8 +5089,8 @@ MonoBehaviour:
   - {fileID: 6548426291940078179}
   _hitvfx: {fileID: 6641225256682208525}
   item: {fileID: 7303110000710487934}
-  _reviveDelay: 2
-  _reviveTime: 5
+  _reviveDelay: 1
+  _reviveTime: 4
 --- !u!61 &226297530400560865
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5146,7 +5146,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1616822606752073638}
   - component: {fileID: 22339455593122492}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Body (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5211,7 +5211,7 @@ SpriteRenderer:
   m_SortingOrder: 1
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6,
     type: 3}
-  m_Color: {r: 0.0067759007, g: 0.262, b: 0, a: 1}
+  m_Color: {r: 0.33, g: 0, b: 0.073965475, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -5232,17 +5232,17 @@ PrefabInstance:
     - target: {fileID: 3567705751032481500, guid: 955dcaeaaffd32844b24ed5d5a14aaa6,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.15
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 3567705751032481500, guid: 955dcaeaaffd32844b24ed5d5a14aaa6,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.15
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 3567705751032481500, guid: 955dcaeaaffd32844b24ed5d5a14aaa6,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.15
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 3567705751032481500, guid: 955dcaeaaffd32844b24ed5d5a14aaa6,
         type: 3}
@@ -5306,24 +5306,29 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5771029352237617902, guid: 955dcaeaaffd32844b24ed5d5a14aaa6,
         type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5771029352237617902, guid: 955dcaeaaffd32844b24ed5d5a14aaa6,
+        type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5787595712901263809, guid: 955dcaeaaffd32844b24ed5d5a14aaa6,
         type: 3}
       propertyPath: m_Size.x
-      value: 2.56
+      value: 0.58
       objectReference: {fileID: 0}
     - target: {fileID: 5787595712901263809, guid: 955dcaeaaffd32844b24ed5d5a14aaa6,
         type: 3}
       propertyPath: m_Size.y
-      value: 2.56
+      value: 0.69
       objectReference: {fileID: 0}
     - target: {fileID: 5787595712901263809, guid: 955dcaeaaffd32844b24ed5d5a14aaa6,
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: d51c1258cd5939546b6018024be39654,
+      objectReference: {fileID: 2125737359283935466, guid: f7043b7291f49844b9671b3d3dedcbb5,
         type: 3}
     - target: {fileID: 5787595712901263809, guid: 955dcaeaaffd32844b24ed5d5a14aaa6,
         type: 3}
@@ -5334,7 +5339,7 @@ PrefabInstance:
         type: 3}
       propertyPath: _itemData
       value: 
-      objectReference: {fileID: 11400000, guid: 1414e21fec4a6cd4cb403740f8e58335,
+      objectReference: {fileID: 11400000, guid: 87c66457bcc96fc469373631a9fe64f2,
         type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

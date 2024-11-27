@@ -7,14 +7,14 @@ public class Item : MonoBehaviour
 {
     [SerializeField] ItemSO _itemData;
     [SerializeField] SpriteRenderer _itemSprite;
-    [SerializeField] int value;
+    [SerializeField] int _value;
 
     private string _itemName;
 
     public ItemSO ItemData => _itemData;
     public string ItemName => _itemName;
     public Sprite ItemSprite => _itemSprite.sprite;
-    public int Value => value;
+    public int Value { get => _value; set => _value = value; }
 
     private void OnEnable()
     {
@@ -33,6 +33,7 @@ public class Item : MonoBehaviour
         {
             _itemName = itemData.ItemName;
             _itemSprite.sprite = itemData.ItemSprite;
+            _value = itemData.Value;
         }
     }
 

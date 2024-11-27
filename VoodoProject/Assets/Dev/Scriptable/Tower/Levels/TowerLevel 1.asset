@@ -9,12 +9,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8d2eeb3c4d02aae4481bb1cdf1bd698e, type: 3}
-  m_Name: Enemy1
+  m_Script: {fileID: 11500000, guid: 43d57b91f403afb42955e1be87035561, type: 3}
+  m_Name: TowerLevel 1
   m_EditorClassIdentifier: 
-  _enemyName: Slugger
-  _hp: 10
-  _speed: 0.5
-  _damage: 0.5
-  _attackRange: 2
-  _attackRate: 2
+  _level: 1
+  _towerSprite: {fileID: 0}
+  _gunSprite: {fileID: 0}
+  _basicDamage: 2
+  _enhancedDamage: 5
+  _attackRate: 1
+  _rotationSpeed: 2
+  _maxCapacity: 30
+  _towerCostData: {fileID: 0}

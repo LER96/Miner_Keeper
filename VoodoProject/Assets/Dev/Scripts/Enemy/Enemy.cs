@@ -8,10 +8,11 @@ using static StructHandler;
 public class Enemy : MonoBehaviour
 {
     public Action<Enemy> OnEnemyDied;
+    [SerializeField] Slider _enemyHPBar;
     [SerializeField] List<EnemyVariable> _enemyVariable = new List<EnemyVariable>();
     [SerializeField] protected EnemySO _enemyData;
-    bool inRange;
-    //[SerializeField] Slider _enemyHPBar;
+
+    protected bool inRange;
     protected string _enemyName;
     protected float _enemyHp;
     protected float _enemySpeed;
@@ -26,10 +27,10 @@ public class Enemy : MonoBehaviour
 
     public EnemySO EnemyData => _enemyData;
 
-    protected virtual void Start()
-    {
-        SetData(_enemyData);
-    }
+    //protected virtual void Start()
+    //{
+    //    SetBody(_enemyData);
+    //}
 
     public void SetBody(EnemySO enemy)
     {
@@ -66,7 +67,7 @@ public class Enemy : MonoBehaviour
 
     }
 
-    private void FixedUpdate()
+    protected virtual void FixedUpdate()
     {
         Decide();
     }
@@ -89,7 +90,7 @@ public class Enemy : MonoBehaviour
 
     protected void Move()
     {
-        transform.localPosition -= new Vector3(_enemySpeed, 0, 0);
+        transform.localPosition -= new Vector3(_enemySpeed*10*Time.deltaTime, 0, 0);
 
     }
 
@@ -114,14 +115,27 @@ public class Enemy : MonoBehaviour
     public virtual void TakeDamage(float dmg)
     {
         _enemyHp -= dmg;
+        HPSlider();
         //Hit VFX
-        if(_enemyHp<0)
+        if (_enemyHp<0)
         {
-            _enemyHp = 0;
-            OnEnemyDied.Invoke(this);
-            gameObject.SetActive(false);
+            UpgradeManager.Instance.UpgradeHandler.DropItem(this);
+            HandleDeath();
         }
         
+    }
+
+    protected virtual void HandleDeath()
+    {
+        _enemyHp = 0;
+        OnEnemyDied.Invoke(this);
+        gameObject.SetActive(false);
+    }
+
+    protected virtual void HPSlider()
+    {
+        _enemyHPBar.gameObject.SetActive(true);
+        _enemyHPBar.value = _enemyHp / _maxHp;
     }
 
     protected virtual void OnDisable()

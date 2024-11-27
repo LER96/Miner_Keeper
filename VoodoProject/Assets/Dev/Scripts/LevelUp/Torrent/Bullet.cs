@@ -19,7 +19,7 @@ public class Bullet : MonoBehaviour
     private float _speed;
     private float _currentTimer;
 
-    public float Damage => _damage;// { get => _damage; set => _damage = value; }
+    public float Damage { get => _damage; set => _damage = value; }
     public float Speed => _speed; //{ get => _speed; set => _speed = value; }
 
     //private void Start()
@@ -57,7 +57,6 @@ public class Bullet : MonoBehaviour
         _currentBulletData = data;
         _bulletImg.sprite = _currentBulletData.BulletSprite;
         _bulletImg.color = _currentBulletData.BulletColor;
-        _damage = _currentBulletData.Damage;
         _speed = _currentBulletData.Speed;
 
     }
@@ -75,26 +74,29 @@ public class Bullet : MonoBehaviour
         }
         else
         {
-            _currentTimer = 0;
-            gameObject.SetActive(false);
+            ResetBullet();
         }    
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if(collision.transform.CompareTag("Floor"))
-            this.gameObject.SetActive(false);
+        if (collision.transform.CompareTag("Floor"))
+        {
+            ResetBullet();
+        }
         else if (collision.transform.CompareTag("Enemy"))
         {
             Enemy enemy = collision.GetComponent<Enemy>();
             if (enemy != null)
                 enemy.TakeDamage(_damage);
-            this.gameObject.SetActive(false);
+            ResetBullet();
         }
     }
 
-    private void OnDisable()
+    void ResetBullet()
     {
+        _currentTimer = 0;
         transform.localPosition = Vector3.zero;
+        gameObject.SetActive(false);
     }
 }

@@ -22,9 +22,9 @@ public class HealDepositBrick : DepositBrick
             {
                 if (item.CompareItem(_ammoItem.ItemName))
                 {
-                    if (_torretHandler.CurrentTower.CanRelaod())
+                    if (_torretHandler.CurrentTower.CanHeal())
                     {
-                        _torretHandler.CurrentTower.HpChange(1);
+                        _torretHandler.CurrentTower.HpChange(item.Value);
                         _playerInventory.Deposit(item, this.transform);
                         StartCoroutine(DepositCD());
                     }

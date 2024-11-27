@@ -13,8 +13,8 @@ public class Tower : MonoBehaviour
     [Header("Tower Object")]
     [SerializeField] Image _towerBody;
     [SerializeField] Image _gun;
-    [SerializeField] Transform _gunHolder;
-    [SerializeField] Transform _gunPoint;
+    [SerializeField] List<Gun> _gunHolders = new List<Gun>();
+    int index=0;
 
     [Header("Slider")]
     [SerializeField] Slider _specialAmmoSlider;
@@ -32,7 +32,7 @@ public class Tower : MonoBehaviour
     float _currentHP;
     float _currentTime;
     float _currentSpecialAmmoCapacity;
-    Transform _target;
+    [SerializeField] Transform _target;
     TorretHandler _torretHandler;
 
     public float CurentHP=> _currentHP;
@@ -64,6 +64,17 @@ public class Tower : MonoBehaviour
         }
     }
 
+    public bool CanHeal()
+    {
+        if (_currentHP < _maxHP)
+            return true;
+        else
+        {
+            _currentHP = _maxHP;
+            return false;
+        }
+    }
+
 
 
     public void ReloadSpecialAmmo(int amount)
@@ -85,6 +96,7 @@ public class Tower : MonoBehaviour
         _towerBody.sprite = _towerData.TowerSprit;
         _gun.sprite = _towerData.GunSprite;
         _maxCapacity = _towerData.MaxCapacity;
+
         UpdateSpecailAmmo();
         UpdateHPBar();
     }
@@ -118,27 +130,29 @@ public class Tower : MonoBehaviour
 
     void RotateTo()
     {
-        Vector3 dir = (_target.position - _gunHolder.position);
-        float _angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-
-        Quaternion desireRotation = Quaternion.Euler(0,0, _angle);
-        _gunHolder.rotation = Quaternion.Slerp(_gunHolder.rotation, desireRotation, _rotationSpeed * Time.deltaTime);
+        for (int i = 0; i < _gunHolders.Count; i++)
+        {
+            _gunHolders[i].RotateToTarget(_target, _rotationSpeed);
+        }
     }
 
     void Shoot()
     {
         if (_torretHandler != null)
         {
-            Bullet bullet = _torretHandler.Bullets.Dequeue();
-            bullet.gameObject.SetActive(true);
-            bullet.SetBulletType(_currentType);
-            bullet.transform.position = _gunPoint.position;
-            bullet.transform.localEulerAngles = new Vector3(0,0,_gunHolder.eulerAngles.z-90);
+            for (int i = 0; i < _gunHolders.Count; i++)
+            {
+                Bullet bullet = _torretHandler.Bullets.Dequeue();
+                bullet.gameObject.SetActive(true);
+                bullet.Damage = _damage;
+                bullet.SetBulletType(_currentType);
 
-            _torretHandler.Bullets.Enqueue(bullet);
+                _gunHolders[i].ShootFrom(bullet.transform);
+                _torretHandler.Bullets.Enqueue(bullet);
+            }
+
             SetType();
             UpdateSpecailAmmo();
-
         }
     }
 
@@ -146,11 +160,13 @@ public class Tower : MonoBehaviour
     {
         if (_currentSpecialAmmoCapacity > 0)
         {
+            _damage = _towerData.SpecialDamage;
             _currentSpecialAmmoCapacity--;
         }
         else
         {
             _currentType = BulletType.Regular;
+            _damage = _towerData.Damage;
             _currentSpecialAmmoCapacity = 0;
         }
     }

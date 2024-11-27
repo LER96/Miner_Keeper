@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class MinerDitector : MonoBehaviour
 {
-    [SerializeField] private Brick _target;
+    [SerializeField] Brick _target;
+    [SerializeField] LayerMask _layer;
     private PlayerMining _playerMining;
-    private bool _canMine;
 
     private void Start()
     {
@@ -14,27 +14,37 @@ public class MinerDitector : MonoBehaviour
         _playerMining.OnHit += ApplyDamage;
     }
 
-    public void ApplyDamage()
+    private void Update()
+    {
+        CheckForTarget();
+    }
+
+    protected virtual void CheckForTarget()
+    {
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(new Vector2(transform.position.x, transform.position.y), transform.localScale.x, _layer);
+        if(colliders.Length>0)
+        {
+            _playerMining.CanMine = true;
+            _target = colliders[0].GetComponent<Brick>();
+            _target.IsTarget(true);
+        }
+        else
+        {
+            if (_target != null)
+            {
+                _target.IsTarget(false);
+                _target = null;
+            }
+            _playerMining.CanMine = false;
+        }
+    }
+
+    void ApplyDamage()
     {
         if(_target!=null)
         {
             _target.TakeDamage(1);
         }
-    }
-
-    private void OnTriggerStay2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Brick") && _target==null)
-        {
-            _playerMining.CanMine = true;
-            _target = collision.GetComponent<Brick>();
-        }
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        _playerMining.CanMine = false;
-        _target = null;
     }
 
 }

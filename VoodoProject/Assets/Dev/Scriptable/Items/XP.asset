@@ -9,14 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 43d57b91f403afb42955e1be87035561, type: 3}
-  m_Name: TowerLevel1
+  m_Script: {fileID: 11500000, guid: 9cbea3be4fb6a9649aeae7a9e23616f0, type: 3}
+  m_Name: XP
   m_EditorClassIdentifier: 
-  _level: 1
-  _towerSprite: {fileID: 0}
-  _gunSprite: {fileID: 0}
-  _damage: 2
-  _attackRate: 1
-  _rotationSpeed: 0.5
-  _maxCapacity: 30
-  _towerCostData: {fileID: 0}
+  _itemSprite: {fileID: 21300102, guid: 9bd9265533309304db171aa9f916554a, type: 3}
+  _itemName: XP
+  _value: 1

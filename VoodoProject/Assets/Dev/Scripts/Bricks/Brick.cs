@@ -9,9 +9,12 @@ public class Brick : MonoBehaviour
     [SerializeField] protected List<GameObject> _brickStages = new List<GameObject>();
     [SerializeField] protected ParticleSystem _hitvfx;
 
+    protected bool _isTarget;
     protected bool _canCollect;
     protected Inventory _inventory;
     protected int _startHp;
+
+    public int HP=> _brickHp;
 
     protected virtual void Start()
     {
@@ -47,6 +50,11 @@ public class Brick : MonoBehaviour
         }
 
         _brickStages[index].SetActive(true);
+    }
+
+    public void IsTarget(bool targeted)
+    {
+        _isTarget = targeted;
     }
 
     protected virtual void ResetData()

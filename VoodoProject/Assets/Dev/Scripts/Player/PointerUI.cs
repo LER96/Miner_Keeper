@@ -15,9 +15,6 @@ public class PointerUI : MonoBehaviour
         Vector3 toPos = target.position;
         Vector3 fromPos = Camera.main.transform.position;
         fromPos.z = 0;
-        Vector3 dir = (toPos - fromPos);
-        float _angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-        transform.localEulerAngles = new Vector3(0, 0, _angle-90);
 
         Vector2 borderSize = _distance*100;
         Vector3 targetOnScreen = Camera.main.WorldToScreenPoint(target.position);
@@ -25,6 +22,11 @@ public class PointerUI : MonoBehaviour
 
         if (isOffScreen)
         {
+            //rotate to
+            Vector3 dir = (toPos - fromPos);
+            float _angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+            transform.localEulerAngles = new Vector3(0, 0, _angle - 90);
+
             Vector3 targetScreenPos = targetOnScreen;
             if (targetScreenPos.x <= borderSize.x) targetScreenPos.x = borderSize.x;
             if (targetScreenPos.y <= borderSize.y) targetScreenPos.y = borderSize.y;
@@ -38,6 +40,7 @@ public class PointerUI : MonoBehaviour
             Vector3 targetScreenPos = targetOnScreen;
             Vector3 pointWorldPos = Camera.main.ScreenToWorldPoint(targetScreenPos);
             transform.position = new Vector3(pointWorldPos.x, pointWorldPos.y, 0);
+            transform.localEulerAngles = new Vector3(0, 0, 180);
         }
     }
 }
