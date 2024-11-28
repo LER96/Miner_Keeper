@@ -32,12 +32,12 @@ public class Tower : MonoBehaviour
     float _currentHP;
     float _currentTime;
     float _currentSpecialAmmoCapacity;
-    [SerializeField] Transform _target;
+    List<Enemy> _targets= new List<Enemy>();
     TorretHandler _torretHandler;
 
     public float CurentHP=> _currentHP;
     public TorretHandler TorretHandler { get => _torretHandler; set => _torretHandler = value; }
-    public Transform Target { get => _target; set => _target = value; }
+    public List<Enemy> Targets { get => _targets; set => _targets = value; }
 
     private void Update()
     {
@@ -46,10 +46,7 @@ public class Tower : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (_target != null)
-        {
-            RotateTo();
-        }
+        RotateTo();
     }
 
 
@@ -132,7 +129,7 @@ public class Tower : MonoBehaviour
     {
         for (int i = 0; i < _gunHolders.Count; i++)
         {
-            _gunHolders[i].RotateToTarget(_target, _rotationSpeed);
+            _gunHolders[i].DecideTarget(_targets, _rotationSpeed);
         }
     }
 

@@ -101,23 +101,15 @@ public class WaveHandler : MonoBehaviour
         {
             case WaveType.KillingAmount:
                  if(_currentDied>= _deathsToSpawnNext)
-                {
                     WaveDelayTimer();
-                    return;
-                }
                 break;
             case WaveType.Timer:
                 if(_enemyToActive.Count==0)
-                {
                     WaveDelayTimer();
-                    return;
-                }
                 break;
             case WaveType.Clear:
                 if(_activeEnemy.Count == 0)
-                {
                     WaveDelayTimer();
-                }
                 break;
         }
         DefaultWaveBehavior();
@@ -139,7 +131,7 @@ public class WaveHandler : MonoBehaviour
     void DefaultWaveBehavior()
     {
         SpawnTimer();
-        SetFirstTarget();
+        SetTargets();
     }
 
     void SpawnTimer()
@@ -192,10 +184,10 @@ public class WaveHandler : MonoBehaviour
         _activeEnemy.Add(enemy);
     }
 
-    void SetFirstTarget()
+    void SetTargets()
     {
         if (_activeEnemy.Count > 0)
-            UpgradeManager.Instance.TorretHandler.CurrentTower.Target = _activeEnemy[0].transform;
+            UpgradeManager.Instance.TorretHandler.CurrentTower.Targets = _activeEnemy;
     }
 
 }
