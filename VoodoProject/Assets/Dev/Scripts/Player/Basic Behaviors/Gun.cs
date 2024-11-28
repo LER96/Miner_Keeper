@@ -10,7 +10,11 @@ public class Gun : MonoBehaviour
     public enum TargetGun { closet, far, weakest, strongest}
     [SerializeField] private TargetGun targetGun;
     [SerializeField] private Transform _shootPoint;
+
     private float _rotationSpeed;
+    private float distance;
+    private float enemyHp;
+
     [SerializeField] private Enemy _target;
     private Enemy _tempTarget;
     [SerializeField] private List<Enemy> enemies;
@@ -30,97 +34,109 @@ public class Gun : MonoBehaviour
                     CheckDist();
                     break;
                 case TargetGun.weakest:
-                    CheckDist();
+                    CheckEnemyHP();
                     break;
                 case TargetGun.strongest:
-                    CheckDist();
+                    CheckEnemyHP();
                     break;
             }
             if (_target != null)
                 RotateTo();
+        }
+        else
+        {
+            _tempTarget = null;
+            DisableTarget();
         }
     }
 
     #region Enemies Distance Check
     void CheckDist()
     {
-        if (enemies.Count > 1 && _target==null)
+        distance = enemies[0].Distance;
+        _tempTarget = enemies[0];
+
+        for (int i = 0; i < enemies.Count; i++)
         {
-            float distance = Vector3.Distance(transform.position, enemies[0].transform.position);
-            for (int i = 1; i < enemies.Count; i++)
-            {
-                if (targetGun == TargetGun.closet)
-                    Close(distance, i);
-                else if (targetGun == TargetGun.far)
-                    Far(distance, i);
-            }
-
-            if (_tempTarget != null )
-                SetTarget(_tempTarget);
+            if (targetGun == TargetGun.closet)
+                Close(i);
+            else if (targetGun == TargetGun.far)
+                Far(i);
         }
-        else if (enemies.Count == 1 && _target == null)
-            SetTarget(0);
-        else if (_target != null && _target.HP <= 0)
-            DisableTarget();
+        if (_tempTarget != null)
+            SetTarget(_tempTarget);
     }
 
-    void Close(float distance, int index)
+    void Close(int index)
     {
-        float tempDit = Vector3.Distance(transform.position, enemies[index].transform.position);
+        float tempDit = enemies[index].Distance;
         if (tempDit < distance)
+        {
+            distance = tempDit;
             _tempTarget = enemies[index];
+        }
     }
 
-    void Far(float distance, int index)
+    void Far(int index)
     {
-        float tempDit = Vector3.Distance(transform.position, enemies[index].transform.position);
+        float tempDit = enemies[index].Distance;
         if (tempDit > distance)
+        {
+            distance = tempDit;
             _tempTarget = enemies[index];
+        }
     }
     #endregion
 
     #region Enemies Hp Check
     void CheckEnemyHP()
     {
-        if (enemies.Count > 1 && _target == null)
+        enemyHp = enemies[0].HP;
+        _tempTarget = enemies[0];
+        for (int i = 0; i < enemies.Count; i++)
         {
-            float enemyHp = enemies[0].HP;
-            for (int i = 1; i < enemies.Count; i++)
+            if (enemies[i] != null)
             {
                 if (targetGun == TargetGun.closet)
-                    Weakest(enemyHp, i);
+                    Weakest(i);
                 else if (targetGun == TargetGun.far)
-                    Strongest(enemyHp, i);
+                    Strongest(i);
             }
-
-            if (_tempTarget != null)
-                SetTarget(_tempTarget);
         }
-        else if (enemies.Count == 1 && _target == null)
-            SetTarget(0);
-        else if (_target != null && _target.HP<=0)
-            DisableTarget();
+        if (_tempTarget != null)
+            SetTarget(_tempTarget);
 
     }
 
-    void Weakest(float hp, int index)
+    void Weakest(int index)
     {
         float tempHp = enemies[index].HP;
-        if (tempHp < hp)
+        if (tempHp < enemyHp)
+        {
+            enemyHp = tempHp;
             _tempTarget = enemies[index];
+        }
+
     }
 
-    void Strongest(float hp, int index)
+    void Strongest(int index)
     {
         float tempHp = enemies[index].HP;
-        if (tempHp > hp)
+        if (tempHp < enemyHp)
+        {
+            enemyHp = tempHp;
             _tempTarget = enemies[index];
+        }
     }
     #endregion
 
     void SetTarget(int index)
     {
-        _target= enemies[index];
+        if (enemies[index] != null)
+        {
+            _tempTarget = enemies[index];
+            _target = enemies[index];
+        }
     }
 
     void SetTarget(Enemy target)

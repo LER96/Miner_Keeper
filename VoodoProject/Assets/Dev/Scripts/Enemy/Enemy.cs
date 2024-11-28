@@ -20,6 +20,7 @@ public class Enemy : MonoBehaviour
     protected float _enemyAttackRange;
     protected float _attackRate;
 
+    protected float _distance;
     protected float _currentAttackRate;
     protected float _maxHp;
 
@@ -27,6 +28,7 @@ public class Enemy : MonoBehaviour
 
     public EnemySO EnemyData => _enemyData;
     public float HP => _enemyHp;
+    public float Distance => _distance;
 
     //protected virtual void Start()
     //{
@@ -70,12 +72,18 @@ public class Enemy : MonoBehaviour
 
     protected virtual void FixedUpdate()
     {
+        _target = UpgradeManager.Instance.TorretHandler.CurrentTower;
+        CheckDistance();
         Decide();
+    }
+
+    void CheckDistance()
+    {
+        _distance = Vector3.Distance(transform.position, _target.transform.position);
     }
 
     void Decide()
     {
-        _target = UpgradeManager.Instance.TorretHandler.CurrentTower;
         float dist = Vector2.Distance(transform.position, _target.transform.position);
         if (dist <= _enemyAttackRange)
         {

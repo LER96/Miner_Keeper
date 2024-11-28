@@ -46,10 +46,7 @@ public class Tower : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (_targets != null)
-        {
-            RotateTo();
-        }
+        RotateTo();
     }
 
 
