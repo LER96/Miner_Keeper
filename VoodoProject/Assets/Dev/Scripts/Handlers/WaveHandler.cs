@@ -195,7 +195,7 @@ public class WaveHandler : MonoBehaviour
     void SetFirstTarget()
     {
         if (_activeEnemy.Count > 0)
-            UpgradeManager.Instance.TorretHandler.CurrentTower.Target = _activeEnemy[0].transform;
+            UpgradeManager.Instance.TorretHandler.CurrentTower.Targets = _activeEnemy;
     }
 
 }

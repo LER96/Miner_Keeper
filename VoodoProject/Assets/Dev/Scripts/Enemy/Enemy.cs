@@ -26,6 +26,7 @@ public class Enemy : MonoBehaviour
     protected Tower _target;
 
     public EnemySO EnemyData => _enemyData;
+    public float HP => _enemyHp;
 
     //protected virtual void Start()
     //{
