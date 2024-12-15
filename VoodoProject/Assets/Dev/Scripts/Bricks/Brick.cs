@@ -7,7 +7,6 @@ public class Brick : MonoBehaviour
 {
     [SerializeField] protected int _brickHp;
     [SerializeField] protected List<GameObject> _brickStages = new List<GameObject>();
-    [SerializeField] protected ParticleSystem _hitvfx;
 
     protected bool _isTarget;
     protected bool _canCollect;
@@ -30,7 +29,6 @@ public class Brick : MonoBehaviour
         _brickHp -= dmg;
         if (_brickHp > 0)
         {
-            _hitvfx.Play();
             if (_brickHp > _brickStages.Count)
                 return;
             HideAllVariants(_brickHp-1);

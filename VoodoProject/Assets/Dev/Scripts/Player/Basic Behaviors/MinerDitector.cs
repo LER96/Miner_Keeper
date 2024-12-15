@@ -5,6 +5,7 @@ using UnityEngine;
 public class MinerDitector : MonoBehaviour
 {
     [SerializeField] Brick _target;
+    [SerializeField] ParticleSystem _hitVFX;
     [SerializeField] LayerMask _layer;
     private PlayerMining _playerMining;
 
@@ -44,6 +45,7 @@ public class MinerDitector : MonoBehaviour
         if(_target!=null)
         {
             _target.TakeDamage(1);
+            _hitVFX.Play();
         }
     }
 

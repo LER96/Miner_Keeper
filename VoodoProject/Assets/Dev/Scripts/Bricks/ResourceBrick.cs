@@ -33,7 +33,6 @@ public class ResourceBrick : Brick
         _brickHp -= dmg;
         if (_brickHp > 0)
         {
-            _hitvfx.Play();
             if (_brickHp > _brickStages.Count)
                 return;
 
