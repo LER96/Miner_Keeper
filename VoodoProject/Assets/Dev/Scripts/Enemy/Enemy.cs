@@ -128,7 +128,7 @@ public class Enemy : MonoBehaviour
         //Hit VFX
         if (_enemyHp<0)
         {
-            UpgradeManager.Instance.UpgradeHandler.DropItem(this);
+            UpgradeManager.Instance.UpgradeHandler.DropItem(_enemyData.DropItem, this.transform);
             HandleDeath();
         }
         

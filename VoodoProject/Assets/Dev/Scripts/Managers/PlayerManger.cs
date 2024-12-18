@@ -13,7 +13,6 @@ public class PlayerManger : MonoBehaviour
     public PlayerHandler PlayerHandler { get => _playerHandler; set => _playerHandler = value; }
     public PlayerMovement MovementScript => _playerHandler.MovementScript;
     public PlayerMining MiningScript => _playerHandler.MiningScript;
-    public Inventory PlayerInventory => _playerHandler.PlayerInventory;
 
     private void Awake()
     {

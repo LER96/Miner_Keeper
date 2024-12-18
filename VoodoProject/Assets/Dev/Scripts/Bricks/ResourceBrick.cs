@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class ResourceBrick : Brick
 {
-    [SerializeField] protected Item item;
+    [SerializeField] protected ItemSO _itemData;
     [SerializeField] float _reviveDelay;
     [SerializeField] float _reviveTime;
 
@@ -22,9 +22,9 @@ public class ResourceBrick : Brick
 
     private void Update()
     {
-        if (_canCollect == false || (_isTarget==false && _brickHp< _startHp))
+        if (_canCollect == false)// || (_isTarget==false && _brickHp< _startHp))
         {
-            Revive();
+            ReviveDelayTimer();
         }
     }
 
@@ -42,32 +42,37 @@ public class ResourceBrick : Brick
         else if (_brickHp == 0&& _canCollect)
         {
             Collect();
-            StartCoroutine(ReviveDelay());
+            _canCollect = false;
         }
     }
 
     void Collect()
     {
-        item.gameObject.SetActive(true);
-        if (item != null)
-        {
-            _inventory.AddItem(item);
-            item.transform.DOJump(_inventory.transform.position, 2, 1, 0.1f).OnComplete(HideItem);
-        }
+        UpgradeManager.Instance.UpgradeHandler.DropItem(_itemData, this.transform);
+        //item.gameObject.SetActive(true);
+        //if (item != null)
+        //{
+        //    item.transform.DOJump(_inventory.transform.position, 2, 1, 0.1f).OnComplete(HideItem);
+        //}
     }
 
     void HideItem()
     {
-        if(item!=null)
-        {
-            item.gameObject.SetActive(false);
-        }
+        //if(item!=null)
+        //{
+        //    item.gameObject.SetActive(false);
+        //}
     }
 
-    IEnumerator ReviveDelay()
+    void ReviveDelayTimer()
     {
-        yield return new WaitForSeconds(_reviveDelay);
-        _canCollect = false;
+        _reviveDelay -= Time.deltaTime;
+        if (_reviveDelay <= 0)
+        {
+            _reviveDelay = 0;
+            _canCollect = true;
+            HideAllVariants(0);
+        }
     }
 
     void Revive()

@@ -10,7 +10,6 @@ public class Brick : MonoBehaviour
 
     protected bool _isTarget;
     protected bool _canCollect;
-    protected Inventory _inventory;
     protected int _startHp;
 
     public int HP=> _brickHp;
@@ -20,7 +19,6 @@ public class Brick : MonoBehaviour
         _canCollect = true;
         _startHp = _brickHp;
         //_brickHp = _brickStages.Count;
-        _inventory = PlayerManger.Instance.PlayerInventory;
         HideAllVariants(_brickHp-1);
     }
 

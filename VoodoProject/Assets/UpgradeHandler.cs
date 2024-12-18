@@ -16,13 +16,14 @@ public class UpgradeHandler : MonoBehaviour
     [SerializeField] Transform _xpPoint;
     [SerializeField] Slider _xpSlider;
     [SerializeField] float _duration;
+
     private XpSO _currentXPData;
     private float _currentXP;
     private float _maxXP;
     private float _xpLeft;
     private Transform _currentDropItem;
+    private TorretHandler _towerHandler;
 
-    Transform _resourceSpot;
     Queue<ItemDrop> drops = new Queue<ItemDrop>();
 
     public void SetHandler()
@@ -52,35 +53,34 @@ public class UpgradeHandler : MonoBehaviour
         _currentXP += _xpLeft;
     }
 
-    public void DropItem(Enemy enemy)
+    public void DropItem(ItemSO item, Transform from)
     {
-        ItemSO enemyDrop = enemy.EnemyData.DropItem;
-        ItemDrop _drop = drops.Dequeue();
-        _drop.gameObject.SetActive(true);
-        _drop.transform.position = enemy.transform.position;
-        _drop.SetData(enemyDrop);
-        _currentDropItem = _drop.transform;
-        SetDestination(enemyDrop);
-        drops.Enqueue(_drop);
+        if (item != null)
+        {
+            ItemDrop _drop = drops.Dequeue();
+            _drop.gameObject.SetActive(true);
+            Vector3 pos = Camera.main.WorldToScreenPoint(from.position);
+            _drop.transform.position = pos;
+            _drop.SetData(item);
+            SetDestination(item, _drop);
+            drops.Enqueue(_drop);
+        }
     }
 
-    void SetDestination(ItemSO item)
+    void SetDestination(ItemSO item, ItemDrop drop)
     {
-        switch(item.ItemName)
+        Vector3 playerPos = Camera.main.WorldToScreenPoint(PlayerManger.Instance.PlayerHandler.transform.position);
+        switch (item.ItemName)
         {
-            case "XP":
+            case "Sapphire":
                 _currentXP += item.Value;
-                _currentDropItem.DOJump(_xpPoint.position, 10, 1, _duration).OnComplete(ResetCurrentDrop);
+                _xpSlider.value = _currentXP / _maxXP;
+                drop.SetDestination(_xpPoint.position, _duration);
                 break;
             default:
+                drop.SetDestination(playerPos, _duration);
                 break;
         }
     }
 
-    void ResetCurrentDrop()
-    {
-        _currentDropItem.localPosition = Vector3.zero;
-        _currentDropItem.gameObject.SetActive(false);
-        _xpSlider.value = _currentXP / _maxXP;
-    }
 }

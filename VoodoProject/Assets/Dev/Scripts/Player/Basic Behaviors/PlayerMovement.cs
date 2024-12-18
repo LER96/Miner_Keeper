@@ -77,14 +77,14 @@ public class PlayerMovement : MonoBehaviour
             {
                 _dirrectionY = Mathf.CeilToInt(_movmentInput.y);
                 _playerDirrection = PlayerDirrection.Up;
-                _ditector.eulerAngles = new Vector3(0, 0, 90);
+                _ditector.localEulerAngles = new Vector3(0, 0, 90);
             }
             //Down
             else if (_movmentInput.y < 0)
             {
                 _dirrectionY = Mathf.FloorToInt(_movmentInput.y);
                 _playerDirrection = PlayerDirrection.Dowm;
-                _ditector.eulerAngles = new Vector3(0, 0, -90);
+                _ditector.localEulerAngles = new Vector3(0, 0, -90);
             }
 
             _newPos = new Vector3(0, _ditectorOffset.y * _dirrectionY, 0);

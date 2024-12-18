@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: XP
   m_EditorClassIdentifier: 
   _itemSprite: {fileID: 21300102, guid: 9bd9265533309304db171aa9f916554a, type: 3}
-  _itemName: XP
+  _itemName: Coins
   _value: 1
