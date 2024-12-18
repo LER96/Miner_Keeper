@@ -16,10 +16,12 @@ public class Bullet : MonoBehaviour
     BulletType _currentType;
     private BulletSO _currentBulletData;
     private float _damage;
+    private float _explosion;
     private float _speed;
     private float _currentTimer;
 
     public float Damage { get => _damage; set => _damage = value; }
+    public float Explosion { get => _explosion; set => _explosion = value; }
     public float Speed => _speed; //{ get => _speed; set => _speed = value; }
 
     //private void Start()
@@ -78,19 +80,28 @@ public class Bullet : MonoBehaviour
         }    
     }
 
-    private void OnTriggerExit2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.transform.CompareTag("Floor"))
         {
             ResetBullet();
         }
-        else if (collision.transform.CompareTag("Enemy"))
+        if (collision.transform.CompareTag("Enemy"))
         {
-            Enemy enemy = collision.GetComponent<Enemy>();
+            SetDamage();
+        }
+    }
+
+    void SetDamage()
+    {
+        Collider2D[] _enemies = Physics2D.OverlapCircleAll(transform.position, _explosion/2);
+        for (int i = 0; i < _enemies.Length; i++)
+        {
+            Enemy enemy = _enemies[i].GetComponent<Enemy>();
             if (enemy != null)
                 enemy.TakeDamage(_damage);
-            ResetBullet();
         }
+        ResetBullet();
     }
 
     void ResetBullet()
@@ -98,5 +109,10 @@ public class Bullet : MonoBehaviour
         _currentTimer = 0;
         transform.localPosition = Vector3.zero;
         gameObject.SetActive(false);
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawSphere(transform.position, _explosion);
     }
 }
