@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14a7a6720f5f25b4a84ad6f4d9646875, type: 3}
   m_Name: XPLevel 1
   m_EditorClassIdentifier: 
-  _xpPoints: 20
+  _xpPoints: 10

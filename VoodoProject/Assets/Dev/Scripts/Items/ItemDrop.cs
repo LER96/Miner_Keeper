@@ -10,12 +10,10 @@ public class ItemDrop : MonoBehaviour
 
     private ItemSO _itemData;
     private TorretHandler _towerHandler;
-    private TowerUpgradeHandler _ugprade;
 
     private void OnEnable()
     {
         _towerHandler = UpgradeManager.Instance.TorretHandler;
-        _ugprade = UpgradeManager.Instance.TowerUpgradeHandler;
     }
 
     public void SetData(ItemSO itemData)
@@ -29,7 +27,7 @@ public class ItemDrop : MonoBehaviour
         switch (_itemData.ItemName)
         {
             case "Sapphire":
-                _ugprade.UpgradeProgress(_itemData, _itemData.Value);
+                //_ugprade.UpgradeProgress(_itemData, _itemData.Value);
                 break;
             case "Coins":
                 break;

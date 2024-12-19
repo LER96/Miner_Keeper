@@ -11,7 +11,6 @@ public class DepositBrick : MonoBehaviour
 
     protected virtual void Start()
     {
-        _upgradeHandler = UpgradeManager.Instance.TowerUpgradeHandler;
         canCollect = true;
     }
     protected virtual void Update()

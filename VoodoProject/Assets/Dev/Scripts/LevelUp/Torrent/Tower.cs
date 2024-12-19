@@ -7,8 +7,6 @@ using static EnumHandler;
 
 public class Tower : MonoBehaviour
 {
-    [SerializeField] private TowerSO _towerData;
-    [SerializeField] BulletType _currentType;
 
     [Header("Tower Object")]
     [SerializeField] Image _towerBody;
@@ -21,6 +19,9 @@ public class Tower : MonoBehaviour
     [SerializeField] Slider _HpSlider;
     [SerializeField] TMP_Text _hpText;
     [SerializeField] TMP_Text _ammoText;
+
+    private TowerSO _towerData;
+    BulletType _currentType;
 
     //[Header("Tower Variable")]
     private float _maxHP;

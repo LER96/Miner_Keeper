@@ -11,12 +11,13 @@ public class UpgradeHandler : MonoBehaviour
     [SerializeField] Transform _dropParent;
     [SerializeField] ItemDrop _dropItemPrefab;
 
-    [Header("Xp Bar")]
+    [Header("Xp")]
     [SerializeField] List<XpSO> _xpLevel = new List<XpSO>();
     [SerializeField] Transform _xpPoint;
     [SerializeField] Slider _xpSlider;
     [SerializeField] float _duration;
 
+    private int _currentLevel;
     private XpSO _currentXPData;
     private float _currentXP;
     private float _maxXP;
@@ -29,7 +30,7 @@ public class UpgradeHandler : MonoBehaviour
     public void SetHandler()
     {
         InitDrops();
-        SetData(0);
+        SetData(1);
     }
 
     void InitDrops()
@@ -44,11 +45,12 @@ public class UpgradeHandler : MonoBehaviour
 
     void SetData(int index)
     {
+        _currentLevel = index;
         if(index>_xpLevel.Count)
         {
             return;
         }
-        _currentXPData = _xpLevel[index];
+        _currentXPData = _xpLevel[index-1];
         _maxXP = _currentXPData.XPCapacity;
         _currentXP += _xpLeft;
     }
@@ -74,13 +76,25 @@ public class UpgradeHandler : MonoBehaviour
         {
             case "Sapphire":
                 _currentXP += item.Value;
-                _xpSlider.value = _currentXP / _maxXP;
+                UpdateXP();
                 drop.SetDestination(_xpPoint.position, _duration);
                 break;
             default:
                 drop.SetDestination(playerPos, _duration);
                 break;
         }
+    }
+
+    private void UpdateXP()
+    {
+        if (_currentXP >= _maxXP)
+        {
+            float _tempXP = _currentXP - _maxXP;
+            SetData(_currentLevel+1);
+            UpgradeManager.Instance.TorretHandler.Upgrade();
+            _currentXP = _tempXP;
+        }
+        _xpSlider.value = _currentXP / _maxXP;
     }
 
 }
