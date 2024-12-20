@@ -65,6 +65,7 @@ public class PlayerMovement : MonoBehaviour
 
             _playerDirrection = PlayerDirrection.Side;
             _newPos = new Vector3(_ditectorOffset.x * _dirrectionX, 0, 0);
+            _ditector.eulerAngles = Vector3.zero;
             _ditector.localPosition = _newPos;
         }
 
@@ -76,12 +77,14 @@ public class PlayerMovement : MonoBehaviour
             {
                 _dirrectionY = Mathf.CeilToInt(_movmentInput.y);
                 _playerDirrection = PlayerDirrection.Up;
+                _ditector.localEulerAngles = new Vector3(0, 0, 90);
             }
             //Down
             else if (_movmentInput.y < 0)
             {
                 _dirrectionY = Mathf.FloorToInt(_movmentInput.y);
                 _playerDirrection = PlayerDirrection.Dowm;
+                _ditector.localEulerAngles = new Vector3(0, 0, -90);
             }
 
             _newPos = new Vector3(0, _ditectorOffset.y * _dirrectionY, 0);

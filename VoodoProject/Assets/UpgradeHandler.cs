@@ -11,24 +11,26 @@ public class UpgradeHandler : MonoBehaviour
     [SerializeField] Transform _dropParent;
     [SerializeField] ItemDrop _dropItemPrefab;
 
-    [Header("Xp Bar")]
+    [Header("Xp")]
     [SerializeField] List<XpSO> _xpLevel = new List<XpSO>();
     [SerializeField] Transform _xpPoint;
     [SerializeField] Slider _xpSlider;
     [SerializeField] float _duration;
+
+    private int _currentLevel;
     private XpSO _currentXPData;
     private float _currentXP;
     private float _maxXP;
     private float _xpLeft;
     private Transform _currentDropItem;
+    private TorretHandler _towerHandler;
 
-    Transform _resourceSpot;
     Queue<ItemDrop> drops = new Queue<ItemDrop>();
 
     public void SetHandler()
     {
         InitDrops();
-        SetData(0);
+        SetData(1);
     }
 
     void InitDrops()
@@ -43,44 +45,56 @@ public class UpgradeHandler : MonoBehaviour
 
     void SetData(int index)
     {
+        _currentLevel = index;
         if(index>_xpLevel.Count)
         {
             return;
         }
-        _currentXPData = _xpLevel[index];
+        _currentXPData = _xpLevel[index-1];
         _maxXP = _currentXPData.XPCapacity;
         _currentXP += _xpLeft;
     }
 
-    public void DropItem(Enemy enemy)
+    public void DropItem(ItemSO item, Transform from)
     {
-        ItemSO enemyDrop = enemy.EnemyData.DropItem;
-        ItemDrop _drop = drops.Dequeue();
-        _drop.gameObject.SetActive(true);
-        _drop.transform.position = enemy.transform.position;
-        _drop.SetData(enemyDrop);
-        _currentDropItem = _drop.transform;
-        SetDestination(enemyDrop);
-        drops.Enqueue(_drop);
+        if (item != null)
+        {
+            ItemDrop _drop = drops.Dequeue();
+            _drop.gameObject.SetActive(true);
+            Vector3 pos = Camera.main.WorldToScreenPoint(from.position);
+            _drop.transform.position = pos;
+            _drop.SetData(item);
+            SetDestination(item, _drop);
+            drops.Enqueue(_drop);
+        }
     }
 
-    void SetDestination(ItemSO item)
+    void SetDestination(ItemSO item, ItemDrop drop)
     {
-        switch(item.ItemName)
+        Vector3 playerPos = Camera.main.WorldToScreenPoint(PlayerManger.Instance.PlayerHandler.transform.position);
+        switch (item.ItemName)
         {
-            case "XP":
+            case "Sapphire":
                 _currentXP += item.Value;
-                _currentDropItem.DOJump(_xpPoint.position, 10, 1, _duration).OnComplete(ResetCurrentDrop);
+                UpdateXP();
+                drop.SetDestination(_xpPoint.position, _duration);
                 break;
             default:
+                drop.SetDestination(playerPos, _duration);
                 break;
         }
     }
 
-    void ResetCurrentDrop()
+    private void UpdateXP()
     {
-        _currentDropItem.localPosition = Vector3.zero;
-        _currentDropItem.gameObject.SetActive(false);
+        if (_currentXP >= _maxXP)
+        {
+            float _tempXP = _currentXP - _maxXP;
+            SetData(_currentLevel+1);
+            UpgradeManager.Instance.TorretHandler.Upgrade();
+            _currentXP = _tempXP;
+        }
         _xpSlider.value = _currentXP / _maxXP;
     }
+
 }

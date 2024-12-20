@@ -138,7 +138,6 @@ MonoBehaviour:
   - EnemyBody: {fileID: 6958408306274763577}
     EnemyData: {fileID: 11400000, guid: ccb0f5902805a1942b1c4717ee6d64bc, type: 2}
   _enemyData: {fileID: 0}
-  _item: {fileID: 0}
 --- !u!61 &4564636892121372615
 BoxCollider2D:
   m_ObjectHideFlags: 0

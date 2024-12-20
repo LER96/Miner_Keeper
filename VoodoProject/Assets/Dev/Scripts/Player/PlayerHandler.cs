@@ -7,7 +7,6 @@ public class PlayerHandler : MonoBehaviour
     [SerializeField] PlayerSO _playerData;
     [SerializeField] PlayerMovement playerMovement;
     [SerializeField] PlayerMining playerMining;
-    [SerializeField] Inventory inventory;
 
     private float _maxHp;
     private float _currentHp;
@@ -17,13 +16,11 @@ public class PlayerHandler : MonoBehaviour
     public PlayerSO PlayerData => _playerData;
     public PlayerMovement MovementScript => playerMovement;
     public PlayerMining MiningScript => playerMining;
-    public Inventory PlayerInventory => inventory;
 
     private void Awake()
     {
         playerMovement = GetComponent<PlayerMovement>();
         playerMining = GetComponent<PlayerMining>();
-        inventory = GetComponent<Inventory>();
         SetDataLevel(_playerData);
         _currentHp = _maxHp;
 

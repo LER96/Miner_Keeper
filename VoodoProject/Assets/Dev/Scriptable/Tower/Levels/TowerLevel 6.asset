@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43d57b91f403afb42955e1be87035561, type: 3}
+  m_Name: TowerLevel 6
+  m_EditorClassIdentifier: 
+  _level: 4
+  _towerSprite: {fileID: 0}
+  _gunSprite: {fileID: 0}
+  _basicDamage: 5
+  _enhancedDamage: 10
+  _expolsionRadius: 7
+  _attackRate: 2
+  _rotationSpeed: 4
+  _maxCapacity: 80
+  _towerCostData: {fileID: 0}

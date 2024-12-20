@@ -8,12 +8,9 @@ public class DepositBrick : MonoBehaviour
     protected bool canCollect;
     protected Transform _target;
     protected TowerUpgradeHandler _upgradeHandler;
-    protected Inventory _playerInventory;
 
     protected virtual void Start()
     {
-        _playerInventory = PlayerManger.Instance.PlayerInventory;
-        _upgradeHandler = UpgradeManager.Instance.TowerUpgradeHandler;
         canCollect = true;
     }
     protected virtual void Update()

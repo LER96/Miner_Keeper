@@ -7,8 +7,6 @@ using static EnumHandler;
 
 public class Tower : MonoBehaviour
 {
-    [SerializeField] private TowerSO _towerData;
-    [SerializeField] BulletType _currentType;
 
     [Header("Tower Object")]
     [SerializeField] Image _towerBody;
@@ -22,12 +20,16 @@ public class Tower : MonoBehaviour
     [SerializeField] TMP_Text _hpText;
     [SerializeField] TMP_Text _ammoText;
 
-    [Header("Tower Variable")]
-    [SerializeField] float _maxHP;
-    [SerializeField] float _damage;
-    [SerializeField] float _attackRate;
-    [SerializeField] float _rotationSpeed;
-    [SerializeField] float _maxCapacity;
+    private TowerSO _towerData;
+    BulletType _currentType;
+
+    //[Header("Tower Variable")]
+    private float _maxHP;
+    private float _damage;
+    private float _explosion;
+    private float _attackRate;
+    private float _rotationSpeed;
+    private float _maxCapacity;
 
     float _currentHP;
     float _currentTime;
@@ -49,34 +51,11 @@ public class Tower : MonoBehaviour
         RotateTo();
     }
 
-
-    public bool CanRelaod()
-    {
-        if (_currentSpecialAmmoCapacity < _maxCapacity)
-            return true;
-        else
-        {
-            _currentSpecialAmmoCapacity = _maxCapacity;
-            return false;
-        }
-    }
-
-    public bool CanHeal()
-    {
-        if (_currentHP < _maxHP)
-            return true;
-        else
-        {
-            _currentHP = _maxHP;
-            return false;
-        }
-    }
-
-
-
     public void ReloadSpecialAmmo(int amount)
     {
         _currentSpecialAmmoCapacity+=amount;
+        if (_currentSpecialAmmoCapacity >= _maxCapacity)
+            _currentSpecialAmmoCapacity = _maxCapacity;
         _currentType = BulletType.Special;
         UpdateSpecailAmmo();
     }
@@ -86,7 +65,7 @@ public class Tower : MonoBehaviour
         _towerData = data;
         _maxHP= PlayerManger.Instance.MaxHP;
         _currentHP= PlayerManger.Instance.CurrentHP;
-
+        _explosion = _towerData.ExplosionRadius;
         _damage = _towerData.Damage;
         _rotationSpeed = _towerData.Agility;
         _attackRate = 1/ _towerData.AttackRate;
@@ -142,8 +121,9 @@ public class Tower : MonoBehaviour
                 Bullet bullet = _torretHandler.Bullets.Dequeue();
                 bullet.gameObject.SetActive(true);
                 bullet.Damage = _damage;
+                bullet.Explosion = _explosion;
                 bullet.SetBulletType(_currentType);
-
+       
                 _gunHolders[i].ShootFrom(bullet.transform);
                 _torretHandler.Bullets.Enqueue(bullet);
             }
