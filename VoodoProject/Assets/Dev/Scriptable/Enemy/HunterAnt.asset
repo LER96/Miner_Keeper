@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: HunterAnt
   m_EditorClassIdentifier: 
   _enemyName: HunterAnt
-  _hp: 15
+  _hp: 30
   _speed: 1.5
-  _damage: 2
+  _damage: 8
   _attackRange: 2
   _attackRate: 1
   _dropItem: {fileID: 11400000, guid: 641aff0baa6de4c46ab1e6d8da745322, type: 2}
