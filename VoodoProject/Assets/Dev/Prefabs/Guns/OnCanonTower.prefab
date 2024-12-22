@@ -1108,7 +1108,7 @@ GameObject:
   - component: {fileID: 1666109018627141749}
   - component: {fileID: 7904516054847523283}
   m_Layer: 5
-  m_Name: GunV1
+  m_Name: OnCanonTower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

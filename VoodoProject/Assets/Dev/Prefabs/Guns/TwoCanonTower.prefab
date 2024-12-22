@@ -163,12 +163,12 @@ GameObject:
   - component: {fileID: 8249390084349860321}
   - component: {fileID: 2925862783116007195}
   m_Layer: 5
-  m_Name: GunV4
+  m_Name: TwoCanonTower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &8829845194216141889
 RectTransform:
   m_ObjectHideFlags: 0
@@ -205,25 +205,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d8f0160d90553d478427e0f6ae82795, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _towerData: {fileID: 0}
-  _currentType: 0
   _towerBody: {fileID: 2175089739501010402}
   _gun: {fileID: 4288468733927119598}
   _gunHolders:
   - {fileID: 74136748630047484}
   - {fileID: 1284532267091705140}
-  _gunHolder: {fileID: 4910756130317538597}
-  _gunPoint: {fileID: 1589386819863004641}
   _specialAmmoSlider: {fileID: 2038906726891470016}
   _HpSlider: {fileID: 7293267665640811624}
   _hpText: {fileID: 858405870821305040}
   _ammoText: {fileID: 1762687937718593147}
-  _maxHP: 0
-  _damage: 2
-  _attackRate: 1
-  _rotationSpeed: 2
-  _maxCapacity: 20
-  _target: {fileID: 0}
 --- !u!61 &8249390084349860321
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -436,7 +426,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7e1a10b7b45bc042a09a16c8823afac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  targetGun: 0
   _shootPoint: {fileID: 6876297308783769492}
+  _target: {fileID: 0}
+  enemies: []
 --- !u!1 &2144686405040706094
 GameObject:
   m_ObjectHideFlags: 0
@@ -640,7 +633,7 @@ RectTransform:
   m_Father: {fileID: 7640160097057097301}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -786,7 +779,7 @@ RectTransform:
   m_Father: {fileID: 8959477014716706}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -953,7 +946,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7e1a10b7b45bc042a09a16c8823afac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  targetGun: 0
   _shootPoint: {fileID: 1589386819863004641}
+  _target: {fileID: 0}
+  enemies: []
 --- !u!1 &5820415420586123021
 GameObject:
   m_ObjectHideFlags: 0
