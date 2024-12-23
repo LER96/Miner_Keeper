@@ -256,7 +256,7 @@ MonoBehaviour:
   - {fileID: 8212516865219336569}
   - {fileID: 4981235846336537321}
   _itemData: {fileID: 11400000, guid: 7a0e0ba4a7fbaf04e91cf9d9d7cf1754, type: 2}
-  _reviveDelay: 100
+  _reviveDelay: 15
   _reviveTime: 3
 --- !u!61 &226297530400560865
 BoxCollider2D:
