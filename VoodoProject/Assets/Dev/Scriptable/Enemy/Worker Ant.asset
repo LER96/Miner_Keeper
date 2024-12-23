@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Worker Ant
   m_EditorClassIdentifier: 
   _enemyName: WorkerAnt
-  _hp: 20
+  _hp: 40
   _speed: 1
-  _damage: 2
+  _damage: 4
   _attackRange: 2
   _attackRate: 0.3
   _dropItem: {fileID: 11400000, guid: 641aff0baa6de4c46ab1e6d8da745322, type: 2}
