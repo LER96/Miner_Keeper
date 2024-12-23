@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: HunterAnt
   m_EditorClassIdentifier: 
   _enemyName: HunterAnt
-  _hp: 30
+  _hp: 50
   _speed: 1.5
   _damage: 8
   _attackRange: 2
