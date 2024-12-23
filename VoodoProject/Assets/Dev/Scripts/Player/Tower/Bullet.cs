@@ -16,11 +16,13 @@ public class Bullet : MonoBehaviour
     BulletType _currentType;
     private BulletSO _currentBulletData;
     private float _damage;
+    private float _omni;
     private float _explosion;
     private float _speed;
     private float _currentTimer;
 
     public float Damage { get => _damage; set => _damage = value; }
+    public float Omni { get => _omni; set => _omni = value; }
     public float Explosion { get => _explosion; set => _explosion = value; }
     public float Speed => _speed; //{ get => _speed; set => _speed = value; }
 
@@ -99,7 +101,10 @@ public class Bullet : MonoBehaviour
         {
             Enemy enemy = _enemies[i].GetComponent<Enemy>();
             if (enemy != null)
+            {
                 enemy.TakeDamage(_damage);
+                UpgradeManager.Instance.TorretHandler.CurrentTower.HpChange(_omni);
+            }
         }
         ResetBullet();
     }
