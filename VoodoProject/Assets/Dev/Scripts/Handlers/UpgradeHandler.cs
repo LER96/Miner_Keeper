@@ -17,6 +17,13 @@ public class UpgradeHandler : MonoBehaviour
     [SerializeField] Slider _xpSlider;
     [SerializeField] float _duration;
 
+    [Header("Upgrades")]
+    [SerializeField] GameObject _cardHolder;
+    [SerializeField] List<UpgradeSO> _upgrades = new List<UpgradeSO>();
+    [SerializeField] List<UpgradeCard> _cards = new List<UpgradeCard>();
+    private List<UpgradeSO> _collectUpgrades = new List<UpgradeSO>();
+
+    int index=0;
     private int _currentLevel;
     private XpSO _currentXPData;
     private float _currentXP;
@@ -91,10 +98,39 @@ public class UpgradeHandler : MonoBehaviour
         {
             float _tempXP = _currentXP - _maxXP;
             SetData(_currentLevel+1);
-            UpgradeManager.Instance.TorretHandler.Upgrade();
+            Upgrade();
             _currentXP = _tempXP;
         }
         _xpSlider.value = _currentXP / _maxXP;
+    }
+
+    void Upgrade()
+    {
+        Time.timeScale = 0;
+        _collectUpgrades = _upgrades;
+        SetCards(true);
+        for (int i = 0; i < _cards.Count; i++)
+        {
+            int rnd = Random.Range(0, _collectUpgrades.Count);
+            UpgradeSO upgrade = _collectUpgrades[rnd];
+            _cards[i].SetData(upgrade);
+            _collectUpgrades.RemoveAt(rnd);
+        }
+    }
+
+    void SetCards(bool active)
+    {
+        _cardHolder.SetActive(active);
+    }
+
+    public void DisableCards()
+    {
+        Time.timeScale = 1;
+        for (int i = 0; i < _cards.Count; i++)
+        {
+            _cards[i].SetToOrigin();
+        }
+        SetCards(false);
     }
 
 }

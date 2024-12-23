@@ -16,8 +16,11 @@ MonoBehaviour:
   _towerSprite: {fileID: 0}
   _gunSprite: {fileID: 0}
   _basicDamage: 2
-  _enhancedDamage: 3
+  _enhancedDamage: 5
+  _omniPower: 0
   _expolsionRadius: 1
+  _critChance: 0.2
+  _critMultiplier: 1
   _attackRate: 1
   _rotationSpeed: 2
   _maxCapacity: 30

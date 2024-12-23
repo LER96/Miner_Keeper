@@ -26,7 +26,11 @@ public class Tower : MonoBehaviour
     //[Header("Tower Variable")]
     private float _maxHP;
     private float _damage;
+    private float _omniPower;
+    private float _specialDamage;
     private float _explosion;
+    private float _critChance;
+    private float _critMultiplier;
     private float _attackRate;
     private float _rotationSpeed;
     private float _maxCapacity;
@@ -37,9 +41,17 @@ public class Tower : MonoBehaviour
     List<Enemy> _targets= new List<Enemy>();
     TorretHandler _torretHandler;
 
+    #region Getter/Setter
     public float CurentHP=> _currentHP;
+    public float Damage { get => _damage; set => _damage = value; }
+    public float ExplosionRadius { get => _explosion; set => _explosion = value; }
+    public float LifeSteal { get => _omniPower; set => _omniPower = value; }
+    public float CritChance { get => _critChance; set => _critChance = value; }
+    public float CritMultiplier { get => _critMultiplier; set => _critMultiplier = value; }
+    public float AttackRate { get => _attackRate; set => _attackRate = value; }
     public TorretHandler TorretHandler { get => _torretHandler; set => _torretHandler = value; }
     public List<Enemy> Targets { get => _targets; set => _targets = value; }
+    #endregion
 
     private void Update()
     {
@@ -51,13 +63,10 @@ public class Tower : MonoBehaviour
         RotateTo();
     }
 
-    public void ReloadSpecialAmmo(int amount)
+    public void SetMaxHP(float hp)
     {
-        _currentSpecialAmmoCapacity+=amount;
-        if (_currentSpecialAmmoCapacity >= _maxCapacity)
-            _currentSpecialAmmoCapacity = _maxCapacity;
-        _currentType = BulletType.Special;
-        UpdateSpecailAmmo();
+        _maxHP += hp;
+        HpChange(hp);
     }
 
     public void SetData(TowerSO data)
@@ -65,10 +74,14 @@ public class Tower : MonoBehaviour
         _towerData = data;
         _maxHP= PlayerManger.Instance.MaxHP;
         _currentHP= PlayerManger.Instance.CurrentHP;
+        _omniPower = _towerData.Omni;
         _explosion = _towerData.ExplosionRadius;
+        _critChance = _towerData.CritChance;
+        _critMultiplier = _towerData.CritMultiplier;
         _damage = _towerData.Damage;
+        _specialDamage = _towerData.SpecialDamage;
         _rotationSpeed = _towerData.Agility;
-        _attackRate = 1/ _towerData.AttackRate;
+        _attackRate = _towerData.AttackRate;
         _towerBody.sprite = _towerData.TowerSprit;
         _gun.sprite = _towerData.GunSprite;
         _maxCapacity = _towerData.MaxCapacity;
@@ -77,6 +90,7 @@ public class Tower : MonoBehaviour
         UpdateHPBar();
     }
 
+    #region Shooting: Attack Rate, Rotate, Pool Shooting
     void Timer()
     {
         if(_currentTime>0)
@@ -86,22 +100,8 @@ public class Tower : MonoBehaviour
         else
         {
             Shoot();
-            _currentTime = _attackRate;
+            _currentTime = 1/_attackRate;
         }
-    }
-
-    void UpdateSpecailAmmo()
-    {
-        float precnet = _currentSpecialAmmoCapacity / _maxCapacity;
-        _specialAmmoSlider.value = precnet;
-        _ammoText.text = $"{_currentSpecialAmmoCapacity}/{_maxCapacity}";
-    }
-
-    void UpdateHPBar()
-    {
-        float precent = _currentHP / _maxHP;
-        _HpSlider.value = precent;
-        _hpText.text= $"{_currentHP}/{_maxHP}";
     }
 
     void RotateTo()
@@ -116,28 +116,81 @@ public class Tower : MonoBehaviour
     {
         if (_torretHandler != null)
         {
+            SetType();
+            UpdateSpecailAmmo();
+
             for (int i = 0; i < _gunHolders.Count; i++)
             {
                 Bullet bullet = _torretHandler.Bullets.Dequeue();
                 bullet.gameObject.SetActive(true);
-                bullet.Damage = _damage;
+                SetBulletDamage(bullet);
+                bullet.Omni = _omniPower;
                 bullet.Explosion = _explosion;
                 bullet.SetBulletType(_currentType);
-       
+
                 _gunHolders[i].ShootFrom(bullet.transform);
                 _torretHandler.Bullets.Enqueue(bullet);
             }
 
-            SetType();
-            UpdateSpecailAmmo();
         }
     }
+
+    void SetBulletDamage(Bullet bullet)
+    {
+        if (IsCrit())
+        {
+            bullet.Damage = _damage * _critMultiplier;
+        }
+        else
+            bullet.Damage = _damage;
+    }
+    #endregion
+
+    #region Updating HP, Special Bullet Bars
+    public void ReloadSpecialAmmo(int amount)
+    {
+        _currentSpecialAmmoCapacity+=amount;
+        if (_currentSpecialAmmoCapacity >= _maxCapacity)
+            _currentSpecialAmmoCapacity = _maxCapacity;
+        _currentType = BulletType.Special;
+        UpdateSpecailAmmo();
+    }
+
+    void UpdateSpecailAmmo()
+    {
+        float precnet = _currentSpecialAmmoCapacity / _maxCapacity;
+        _specialAmmoSlider.value = precnet;
+        _ammoText.text = $"{_currentSpecialAmmoCapacity}/{_maxCapacity}";
+    }
+
+    public void HpChange(float damage)
+    {
+        _currentHP += damage;
+
+        if (_currentHP < 0)
+        {
+            gameObject.SetActive(false);
+        }
+        else if (_currentHP >= _maxHP)
+            _currentHP = _maxHP;
+
+        UpdateHPBar();
+        PlayerManger.Instance.CurrentHP = _currentHP;
+    }
+
+    void UpdateHPBar()
+    {
+        float precent = _currentHP / _maxHP;
+        _HpSlider.value = precent;
+        _hpText.text= $"{_currentHP}/{_maxHP}";
+    }
+    #endregion
 
     void SetType()
     {
         if (_currentSpecialAmmoCapacity > 0)
         {
-            _damage = _towerData.SpecialDamage;
+            _damage = _specialDamage;
             _currentSpecialAmmoCapacity--;
         }
         else
@@ -148,20 +201,13 @@ public class Tower : MonoBehaviour
         }
     }
 
-    public void HpChange(float damage)
+    bool IsCrit()
     {
-        _currentHP+=damage;
-
-        if (_currentHP < 0)
+        float precent = Random.Range(0, 100);
+        if(precent<_critChance)
         {
-            gameObject.SetActive(false);
+            return true;
         }
-        else if (_currentHP > _maxHP)
-            _currentHP = _maxHP;
-        else
-            UpdateHPBar();
-
-        PlayerManger.Instance.CurrentHP = _currentHP;
+        return false;
     }
-
 }
