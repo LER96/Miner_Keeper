@@ -1373,32 +1373,16 @@ MonoBehaviour:
     type: 3}
   _xpLevel:
   - {fileID: 11400000, guid: b0e49d48bd4625e4488c907b86a23d10, type: 2}
-  - {fileID: 11400000, guid: 7b8b6bc8a120588479befe4d8d57f752, type: 2}
-  - {fileID: 11400000, guid: 69bbfe7524ef9a74e870db734c884e4e, type: 2}
-  - {fileID: 11400000, guid: 2fa4b87a0012f1c439803f552753e08e, type: 2}
-  - {fileID: 11400000, guid: f607dabec66632d4393116b52789838b, type: 2}
-  - {fileID: 11400000, guid: 79e18a6122ad13743ae68e052131e140, type: 2}
-  - {fileID: 11400000, guid: 3fc72847ccfa679459a076e9dcff8446, type: 2}
-  - {fileID: 11400000, guid: dc60510f94a98fe44869f50822a28385, type: 2}
-  - {fileID: 11400000, guid: 68bbb6fb64fb4fa478c9e7a92cd2f09f, type: 2}
-  - {fileID: 11400000, guid: 14b09cb406356db44b5d53620d82b20b, type: 2}
+  - {fileID: 11400000, guid: a2d75b0693d4c2c4e8011b432ca8d814, type: 2}
+  - {fileID: 11400000, guid: 48a204f7949a27f468bee30e3742e41a, type: 2}
+  - {fileID: 11400000, guid: 02e73e92368e9494ca2de162f2a81630, type: 2}
+  - {fileID: 11400000, guid: 0638c1d7d4283d24681d5174e36fed32, type: 2}
+  - {fileID: 11400000, guid: bef8090cce3c7c24a887896ada0589ea, type: 2}
+  - {fileID: 11400000, guid: 483e6fd7cec6b8846a14c6c7533acfda, type: 2}
   _xpPoint: {fileID: 918196890}
   _xpSlider: {fileID: 754574569}
   _duration: 0.3
   _cardHolder: {fileID: 1151031510}
-  _upgrades:
-  - {fileID: 11400000, guid: 46b12a7ade350a84099ed77759bbaae4, type: 2}
-  - {fileID: 11400000, guid: 4b9211b1d5404cd44b206f036b67740b, type: 2}
-  - {fileID: 11400000, guid: fd53a0b3dd46fbb4d84386fce1fc8ca7, type: 2}
-  - {fileID: 11400000, guid: 5aa3f1911cdae5a47bc104ff90d976f0, type: 2}
-  - {fileID: 11400000, guid: 28f1fa88ae4861547bf2c087e7568d98, type: 2}
-  - {fileID: 11400000, guid: 497035e5af03bfd42a813da10f3ff130, type: 2}
-  - {fileID: 11400000, guid: 1575beef44d37dc4886b39e29a0f5dc0, type: 2}
-  - {fileID: 11400000, guid: 943bc280e214fa6459c745f81032eca4, type: 2}
-  - {fileID: 11400000, guid: 43eee1bf252dc2b41a3e495680dd3f7d, type: 2}
-  - {fileID: 11400000, guid: a7ae01916c2b3f243bf3de9889d6e83a, type: 2}
-  - {fileID: 11400000, guid: fec89ca22af19c24b86c3caec99b2c82, type: 2}
-  - {fileID: 11400000, guid: 45bb3eaa65b15744db023ca400bb5c4d, type: 2}
   _cards:
   - {fileID: 941961185}
   - {fileID: 792518353}
