@@ -19,7 +19,6 @@ public class UpgradeHandler : MonoBehaviour
 
     [Header("Upgrades")]
     [SerializeField] GameObject _cardHolder;
-    [SerializeField] List<UpgradeSO> _upgrades = new List<UpgradeSO>();
     [SerializeField] List<UpgradeCard> _cards = new List<UpgradeCard>();
     private List<UpgradeSO> _collectUpgrades = new List<UpgradeSO>();
 
@@ -59,7 +58,8 @@ public class UpgradeHandler : MonoBehaviour
         }
         _currentXPData = _xpLevel[index-1];
         _maxXP = _currentXPData.XPCapacity;
-        _currentXP += _xpLeft;
+        _collectUpgrades = _currentXPData.Upgrades;
+       _currentXP += _xpLeft;
     }
 
     public void DropItem(ItemSO item, Transform from)
@@ -107,14 +107,13 @@ public class UpgradeHandler : MonoBehaviour
     void Upgrade()
     {
         Time.timeScale = 0;
-        _collectUpgrades = _upgrades;
         SetCards(true);
         for (int i = 0; i < _cards.Count; i++)
         {
             int rnd = Random.Range(0, _collectUpgrades.Count);
             UpgradeSO upgrade = _collectUpgrades[rnd];
             _cards[i].SetData(upgrade);
-            _collectUpgrades.RemoveAt(rnd);
+            _collectUpgrades.Remove(upgrade);
         }
     }
 
@@ -125,11 +124,11 @@ public class UpgradeHandler : MonoBehaviour
 
     public void DisableCards()
     {
-        Time.timeScale = 1;
         for (int i = 0; i < _cards.Count; i++)
         {
             _cards[i].SetToOrigin();
         }
+        Time.timeScale = 1;
         SetCards(false);
     }
 
