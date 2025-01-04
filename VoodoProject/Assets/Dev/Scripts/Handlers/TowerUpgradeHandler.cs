@@ -43,11 +43,11 @@ public class TowerUpgradeHandler : MonoBehaviour
         }
     }
 
-    public void UpgradeProgress(Item item, int count)
+    public void UpgradeProgress(ItemSO item, int count)
     {
         for (int i = 0; i < _activeItems.Count; i++)
         {
-            if (item.CompareItem(_activeItems[i].ItemName))
+            if (item.ItemName==_activeItems[i].ItemName)
             {
                 int amount = _activeItems[i].CurrentAmount - count;
                 if (amount <= 0)

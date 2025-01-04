@@ -4,20 +4,15 @@ using UnityEngine;
 
 public class TorretHandler : MonoBehaviour
 {
-    [System.Serializable]
-    public struct TowerBodyData
-    {
-        public Tower towerBody;
-        public TowerSO towerData;
-    }
+
     [SerializeField] int _levelIndex;
-    [SerializeField] List<TowerBodyData> _towersBodies = new List<TowerBodyData>();
+    [SerializeField] Tower _tower;
+    [SerializeField] List<TowerSO> _towersBodies = new List<TowerSO>();
 
     [Header("Tower Pool")]
     [SerializeField] int _bulletNumber;
     [SerializeField] Bullet _bulletPrefab;
     [SerializeField] Transform _bulletHolder;
-
 
     private Tower _currentTower;
     private TowerSO _currentData;
@@ -31,13 +26,13 @@ public class TorretHandler : MonoBehaviour
     public void SetHandler()
     {
         InitPool();
+        _currentTower = _tower;
         SetLevelData(1);
     }
 
     public void Upgrade()
     {
         PlayerManger.Instance.CurrentHP = _currentTower.CurentHP;
-        _towersBodies[_levelIndex - 1].towerBody.gameObject.SetActive(false);
         _levelIndex++;
         SetLevelData(_levelIndex);
     }
@@ -47,14 +42,12 @@ public class TorretHandler : MonoBehaviour
 
         if (index > _towersBodies.Count)
         {
-            ClearUpgradeSlots();
+            //ClearUpgradeSlots();
             return;
         }
         _levelIndex = index;
-        _towersBodies[index - 1].towerBody.gameObject.SetActive(true);
-        CheckNextUpgrade(index);
-        _currentTower = _towersBodies[index - 1].towerBody;
-        _currentData = _towersBodies[index - 1].towerData;
+        //CheckNextUpgrade(index);
+        _currentData = _towersBodies[index - 1];
         _currentTower.TorretHandler = this;
         _currentTower.SetData(_currentData);
     }
@@ -68,23 +61,24 @@ public class TorretHandler : MonoBehaviour
         }
     }
 
-    void CheckNextUpgrade(int index)
-    {
-        if (index < _towersBodies.Count)
-        {
-            _nextUpgrade = _towersBodies[index].towerData.TowerCost;
-            if (_nextUpgrade != null)
-                UpgradeManager.Instance.TowerUpgradeHandler.CreateItems(_nextUpgrade);
-            else
-                ClearUpgradeSlots();
-        }
-        else
-            ClearUpgradeSlots();
-    }
+    #region Upgrade Slot- Not in Use
+    //void CheckNextUpgrade(int index)
+    //{
+    //    if (index < _towersBodies.Count)
+    //    {
+    //        _nextUpgrade = _towersBodies[index].towerData.TowerCost;
+    //        if (_nextUpgrade != null)
+    //            UpgradeManager.Instance.TowerUpgradeHandler.CreateItems(_nextUpgrade);
+    //        else
+    //            ClearUpgradeSlots();
+    //    }
+    //    else
+    //        ClearUpgradeSlots();
+    //}
 
-    void ClearUpgradeSlots()
-    {
-        UpgradeManager.Instance.TowerUpgradeHandler.ClearAll();
-    }
-
+    //void ClearUpgradeSlots()
+    //{
+    //    UpgradeManager.Instance.TowerUpgradeHandler.ClearAll();
+    //}
+    #endregion
 }

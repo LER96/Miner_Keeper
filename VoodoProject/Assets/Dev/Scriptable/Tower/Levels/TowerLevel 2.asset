@@ -17,7 +17,8 @@ MonoBehaviour:
   _gunSprite: {fileID: 0}
   _basicDamage: 4
   _enhancedDamage: 7
+  _expolsionRadius: 2
   _attackRate: 2
   _rotationSpeed: 2
   _maxCapacity: 40
-  _towerCostData: {fileID: 11400000, guid: aeb752bd1af112c4b93b8db5888eccf1, type: 2}
+  _towerCostData: {fileID: 0}

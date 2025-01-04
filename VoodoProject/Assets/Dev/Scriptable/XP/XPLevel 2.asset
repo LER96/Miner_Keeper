@@ -12,4 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14a7a6720f5f25b4a84ad6f4d9646875, type: 3}
   m_Name: XPLevel 2
   m_EditorClassIdentifier: 
-  _xpPoints: 40
+  _xpPoints: 10
+  _upgrades:
+  - {fileID: 11400000, guid: 1575beef44d37dc4886b39e29a0f5dc0, type: 2}
+  - {fileID: 11400000, guid: 46b12a7ade350a84099ed77759bbaae4, type: 2}
+  - {fileID: 11400000, guid: 43eee1bf252dc2b41a3e495680dd3f7d, type: 2}
+  - {fileID: 11400000, guid: 5aa3f1911cdae5a47bc104ff90d976f0, type: 2}
+  - {fileID: 11400000, guid: 28f1fa88ae4861547bf2c087e7568d98, type: 2}
+  - {fileID: 11400000, guid: fec89ca22af19c24b86c3caec99b2c82, type: 2}

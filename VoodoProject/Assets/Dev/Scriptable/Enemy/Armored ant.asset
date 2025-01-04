@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Armored ant
   m_EditorClassIdentifier: 
   _enemyName: ArmoredAnt
-  _hp: 30
+  _hp: 100
   _speed: 0.5
-  _damage: 5
-  _attackRange: 5
+  _damage: 4
+  _attackRange: 4
   _attackRate: 0.4
   _dropItem: {fileID: 11400000, guid: 641aff0baa6de4c46ab1e6d8da745322, type: 2}

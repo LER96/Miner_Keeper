@@ -16,21 +16,21 @@ public class HealDepositBrick : DepositBrick
 
     protected override void CheckResources()
     {
-        if (_playerInventory.AllItems.Count > 0)
-        {
-            foreach (Item item in _playerInventory.AllItems)
-            {
-                if (item.CompareItem(_ammoItem.ItemName))
-                {
-                    if (_torretHandler.CurrentTower.CanHeal())
-                    {
-                        _torretHandler.CurrentTower.HpChange(item.Value);
-                        _playerInventory.Deposit(item, this.transform);
-                        StartCoroutine(DepositCD());
-                    }
-                    return;
-                }
-            }
-        }
+        //if (_playerInventory.AllItems.Count > 0)
+        //{
+        //    foreach (Item item in _playerInventory.AllItems)
+        //    {
+        //        if (item.CompareItem(_ammoItem.ItemName))
+        //        {
+        //            if (_torretHandler.CurrentTower.CanHeal())
+        //            {
+        //                _torretHandler.CurrentTower.HpChange(item.Value);
+        //                _playerInventory.Deposit(item, this.transform);
+        //                StartCoroutine(DepositCD());
+        //            }
+        //            return;
+        //        }
+        //    }
+        //}
     }
 }

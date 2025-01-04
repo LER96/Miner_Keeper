@@ -11,6 +11,10 @@ public class TowerSO : ScriptableObject
 
     [SerializeField] float _basicDamage;
     [SerializeField] float _enhancedDamage;
+    [SerializeField] float _omniPower;
+    [SerializeField] float _expolsionRadius;
+    [SerializeField] float _critChance;
+    [SerializeField] float _critMultiplier;
     [SerializeField] float _attackRate;
     [SerializeField] float _rotationSpeed;
     [SerializeField] int _maxCapacity;
@@ -22,6 +26,10 @@ public class TowerSO : ScriptableObject
     public Sprite TowerSprit => _towerSprite;
     public Sprite GunSprite => _towerSprite;
     public float Damage => _basicDamage;
+    public float Omni => _omniPower;
+    public float ExplosionRadius => _expolsionRadius;
+    public float CritChance => _critChance;
+    public float CritMultiplier => _critMultiplier;
     public float SpecialDamage => _enhancedDamage;
     public float AttackRate=> _attackRate;
     public float Agility => _rotationSpeed;

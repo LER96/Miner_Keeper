@@ -7,11 +7,9 @@ public class Brick : MonoBehaviour
 {
     [SerializeField] protected int _brickHp;
     [SerializeField] protected List<GameObject> _brickStages = new List<GameObject>();
-    [SerializeField] protected ParticleSystem _hitvfx;
 
     protected bool _isTarget;
     protected bool _canCollect;
-    protected Inventory _inventory;
     protected int _startHp;
 
     public int HP=> _brickHp;
@@ -21,7 +19,6 @@ public class Brick : MonoBehaviour
         _canCollect = true;
         _startHp = _brickHp;
         //_brickHp = _brickStages.Count;
-        _inventory = PlayerManger.Instance.PlayerInventory;
         HideAllVariants(_brickHp-1);
     }
 
@@ -30,7 +27,6 @@ public class Brick : MonoBehaviour
         _brickHp -= dmg;
         if (_brickHp > 0)
         {
-            _hitvfx.Play();
             if (_brickHp > _brickStages.Count)
                 return;
             HideAllVariants(_brickHp-1);

@@ -1,3 +1,4 @@
+using MoreMountains.Feedbacks;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,6 +6,8 @@ using UnityEngine;
 public class MinerDitector : MonoBehaviour
 {
     [SerializeField] Brick _target;
+    [SerializeField] MMFeedbacks feedBack;
+    [SerializeField] ParticleSystem _hitVFX;
     [SerializeField] LayerMask _layer;
     private PlayerMining _playerMining;
 
@@ -21,7 +24,7 @@ public class MinerDitector : MonoBehaviour
 
     protected virtual void CheckForTarget()
     {
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(new Vector2(transform.position.x, transform.position.y), transform.localScale.x, _layer);
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(new Vector2(transform.position.x, transform.position.y), transform.localScale.x/2, _layer);
         if(colliders.Length>0)
         {
             _playerMining.CanMine = true;
@@ -41,9 +44,11 @@ public class MinerDitector : MonoBehaviour
 
     void ApplyDamage()
     {
-        if(_target!=null)
+        if (_target != null)
         {
             _target.TakeDamage(1);
+            feedBack.PlayFeedbacks();
+
         }
     }
 
