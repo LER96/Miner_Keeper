@@ -40,7 +40,8 @@ MonoBehaviour:
   - m_Id: 32
     m_Sprites:
     - {fileID: 1932396811, guid: 89ea328d74a70f648b13eb8464781472, type: 3}
-    m_GameObject: {fileID: 0}
+    m_GameObject: {fileID: 4524291054933520150, guid: 4b5f323a22621264388cb8c00731895d,
+      type: 3}
     m_MinAnimationSpeed: 1
     m_MaxAnimationSpeed: 1
     m_PerlinScale: 0.5
@@ -61,7 +62,8 @@ MonoBehaviour:
   - m_Id: 31
     m_Sprites:
     - {fileID: 1829504887, guid: 89ea328d74a70f648b13eb8464781472, type: 3}
-    m_GameObject: {fileID: 0}
+    m_GameObject: {fileID: 4524291054933520150, guid: a3a9839f6ec995746965df53bb383c90,
+      type: 3}
     m_MinAnimationSpeed: 1
     m_MaxAnimationSpeed: 1
     m_PerlinScale: 0.5
@@ -82,7 +84,8 @@ MonoBehaviour:
   - m_Id: 29
     m_Sprites:
     - {fileID: 1699435267, guid: 89ea328d74a70f648b13eb8464781472, type: 3}
-    m_GameObject: {fileID: 0}
+    m_GameObject: {fileID: 4524291054933520150, guid: 9b36f8b0aa03bff45a58c92084857fb4,
+      type: 3}
     m_MinAnimationSpeed: 1
     m_MaxAnimationSpeed: 1
     m_PerlinScale: 0.5
@@ -103,7 +106,8 @@ MonoBehaviour:
   - m_Id: 30
     m_Sprites:
     - {fileID: -1904685777, guid: 89ea328d74a70f648b13eb8464781472, type: 3}
-    m_GameObject: {fileID: 0}
+    m_GameObject: {fileID: 4524291054933520150, guid: 96afa227a2edfee46ad7ba1a8333d650,
+      type: 3}
     m_MinAnimationSpeed: 1
     m_MaxAnimationSpeed: 1
     m_PerlinScale: 0.5
@@ -124,7 +128,8 @@ MonoBehaviour:
   - m_Id: 0
     m_Sprites:
     - {fileID: -1437709284, guid: 89ea328d74a70f648b13eb8464781472, type: 3}
-    m_GameObject: {fileID: 0}
+    m_GameObject: {fileID: 4524291054933520150, guid: a70af18851481a348b1376db77340016,
+      type: 3}
     m_MinAnimationSpeed: 1
     m_MaxAnimationSpeed: 1
     m_PerlinScale: 0.5
@@ -141,7 +146,8 @@ MonoBehaviour:
   - m_Id: 1
     m_Sprites:
     - {fileID: -1984665374, guid: 89ea328d74a70f648b13eb8464781472, type: 3}
-    m_GameObject: {fileID: 0}
+    m_GameObject: {fileID: 4524291054933520150, guid: 0241fcaaa6d3b274189f2cd199ed06d1,
+      type: 3}
     m_MinAnimationSpeed: 1
     m_MaxAnimationSpeed: 1
     m_PerlinScale: 0.5
