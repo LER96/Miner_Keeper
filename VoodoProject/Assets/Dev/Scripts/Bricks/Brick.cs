@@ -6,7 +6,8 @@ using static EnumHandler;
 public class Brick : MonoBehaviour
 {
     [SerializeField] protected int _brickHp;
-    [SerializeField] protected List<GameObject> _brickStages = new List<GameObject>();
+    [SerializeField] protected SpriteRenderer _sprite;
+    [SerializeField] protected List<Sprite> _brickStages = new List<Sprite>();
 
     protected bool _isTarget;
     protected bool _canCollect;
@@ -40,12 +41,12 @@ public class Brick : MonoBehaviour
 
     protected void HideAllVariants(int index)
     {
-        for (int i = 0; i < _brickStages.Count; i++)
-        {
-            _brickStages[i].SetActive(false);
-        }
+        //for (int i = 0; i < _brickStages.Count; i++)
+        //{
+        //    _brickStages[i].SetActive(false);
+        //}
 
-        _brickStages[index].SetActive(true);
+        _sprite.sprite= _brickStages[index];
     }
 
     public void IsTarget(bool targeted)
