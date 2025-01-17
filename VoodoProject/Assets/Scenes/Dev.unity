@@ -8789,7 +8789,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.75686276, g: 0.90588236, b: 0.8745098, a: 1}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -28128,7 +28128,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.278, g: 0.278, b: 0.278, a: 1}
+  m_Color: {r: 0.3372549, g: 0.45490196, b: 0.08235294, a: 1}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 0
@@ -39643,6 +39643,21 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4753610867594738380, guid: 2864d82d02dd3394a8381bfcd6747925,
         type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4753610867594738380, guid: 2864d82d02dd3394a8381bfcd6747925,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4753610867594738380, guid: 2864d82d02dd3394a8381bfcd6747925,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4753610867594738380, guid: 2864d82d02dd3394a8381bfcd6747925,
+        type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -39679,12 +39694,12 @@ PrefabInstance:
     - target: {fileID: 4753610867594738380, guid: 2864d82d02dd3394a8381bfcd6747925,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: -29
       objectReference: {fileID: 0}
     - target: {fileID: 4753610867594738380, guid: 2864d82d02dd3394a8381bfcd6747925,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 100
+      value: 163
       objectReference: {fileID: 0}
     - target: {fileID: 4753610867594738380, guid: 2864d82d02dd3394a8381bfcd6747925,
         type: 3}
@@ -39700,6 +39715,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4753610867594738380, guid: 2864d82d02dd3394a8381bfcd6747925,
+        type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4919117164029935325, guid: 2864d82d02dd3394a8381bfcd6747925,
         type: 3}
@@ -39725,6 +39745,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: OnCanonTower
+      objectReference: {fileID: 0}
+    - target: {fileID: 8829997982109511211, guid: 2864d82d02dd3394a8381bfcd6747925,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

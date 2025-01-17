@@ -24,7 +24,7 @@ public class TowerSO : ScriptableObject
 
     public int TowerLevel => _level;
     public Sprite TowerSprit => _towerSprite;
-    public Sprite GunSprite => _towerSprite;
+    public Sprite GunSprite => _gunSprite;
     public float Damage => _basicDamage;
     public float Omni => _omniPower;
     public float ExplosionRadius => _expolsionRadius;
