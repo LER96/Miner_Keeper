@@ -7,20 +7,20 @@ public class Brick : MonoBehaviour
 {
     [SerializeField] protected int _brickHp;
     [SerializeField] protected SpriteRenderer _sprite;
-    [SerializeField] protected List<Sprite> _brickStages = new List<Sprite>();
+    [SerializeField] protected List<GameObject> _brickStages = new List<GameObject>();
 
     protected bool _isTarget;
     protected bool _canCollect;
     protected int _startHp;
 
-    public int HP=> _brickHp;
+    public int HP => _brickHp;
 
     protected virtual void Start()
     {
         _canCollect = true;
         _startHp = _brickHp;
-        //_brickHp = _brickStages.Count;
-        HideAllVariants(_brickHp-1);
+        // _brickHp = _brickStages.Count;
+        HideAllVariants(_brickHp - 1);
     }
 
     public virtual void TakeDamage(int dmg)
@@ -30,9 +30,9 @@ public class Brick : MonoBehaviour
         {
             if (_brickHp > _brickStages.Count)
                 return;
-            HideAllVariants(_brickHp-1);
+            HideAllVariants(_brickHp - 1);
         }
-        else if(_brickHp == 0)
+        else if (_brickHp == 0)
         {
             ResetData();
             this.gameObject.SetActive(false);
@@ -41,12 +41,16 @@ public class Brick : MonoBehaviour
 
     protected void HideAllVariants(int index)
     {
-        //for (int i = 0; i < _brickStages.Count; i++)
-        //{
-        //    _brickStages[i].SetActive(false);
-        //}
+        for (int i = 0; i < _brickStages.Count; i++)
+        {
+            _brickStages[i].SetActive(false);
+        }
 
-        _sprite.sprite= _brickStages[index];
+        if (index < _brickStages.Count)
+        {
+            _brickStages[index].SetActive(true);
+        }
+        //_sprite.sprite= _brickStages[index];
     }
 
     public void IsTarget(bool targeted)

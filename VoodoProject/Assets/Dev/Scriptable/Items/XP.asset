@@ -10,8 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9cbea3be4fb6a9649aeae7a9e23616f0, type: 3}
-  m_Name: XP
+  m_Name: xp
   m_EditorClassIdentifier: 
-  _itemSprite: {fileID: 21300102, guid: 9bd9265533309304db171aa9f916554a, type: 3}
-  _itemName: Coins
+  _itemSprite: {fileID: 2125737359283935466, guid: f7043b7291f49844b9671b3d3dedcbb5,
+    type: 3}
+  _itemName: Sapphire
   _value: 1
