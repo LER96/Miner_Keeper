@@ -15,8 +15,8 @@ MonoBehaviour:
   _level: 1
   _towerSprite: {fileID: 21300000, guid: 90b317b9e5f0d17498af7e7e08aad722, type: 3}
   _gunSprite: {fileID: 21300000, guid: 77c799c5dd228be4aa6eed28118a888a, type: 3}
-  _basicDamage: 2
-  _enhancedDamage: 5
+  _basicDamage: 5
+  _enhancedDamage: 7
   _omniPower: 0
   _expolsionRadius: 1
   _critChance: 0.2
