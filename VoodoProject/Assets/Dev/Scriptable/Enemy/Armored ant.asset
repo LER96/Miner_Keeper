@@ -16,6 +16,6 @@ MonoBehaviour:
   _hp: 100
   _speed: 0.5
   _damage: 4
-  _attackRange: 4
-  _attackRate: 0.4
+  _attackRange: 5
+  _attackRate: 2
   _dropItem: {fileID: 11400000, guid: 641aff0baa6de4c46ab1e6d8da745322, type: 2}

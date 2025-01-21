@@ -91,7 +91,7 @@ PrefabInstance:
         type: 3}
       propertyPath: _itemData
       value: 
-      objectReference: {fileID: 11400000, guid: 87c66457bcc96fc469373631a9fe64f2,
+      objectReference: {fileID: 11400000, guid: 7a0e0ba4a7fbaf04e91cf9d9d7cf1754,
         type: 2}
     - target: {fileID: 8010741161693259992, guid: e5af79090abd4f64f804d6dbfb60045c,
         type: 3}

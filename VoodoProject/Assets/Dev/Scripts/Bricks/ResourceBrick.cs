@@ -37,11 +37,12 @@ public class ResourceBrick : Brick
                 return;
 
             Collect();
-            HideAllVariants(_brickHp - 1);
+            HideAllVariants(_brickHp);
         }
         else if (_brickHp == 0&& _canCollect)
         {
             Collect();
+            HideAllVariants(0);
             _canCollect = false;
         }
     }
@@ -49,19 +50,6 @@ public class ResourceBrick : Brick
     void Collect()
     {
         UpgradeManager.Instance.UpgradeHandler.DropItem(_itemData, this.transform);
-        //item.gameObject.SetActive(true);
-        //if (item != null)
-        //{
-        //    item.transform.DOJump(_inventory.transform.position, 2, 1, 0.1f).OnComplete(HideItem);
-        //}
-    }
-
-    void HideItem()
-    {
-        //if(item!=null)
-        //{
-        //    item.gameObject.SetActive(false);
-        //}
     }
 
     void ReviveDelayTimer()
@@ -69,25 +57,11 @@ public class ResourceBrick : Brick
         _reviveDelay -= Time.deltaTime;
         if (_reviveDelay <= 0)
         {
+            _brickHp = _startHp;
             _reviveDelay = 0;
             _canCollect = true;
-            HideAllVariants(0);
+            HideAllVariants(_brickHp);
         }
-    }
-
-    void Revive()
-    {
-        _currentTime += Time.deltaTime;
-        if (_currentTime >= timeForEachStage * currentStage && currentStage < _brickStages.Count)
-        {
-            currentStage++;
-            HideAllVariants(currentStage - 1);
-        }
-        else if (currentStage>=_brickStages.Count)
-        {
-            ResetData();
-        }
-
     }
 
     protected override void ResetData()

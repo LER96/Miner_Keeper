@@ -448,7 +448,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f72f525f4e6b274fb780270d5afc6e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _brickHp: 4
+  _brickHp: 3
   _sprite: {fileID: 2625407182965259287}
   _brickStages:
   - {fileID: 3151815371750418229}

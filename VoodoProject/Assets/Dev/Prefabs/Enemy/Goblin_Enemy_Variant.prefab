@@ -134,11 +134,32 @@ PrefabInstance:
       propertyPath: m_Name
       value: Goblin_Enemy_Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 3337619099751391986, guid: 2dab865209c63e14a9fade5d137c1c58,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4564636892121372615, guid: 2dab865209c63e14a9fade5d137c1c58,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 30.329224
+      objectReference: {fileID: 0}
+    - target: {fileID: 4564636892121372615, guid: 2dab865209c63e14a9fade5d137c1c58,
+        type: 3}
+      propertyPath: m_Offset.x
+      value: 1.6027832
+      objectReference: {fileID: 0}
     - target: {fileID: 5984587748862106974, guid: 2dab865209c63e14a9fade5d137c1c58,
         type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6343556598757835996, guid: 2dab865209c63e14a9fade5d137c1c58,
+        type: 3}
+      propertyPath: _enemyData
+      value: 
+      objectReference: {fileID: 11400000, guid: 8b668a09b555b744e87cf953b162ed7a,
+        type: 2}
     - target: {fileID: 6343556598757835996, guid: 2dab865209c63e14a9fade5d137c1c58,
         type: 3}
       propertyPath: _enemyVariable.Array.size

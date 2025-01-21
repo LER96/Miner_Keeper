@@ -7,9 +7,18 @@ using static StructHandler;
 
 public class WaveHandler : MonoBehaviour
 {
-    [SerializeField] int _amountOfEnemies;
-    [SerializeField] Enemy _enemyPreFab;
-    [SerializeField] Transform _enemyHolder;
+    //[System.Serializable]
+    //class WaveHandlerInfo
+    //{
+    //    public int _amountOfEnemies;
+    //    public Enemy _enemyPreFab;
+    //    public Transform _enemyHolder;
+    //}
+    //[SerializeField] List<WaveHandlerInfo> waveHandlers = new List<WaveHandlerInfo>();
+
+    public int _amountOfEnemies;
+    public Enemy _enemyPreFab;
+    public Transform _enemyHolder;
 
     [SerializeField] List<WaveSO> _wavesData = new List<WaveSO>();
     private List<WaveVariables> _waveData = new List<WaveVariables>();
@@ -88,7 +97,7 @@ public class WaveHandler : MonoBehaviour
             for (int j = 0; j < numberToSpawn; j++)
             {
                 Enemy enemy = _enemyQueue.Dequeue();
-                enemy.SetBody(_waveData[i].enemydata);
+                //enemy.SetBody(_waveData[i].enemydata);
                 _enemyToActive.Add(enemy);
                 _enemyQueue.Enqueue(enemy);
             }
@@ -158,7 +167,7 @@ public class WaveHandler : MonoBehaviour
                     _activeEnemy.Remove(_activeEnemy[i]);
                     _currentDied++;
                     return;
-                }  
+                }
             }
         }
     }

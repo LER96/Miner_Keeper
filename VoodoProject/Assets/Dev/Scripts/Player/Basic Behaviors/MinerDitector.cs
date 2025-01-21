@@ -9,6 +9,8 @@ public class MinerDitector : MonoBehaviour
     [SerializeField] MMFeedbacks feedBack;
     [SerializeField] ParticleSystem _hitVFX;
     [SerializeField] LayerMask _layer;
+
+    private bool _checkForTarget;
     private PlayerMining _playerMining;
 
     private void Start()
@@ -19,13 +21,14 @@ public class MinerDitector : MonoBehaviour
 
     private void Update()
     {
-        CheckForTarget();
+        if (_checkForTarget)
+            CheckForTarget();
     }
 
     protected virtual void CheckForTarget()
     {
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(new Vector2(transform.position.x, transform.position.y), transform.localScale.x/2, _layer);
-        if(colliders.Length>0)
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(new Vector2(transform.position.x, transform.position.y), transform.localScale.x / 2, _layer);
+        if (colliders.Length > 0)
         {
             _playerMining.CanMine = true;
             _target = colliders[0].GetComponent<Brick>();
@@ -33,13 +36,43 @@ public class MinerDitector : MonoBehaviour
         }
         else
         {
-            if (_target != null)
-            {
-                _target.IsTarget(false);
-                _target = null;
-            }
-            _playerMining.CanMine = false;
+            DisableMining();
         }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.CompareTag("Brick"))
+        {
+            _checkForTarget = true;
+        }
+    }
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Brick"))
+        {
+            _checkForTarget = true;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Brick"))
+        {
+            _checkForTarget = false;
+            DisableMining();
+        }
+    }
+
+
+    void DisableMining()
+    {
+        if (_target != null)
+        {
+            _target.IsTarget(false);
+            _target = null;
+        }
+        _playerMining.CanMine = false;
     }
 
     void ApplyDamage()
