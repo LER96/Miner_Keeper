@@ -6,7 +6,6 @@ using static EnumHandler;
 public class Brick : MonoBehaviour
 {
     [SerializeField] protected int _brickHp;
-    [SerializeField] protected SpriteRenderer _sprite;
     [SerializeField] protected List<GameObject> _brickStages = new List<GameObject>();
 
     protected bool _isTarget;
@@ -19,8 +18,6 @@ public class Brick : MonoBehaviour
     {
         _canCollect = true;
         _startHp = _brickHp;
-        // _brickHp = _brickStages.Count;
-        HideAllVariants(_brickHp - 1);
     }
 
     public virtual void TakeDamage(int dmg)
@@ -50,7 +47,6 @@ public class Brick : MonoBehaviour
         {
             _brickStages[index].SetActive(true);
         }
-        //_sprite.sprite= _brickStages[index];
     }
 
     public void IsTarget(bool targeted)

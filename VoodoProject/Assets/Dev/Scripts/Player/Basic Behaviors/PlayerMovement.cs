@@ -29,6 +29,11 @@ public class PlayerMovement : MonoBehaviour
     private void Update()
     {
         CheckInput();
+        //Move();
+    }
+
+    private void FixedUpdate()
+    {
         Move();
     }
 

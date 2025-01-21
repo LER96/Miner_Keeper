@@ -26,11 +26,6 @@ public class Bullet : MonoBehaviour
     public float Explosion { get => _explosion; set => _explosion = value; }
     public float Speed => _speed; //{ get => _speed; set => _speed = value; }
 
-    //private void Start()
-    //{
-    //    _currentBulletData = _mainBulletData;
-    //    SetData(_mainBulletData);
-    //}
 
     private void Update()
     {
@@ -82,13 +77,15 @@ public class Bullet : MonoBehaviour
         }    
     }
 
+
+
     private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.transform.CompareTag("Floor"))
         {
             ResetBullet();
         }
-        if (collision.transform.CompareTag("Enemy"))
+        else if (collision.transform.CompareTag("Enemy"))
         {
             SetDamage();
         }
@@ -96,7 +93,7 @@ public class Bullet : MonoBehaviour
 
     void SetDamage()
     {
-        Collider2D[] _enemies = Physics2D.OverlapCircleAll(transform.position, _explosion/2);
+        Collider2D[] _enemies = Physics2D.OverlapCircleAll(transform.position, _explosion);
         for (int i = 0; i < _enemies.Length; i++)
         {
             Enemy enemy = _enemies[i].GetComponent<Enemy>();

@@ -9,7 +9,7 @@ public class Enemy : MonoBehaviour
 {
     public Action<Enemy> OnEnemyDied;
     [SerializeField] Slider _enemyHPBar;
-    [SerializeField] List<EnemyVariable> _enemyVariable = new List<EnemyVariable>();
+    //[SerializeField] List<EnemyVariable> _enemyVariable = new List<EnemyVariable>();
     [SerializeField] protected EnemySO _enemyData;
 
     protected bool inRange;
@@ -30,27 +30,27 @@ public class Enemy : MonoBehaviour
     public float HP => _enemyHp;
     public float Distance => _distance;
 
-    //protected virtual void Start()
-    //{
-    //    SetBody(_enemyData);
-    //}
-
-    public void SetBody(EnemySO enemy)
+    protected virtual void Start()
     {
-        for (int i = 0; i < _enemyVariable.Count; i++)
-        {
-            EnemySO _enemy = _enemyVariable[i].EnemyData;
-            if (enemy.EnemyName == _enemy.EnemyName)
-            {
-                _enemyVariable[i].EnemyBody.gameObject.SetActive(true);
-                SetData(enemy);
-            }
-            else
-                _enemyVariable[i].EnemyBody.gameObject.SetActive(false);
-        }
+        SetData(_enemyData);
     }
 
-    void SetData(EnemySO enemySO)
+    public virtual void SetBody(EnemySO enemy)
+    {
+        //for (int i = 0; i < _enemyVariable.Count; i++)
+        //{
+        //    EnemySO _enemy = _enemyVariable[i].EnemyData;
+        //    if (enemy.EnemyName == _enemy.EnemyName)
+        //    {
+        //        _enemyVariable[i].EnemyBody.gameObject.SetActive(true);
+        //    }
+        //    else
+        //        _enemyVariable[i].EnemyBody.gameObject.SetActive(false);
+        //}
+        SetData(enemy);
+    }
+
+    protected virtual void SetData(EnemySO enemySO)
     {
         _enemyData = enemySO;
         _enemyName = _enemyData.EnemyName;
@@ -77,12 +77,13 @@ public class Enemy : MonoBehaviour
         Decide();
     }
 
-    void CheckDistance()
+    protected void CheckDistance()
     {
-        _distance = Vector3.Distance(transform.position, _target.transform.position);
+        Vector3 targetPos = new Vector3(_target.transform.position.x, transform.position.y, 0);
+        _distance = Vector3.Distance(transform.position, targetPos);
     }
 
-    void Decide()
+    protected virtual void  Decide()
     {
         float dist = Vector2.Distance(transform.position, _target.transform.position);
         if (dist <= _enemyAttackRange)
@@ -97,13 +98,13 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    protected void Move()
+    protected virtual void Move()
     {
         transform.localPosition -= new Vector3(_enemySpeed*10*Time.deltaTime, 0, 0);
 
     }
 
-    protected void AttackCD()
+    protected virtual void AttackCD()
     {
         if (_currentAttackRate < _attackRate)
         {
