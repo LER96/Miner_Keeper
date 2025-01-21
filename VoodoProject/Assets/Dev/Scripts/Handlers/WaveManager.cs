@@ -70,7 +70,10 @@ public class WaveManager : MonoBehaviour
     void InitData(int index)
     {
         if (index > _wavesData.Count)
+        {
+            LevelManager.OnLevelWin.Invoke();
             return;
+        }
 
         _currentRate = 0;
         _currentIndex = index;

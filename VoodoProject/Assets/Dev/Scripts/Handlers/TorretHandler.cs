@@ -42,11 +42,9 @@ public class TorretHandler : MonoBehaviour
 
         if (index > _towersBodies.Count)
         {
-            //ClearUpgradeSlots();
             return;
         }
         _levelIndex = index;
-        //CheckNextUpgrade(index);
         _currentData = _towersBodies[index - 1];
         _currentTower.TorretHandler = this;
         _currentTower.SetData(_currentData);
