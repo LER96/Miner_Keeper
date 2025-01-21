@@ -1203,10 +1203,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a71ed7663e2c22d4387ec1c9abf31ddd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _amountOfEnemies: 50
-  _enemyPreFab: {fileID: 6343556598757835996, guid: 2dab865209c63e14a9fade5d137c1c58,
-    type: 3}
-  _enemyHolder: {fileID: 1945301022}
+  waveHandlers:
+  - amountOfEnemies: 30
+    enemyPreFab: {fileID: 4656259931035628617, guid: c4ae157d5e697c94bb5716dddcd84071,
+      type: 3}
+    enemyHolder: {fileID: 1940143253}
+  - amountOfEnemies: 30
+    enemyPreFab: {fileID: 3584854595534776325, guid: 1f129a7f52db55b499f32a80b978bc40,
+      type: 3}
+    enemyHolder: {fileID: 1040574488}
+  - amountOfEnemies: 30
+    enemyPreFab: {fileID: 6491689620556800703, guid: 17e55fee6a7bde74791bc5cce427d3e3,
+      type: 3}
+    enemyHolder: {fileID: 734469296}
   _wavesData:
   - {fileID: 11400000, guid: 629d143a7baacc84cb94fb02a3a4c87f, type: 2}
   - {fileID: 11400000, guid: a9465e8a8d890dc4aacba9181c754bd7, type: 2}
@@ -5270,8 +5279,8 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1940143253}
-  - {fileID: 734469296}
   - {fileID: 1040574488}
+  - {fileID: 734469296}
   m_Father: {fileID: 449037286}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}

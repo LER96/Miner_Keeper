@@ -6,6 +6,16 @@ using static EnumHandler;
 
 public class StructHandler : MonoBehaviour
 {
+
+    [System.Serializable]
+    public class WaveHandlerInfo
+    {
+        public int amountOfEnemies;
+        public Enemy enemyPreFab;
+        public Transform enemyHolder;
+        [HideInInspector] public Queue<Enemy> enemyQueue = new Queue<Enemy>();
+    }
+
     [System.Serializable]
     public struct WaveVariables
     {

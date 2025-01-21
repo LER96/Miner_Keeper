@@ -5,25 +5,14 @@ using UnityEngine;
 using static EnumHandler;
 using static StructHandler;
 
-public class WaveHandler : MonoBehaviour
+public class WaveManager : MonoBehaviour
 {
-    //[System.Serializable]
-    //class WaveHandlerInfo
-    //{
-    //    public int _amountOfEnemies;
-    //    public Enemy _enemyPreFab;
-    //    public Transform _enemyHolder;
-    //}
-    //[SerializeField] List<WaveHandlerInfo> waveHandlers = new List<WaveHandlerInfo>();
-
-    public int _amountOfEnemies;
-    public Enemy _enemyPreFab;
-    public Transform _enemyHolder;
-
     [SerializeField] List<WaveSO> _wavesData = new List<WaveSO>();
+    [SerializeField] List<WaveHandlerInfo> waveHandlers = new List<WaveHandlerInfo>();
     private List<WaveVariables> _waveData = new List<WaveVariables>();
     private WaveType _waveType;
     private WaveSO _currentWave;
+
     //Counter Died
     private int _deathsToSpawnNext;
     private int _currentDied;
@@ -39,7 +28,6 @@ public class WaveHandler : MonoBehaviour
     private bool _gameStart;
     private int _currentIndex;
 
-    Queue<Enemy> _enemyQueue = new Queue<Enemy>();
     [SerializeField] List<Enemy> _enemyToActive = new List<Enemy>();
     List<Enemy> _activeEnemy = new List<Enemy>();
 
@@ -56,17 +44,29 @@ public class WaveHandler : MonoBehaviour
         }
     }
 
+    #region Create Pools & Orginize enemies
     void InitPool()
     {
-        for (int i = 0; i < _amountOfEnemies; i++)
+        for (int i = 0; i < waveHandlers.Count; i++)
         {
-            Enemy enemy = Instantiate(_enemyPreFab, _enemyHolder);
-            enemy.OnEnemyDied += DealEnemy;
-            enemy.gameObject.SetActive(false);
-            _enemyQueue.Enqueue(enemy);
+            SetEnemiesPool(waveHandlers[i]);
         }
     }
 
+    //Listing each enemy to it's own group, under the specific holder
+    void SetEnemiesPool(WaveHandlerInfo wave)
+    {
+        for (int i = 0; i < wave.amountOfEnemies; i++)
+        {
+            Enemy enemy = Instantiate(wave.enemyPreFab, wave.enemyHolder);
+            enemy.OnEnemyDied += DealEnemy;
+            enemy.gameObject.SetActive(false);
+            wave.enemyQueue.Enqueue(enemy);
+        }
+    }
+    #endregion
+
+    //set wave data
     void InitData(int index)
     {
         if (index > _wavesData.Count)
@@ -89,21 +89,45 @@ public class WaveHandler : MonoBehaviour
         _gameStart = true;
     }
 
+    #region Wave to Active Enemies
     void SetSpawnList()
     {
         for (int i = 0; i < _waveData.Count; i++)
         {
-            int numberToSpawn = _waveData[i].enemyNumber;
-            for (int j = 0; j < numberToSpawn; j++)
+            CheckEnemyToSpawn(_waveData[i]);
+        }
+    }
+
+    //check if the SO exist in one of the enemy holders
+    //Put the current SO in the active list
+    void CheckEnemyToSpawn(WaveVariables wave)
+    {
+        for (int i = 0; i < waveHandlers.Count; i++)
+        {
+            string waveDataString = wave.enemydata.EnemyName;
+            string enemyString = waveHandlers[i].enemyPreFab.EnemyData.EnemyName;
+            if (waveDataString== enemyString)
             {
-                Enemy enemy = _enemyQueue.Dequeue();
-                //enemy.SetBody(_waveData[i].enemydata);
-                _enemyToActive.Add(enemy);
-                _enemyQueue.Enqueue(enemy);
+                int numberToSpawn = wave.enemyNumber;
+                SetEnemiesToActiveList(waveHandlers[i], numberToSpawn);
             }
         }
     }
 
+    void SetEnemiesToActiveList(WaveHandlerInfo waveInfo, int amount)
+    {
+        for (int j = 0; j < amount; j++)
+        {
+            Enemy enemy = waveInfo.enemyQueue.Dequeue();
+            _enemyToActive.Add(enemy);
+            waveInfo.enemyQueue.Enqueue(enemy);
+        }
+    }
+
+    #endregion
+
+    #region Wave Behavior
+    //Decide what is the condition of each wave to end
     void DecideSpawnBehavior()
     {
         switch(_waveType)
@@ -123,7 +147,15 @@ public class WaveHandler : MonoBehaviour
         }
         DefaultWaveBehavior();
     }
+    void DefaultWaveBehavior()
+    {
+        SpawnTimer();
+        SetTargets();
+    }
 
+    #region Timers
+
+    //When timer is up, the next wave will deploy
     void WaveDelayTimer()
     {
         if(_currentDelay<_waveDelay)
@@ -137,12 +169,7 @@ public class WaveHandler : MonoBehaviour
         }
     }
 
-    void DefaultWaveBehavior()
-    {
-        SpawnTimer();
-        SetTargets();
-    }
-
+    //The deference between each spawn 
     void SpawnTimer()
     {
         if (_currentRate < _waveSpawnRate)
@@ -155,7 +182,37 @@ public class WaveHandler : MonoBehaviour
             Spawn();
         }
     }
+    #endregion
 
+    //Spawn Random enemy from the wave list 
+    void Spawn()
+    {
+        if (_enemyToActive.Count == 0)
+            return;
+
+        int rndPos = 0;
+        if (_enemyToActive.Count > 1)
+            rndPos = Random.Range(0, _enemyToActive.Count);
+        else
+            rndPos = 0;
+
+        Enemy enemy = _enemyToActive[rndPos];
+        _enemyToActive.Remove(_enemyToActive[rndPos]);
+        enemy.gameObject.SetActive(true);
+        _activeEnemy.Add(enemy);
+    }
+
+    //Give the Tower the active enemies list
+    void SetTargets()
+    {
+        if (_activeEnemy.Count > 0)
+            UpgradeManager.Instance.TorretHandler.CurrentTower.Targets = _activeEnemy;
+    }
+
+    #endregion
+
+    //Once enemy is dead, Remove from the active list
+    //Count how many died in this wave
     void DealEnemy(Enemy enemy)
     {
         if (_activeEnemy.Contains(enemy))
@@ -170,33 +227,6 @@ public class WaveHandler : MonoBehaviour
                 }
             }
         }
-    }
-
-    void Spawn()
-    {
-        if (_enemyToActive.Count == 0)
-            return;
-
-        int rndPos = 0;
-        if (_enemyToActive.Count > 1)
-        {
-            rndPos = Random.Range(0, _enemyToActive.Count);
-        }
-        else
-        {
-            rndPos = 0;
-        }
-
-        Enemy enemy = _enemyToActive[rndPos];
-        _enemyToActive.Remove(_enemyToActive[rndPos]);
-        enemy.gameObject.SetActive(true);
-        _activeEnemy.Add(enemy);
-    }
-
-    void SetTargets()
-    {
-        if (_activeEnemy.Count > 0)
-            UpgradeManager.Instance.TorretHandler.CurrentTower.Targets = _activeEnemy;
     }
 
 }

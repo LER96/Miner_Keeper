@@ -132,7 +132,7 @@ PrefabInstance:
     - target: {fileID: 3337619099751391986, guid: 2dab865209c63e14a9fade5d137c1c58,
         type: 3}
       propertyPath: m_Name
-      value: Goblin_Enemy_Variant
+      value: Goblin_Enemy_Variant 1
       objectReference: {fileID: 0}
     - target: {fileID: 3337619099751391986, guid: 2dab865209c63e14a9fade5d137c1c58,
         type: 3}
@@ -229,7 +229,7 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 3337619099751391986, guid: 2dab865209c63e14a9fade5d137c1c58,
         type: 3}
       insertIndex: 1
-      addedObject: {fileID: 4656259931035628617}
+      addedObject: {fileID: 3584854595534776325}
     - targetCorrespondingSourceObject: {fileID: 3337619099751391986, guid: 2dab865209c63e14a9fade5d137c1c58,
         type: 3}
       insertIndex: 2
@@ -245,7 +245,7 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 4962326962872978930}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &4656259931035628617
+--- !u!114 &3584854595534776325
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -254,11 +254,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 7677547712360656640}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 236d4a0aa6a45844f9174f5377e464be, type: 3}
+  m_Script: {fileID: 11500000, guid: 39d0cf9d12c7bd346aea1ea00c3b9d33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _enemyHPBar: {fileID: 8765834525609599860}
-  _enemyData: {fileID: 11400000, guid: 8b668a09b555b744e87cf953b162ed7a, type: 2}
+  _enemyData: {fileID: 11400000, guid: ccb0f5902805a1942b1c4717ee6d64bc, type: 2}
 --- !u!114 &2958992938887158302
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -272,14 +272,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 1, b: 0.07664156, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: f5e077f865790aa45bf15c6d1bbf2aef, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 621d88856cf625848aaeee0d3d3ba87a, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
