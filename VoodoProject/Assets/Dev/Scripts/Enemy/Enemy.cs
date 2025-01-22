@@ -30,8 +30,14 @@ public class Enemy : MonoBehaviour
     public float HP => _enemyHp;
     public float Distance => _distance;
 
-    protected virtual void Start()
+    //protected virtual void Start()
+    //{
+    //    SetData(_enemyData);
+    //}
+
+    private void OnEnable()
     {
+        _enemyHPBar.gameObject.SetActive(true);
         SetData(_enemyData);
     }
 
@@ -60,6 +66,8 @@ public class Enemy : MonoBehaviour
         _enemyDamage = _enemyData.Damage;
         _enemyAttackRange = _enemyData.AttackRange*100;
         _attackRate = _enemyData.AttackRate;
+
+        HPSlider();
     }
 
     protected virtual void InitData()
@@ -67,6 +75,7 @@ public class Enemy : MonoBehaviour
         _enemyHp = _maxHp;
         _currentAttackRate = _attackRate;
         transform.localPosition = new Vector3(0,25,0);
+        HPSlider();
 
     }
 
@@ -138,13 +147,13 @@ public class Enemy : MonoBehaviour
     protected virtual void HandleDeath()
     {
         _enemyHp = 0;
+        InitData();
         OnEnemyDied.Invoke(this);
         gameObject.SetActive(false);
     }
 
     protected virtual void HPSlider()
     {
-        _enemyHPBar.gameObject.SetActive(true);
         _enemyHPBar.value = _enemyHp / _maxHp;
     }
 

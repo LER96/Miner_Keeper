@@ -33,7 +33,7 @@ public class UpgradeHandler : MonoBehaviour
     private Transform _currentDropItem;
     private TorretHandler _towerHandler;
 
-    Queue<ItemDrop> drops = new Queue<ItemDrop>();
+    private Queue<ItemDrop> drops = new Queue<ItemDrop>();
 
     public void SetHandler()
     {
@@ -60,8 +60,11 @@ public class UpgradeHandler : MonoBehaviour
         }
         _currentXPData = _xpLevel[index-1];
         _maxXP = _currentXPData.XPCapacity;
-        _collectUpgrades = _currentXPData.Upgrades;
-       _currentXP += _xpLeft;
+        for (int i = 0; i < _currentXPData.Upgrades.Count; i++)
+        {
+            _collectUpgrades.Add(_currentXPData.Upgrades[i]);
+        }
+       //_currentXP += _xpLeft;
         UpdateXPBar();
     }
 
@@ -101,7 +104,7 @@ public class UpgradeHandler : MonoBehaviour
         {
             float _tempXP = _currentXP - _maxXP;
             Upgrade();
-            SetData(_currentLevel+1);
+            SetData(_currentLevel + 1);
             _currentXP = _tempXP;
         }
         UpdateXPBar();
@@ -119,10 +122,12 @@ public class UpgradeHandler : MonoBehaviour
         SetCards(true);
         for (int i = 0; i < _cards.Count; i++)
         {
-            int rnd = Random.Range(0, _collectUpgrades.Count-1);
+
+            int rnd = Random.Range(0, _collectUpgrades.Count - 1);
             UpgradeSO upgrade = _collectUpgrades[rnd];
             _cards[i].SetData(upgrade);
             _collectUpgrades.Remove(upgrade);
+
         }
     }
 
