@@ -15,7 +15,7 @@ MonoBehaviour:
   _xpPoints: 10
   _upgrades:
   - {fileID: 11400000, guid: 943bc280e214fa6459c745f81032eca4, type: 2}
-  - {fileID: 11400000, guid: 46b12a7ade350a84099ed77759bbaae4, type: 2}
+  - {fileID: 11400000, guid: 4b9211b1d5404cd44b206f036b67740b, type: 2}
   - {fileID: 11400000, guid: a7ae01916c2b3f243bf3de9889d6e83a, type: 2}
   - {fileID: 11400000, guid: 5aa3f1911cdae5a47bc104ff90d976f0, type: 2}
   - {fileID: 11400000, guid: 497035e5af03bfd42a813da10f3ff130, type: 2}
