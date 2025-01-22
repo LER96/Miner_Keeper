@@ -101,7 +101,7 @@ PrefabInstance:
     - target: {fileID: 8010741161693259992, guid: e5af79090abd4f64f804d6dbfb60045c,
         type: 3}
       propertyPath: _reviveDelay
-      value: 15
+      value: 80
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -1,6 +1,7 @@
 using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -15,6 +16,7 @@ public class UpgradeHandler : MonoBehaviour
     [SerializeField] List<XpSO> _xpLevel = new List<XpSO>();
     [SerializeField] Transform _xpPoint;
     [SerializeField] Slider _xpSlider;
+    [SerializeField] TMP_Text _xpText;
     [SerializeField] float _duration;
 
     [Header("Upgrades")]
@@ -60,20 +62,21 @@ public class UpgradeHandler : MonoBehaviour
         _maxXP = _currentXPData.XPCapacity;
         _collectUpgrades = _currentXPData.Upgrades;
        _currentXP += _xpLeft;
+        UpdateXPBar();
     }
 
     public void DropItem(ItemSO item, Transform from)
     {
-        if (item != null)
-        {
-            ItemDrop _drop = drops.Dequeue();
-            _drop.gameObject.SetActive(true);
-            Vector3 pos = Camera.main.WorldToScreenPoint(from.position);
-            _drop.transform.position = pos;
-            _drop.SetData(item);
-            SetDestination(item, _drop);
-            drops.Enqueue(_drop);
-        }
+        if (item == null)
+            return;
+
+        ItemDrop _drop = drops.Dequeue();
+        _drop.gameObject.SetActive(true);
+        Vector3 pos = Camera.main.WorldToScreenPoint(from.position);
+        _drop.transform.position = pos;
+        _drop.SetData(item);
+        SetDestination(item, _drop);
+        drops.Enqueue(_drop);
     }
 
     void SetDestination(ItemSO item, ItemDrop drop)
@@ -97,10 +100,16 @@ public class UpgradeHandler : MonoBehaviour
         if (_currentXP >= _maxXP)
         {
             float _tempXP = _currentXP - _maxXP;
-            SetData(_currentLevel+1);
             Upgrade();
+            SetData(_currentLevel+1);
             _currentXP = _tempXP;
         }
+        UpdateXPBar();
+    }
+
+    void UpdateXPBar()
+    {
+        _xpText.text = $"{_maxXP - _currentXP}";
         _xpSlider.value = _currentXP / _maxXP;
     }
 
@@ -110,7 +119,7 @@ public class UpgradeHandler : MonoBehaviour
         SetCards(true);
         for (int i = 0; i < _cards.Count; i++)
         {
-            int rnd = Random.Range(0, _collectUpgrades.Count);
+            int rnd = Random.Range(0, _collectUpgrades.Count-1);
             UpgradeSO upgrade = _collectUpgrades[rnd];
             _cards[i].SetData(upgrade);
             _collectUpgrades.Remove(upgrade);

@@ -169,6 +169,7 @@ public class Tower : MonoBehaviour
 
         if (_currentHP < 0)
         {
+            LevelManager.OnLevelLose.Invoke();
             gameObject.SetActive(false);
         }
         else if (_currentHP >= _maxHP)

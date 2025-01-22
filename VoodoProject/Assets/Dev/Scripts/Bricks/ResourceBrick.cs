@@ -7,17 +7,16 @@ public class ResourceBrick : Brick
 {
     [SerializeField] protected ItemSO _itemData;
     [SerializeField] float _reviveDelay;
-    [SerializeField] float _reviveTime;
 
+    private float _copyReviveDelay;
     int currentStage;
-    float timeForEachStage;
     float _currentTime;
 
     protected override void Start()
     {
         base.Start();
+        _copyReviveDelay = _reviveDelay;
         currentStage = 1;
-        timeForEachStage = _reviveTime / _brickStages.Count;
     }
 
     private void Update()
@@ -58,7 +57,7 @@ public class ResourceBrick : Brick
         if (_reviveDelay <= 0)
         {
             _brickHp = _startHp;
-            _reviveDelay = 0;
+            _reviveDelay = _copyReviveDelay;
             _canCollect = true;
             HideAllVariants(_brickHp);
         }
