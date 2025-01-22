@@ -5326,6 +5326,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25f45eeb074f1c7498d3fd60e8c81618, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _endWindow: {fileID: 1212770315}
+  _winLoseWindow: {fileID: 1212770317}
 --- !u!4 &1677619452
 Transform:
   m_ObjectHideFlags: 0
