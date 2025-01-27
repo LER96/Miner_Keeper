@@ -16,7 +16,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2748539896740749439
 Transform:
   m_ObjectHideFlags: 0
@@ -100,7 +100,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7120641547198311
 Transform:
   m_ObjectHideFlags: 0
@@ -184,7 +184,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6307871397303319840
 Transform:
   m_ObjectHideFlags: 0
@@ -449,7 +449,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _brickHp: 3
-  _sprite: {fileID: 2625407182965259287}
   _brickStages:
   - {fileID: 3151815371750418229}
   - {fileID: 6572950243666872043}
@@ -457,7 +456,6 @@ MonoBehaviour:
   - {fileID: 739460658925265505}
   _itemData: {fileID: 0}
   _reviveDelay: 0
-  _reviveTime: 0
 --- !u!1 &6510053423206064485
 GameObject:
   m_ObjectHideFlags: 0
@@ -509,7 +507,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6997687882197969017
 Transform:
   m_ObjectHideFlags: 0
