@@ -1,14 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEngine;
 using static EnumHandler;
 using static StructHandler;
 
-public class WaveManager : MonoBehaviour
+public class WaveHandler : MonoBehaviour
 {
     [SerializeField] List<WaveSO> _wavesData = new List<WaveSO>();
     [SerializeField] List<WaveHandlerInfo> waveHandlers = new List<WaveHandlerInfo>();
+
+    [Header("WaveUI")]
+    [SerializeField] GameObject _waveUI;
+    [SerializeField] TMP_Text _timerText;
+
+    [Header("Start")]
+    [SerializeField] float _startTime;
+    [SerializeField] bool _startGame;
+
     private List<WaveVariables> _waveData = new List<WaveVariables>();
     private WaveType _waveType;
     private WaveSO _currentWave;
@@ -18,6 +28,7 @@ public class WaveManager : MonoBehaviour
     private int _currentDied;
 
     private float _timerTillNextSpawn;
+    private bool _canSpawnNext;
     //Wave spawn Rate
     private float _waveSpawnRate;
     private float _currentRate;
@@ -25,20 +36,25 @@ public class WaveManager : MonoBehaviour
     private float _currentDelay;
     private float _waveDelay;
 
-    private bool _gameStart;
+    private bool _startWaveSpawn;
     private int _currentIndex;
 
-    [SerializeField] List<Enemy> _enemyToActive = new List<Enemy>();
+    List<Enemy> _enemyToActive = new List<Enemy>();
     List<Enemy> _activeEnemy = new List<Enemy>();
 
     private void Start()
     {
         InitPool();
-        InitData(1);
     }
+
     private void Update()
     {
-        if (_gameStart)
+        if(_startGame == false)
+        {
+            StartTimer();
+        }
+
+        if (_startWaveSpawn)
         {
             DecideSpawnBehavior();
         }
@@ -84,12 +100,12 @@ public class WaveManager : MonoBehaviour
         _timerTillNextSpawn = _currentWave.TimerNextWave;
         _deathsToSpawnNext = _currentWave.KillAmount;
         _waveDelay = _currentWave.WaveDelay;
-        _currentDelay = 0;
+        _currentDelay = _waveDelay;
         _currentDied = 0;
 
         SetSpawnList();
         _waveSpawnRate = _currentWave.SpawnRate;
-        _gameStart = true;
+        _startWaveSpawn = true;
     }
 
     #region Wave to Active Enemies
@@ -140,8 +156,10 @@ public class WaveManager : MonoBehaviour
                     WaveDelayTimer();
                 break;
             case WaveType.Timer:
-                if(_enemyToActive.Count==0)
+                if (_canSpawnNext)
                     WaveDelayTimer();
+                else
+                    WaveTimerTypeDelay();
                 break;
             case WaveType.Clear:
                 if(_activeEnemy.Count == 0)
@@ -161,14 +179,43 @@ public class WaveManager : MonoBehaviour
     //When timer is up, the next wave will deploy
     void WaveDelayTimer()
     {
-        if(_currentDelay<_waveDelay)
+        if (_currentDelay > 0)
         {
-            _currentDelay += Time.deltaTime;
+            _currentDelay -= Time.deltaTime;
         }
         else
         {
-            _currentDelay = 0;
             InitData(_currentIndex + 1);
+        }
+    }
+
+    //If the next wave can spawn when the time runs out
+    void WaveTimerTypeDelay()
+    {
+        if(_timerTillNextSpawn>0)
+        {
+            _timerTillNextSpawn -= Time.deltaTime;
+            _canSpawnNext = false;
+        }
+        else
+        {
+            _timerTillNextSpawn = 0;
+            _canSpawnNext = true;
+        }
+    }
+
+    //On start wave spawn
+    void StartTimer()
+    {
+        _timerText.text = $"{(int)_startTime }";
+        if (_startTime > 0)
+            _startTime -= Time.deltaTime;
+        else
+        {
+            _waveUI.SetActive(false);
+            _startTime = 0;
+            _startGame = true;
+            InitData(1);
         }
     }
 

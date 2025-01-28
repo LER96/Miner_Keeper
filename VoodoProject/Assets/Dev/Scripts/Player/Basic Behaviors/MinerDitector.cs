@@ -10,6 +10,7 @@ public class MinerDitector : MonoBehaviour
     [SerializeField] ParticleSystem _hitVFX;
     [SerializeField] LayerMask _layer;
 
+    private Collider2D _collide;
     private bool _checkForTarget;
     private PlayerMining _playerMining;
 
@@ -22,16 +23,16 @@ public class MinerDitector : MonoBehaviour
     private void Update()
     {
         if (_checkForTarget)
-            CheckForTarget();
+            CheckForTarget(_collide);
     }
 
-    protected virtual void CheckForTarget()
+    protected virtual void CheckForTarget(Collider2D collide)
     {
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(new Vector2(transform.position.x, transform.position.y), transform.localScale.x / 2, _layer);
-        if (colliders.Length > 0)
+        //Collider2D[] colliders = Physics2D.OverlapCircleAll(new Vector2(transform.position.x, transform.position.y), transform.localScale.x / 2, _layer);
+        _target = collide.GetComponent<Brick>();
+        if (_target!=null)
         {
             _playerMining.CanMine = true;
-            _target = colliders[0].GetComponent<Brick>();
             _target.IsTarget(true);
         }
         else
@@ -44,6 +45,7 @@ public class MinerDitector : MonoBehaviour
     {
         if(collision.CompareTag("Brick"))
         {
+            _collide = collision;
             _checkForTarget = true;
         }
     }
@@ -51,6 +53,7 @@ public class MinerDitector : MonoBehaviour
     {
         if (collision.CompareTag("Brick"))
         {
+            _collide = collision;
             _checkForTarget = true;
         }
     }

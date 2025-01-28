@@ -17,6 +17,7 @@ public class ResourceBrick : Brick
         base.Start();
         _copyReviveDelay = _reviveDelay;
         currentStage = 1;
+        HideAllVariants(_brickHp);
     }
 
     private void Update()

@@ -16,7 +16,7 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 playerDimention;
     private PlayerDirrection _playerDirrection;
     private Vector2 _movmentInput;
-    private int _dirrectionX, _dirrectionY;
+    private int _dirrectionX=1, _dirrectionY;
     private Vector3 _newPos;
 
     public PlayerDirrection PlayerDirrection => _playerDirrection;
