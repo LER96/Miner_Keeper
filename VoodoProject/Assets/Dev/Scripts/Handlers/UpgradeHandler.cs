@@ -53,6 +53,7 @@ public class UpgradeHandler : MonoBehaviour
 
     void SetData(int index)
     {
+        _collectUpgrades.Clear();
         _currentLevel = index;
         if(index>_xpLevel.Count)
         {

@@ -14,6 +14,7 @@ public class WaveHandler : MonoBehaviour
     [Header("WaveUI")]
     [SerializeField] GameObject _waveUI;
     [SerializeField] TMP_Text _timerText;
+    [SerializeField] TMP_Text _waveCounterText;
 
     [Header("Start")]
     [SerializeField] float _startTime;
@@ -32,8 +33,8 @@ public class WaveHandler : MonoBehaviour
     //Wave spawn Rate
     private float _waveSpawnRate;
     private float _currentRate;
+
     //Wave Delay
-    private float _currentDelay;
     private float _waveDelay;
 
     private bool _startWaveSpawn;
@@ -93,6 +94,7 @@ public class WaveHandler : MonoBehaviour
 
         _currentRate = 0;
         _currentIndex = index;
+        _waveCounterText.text = $"{_currentIndex}/{_wavesData.Count}";
 
         _currentWave = _wavesData[index-1];
         _waveData = _currentWave.WaveData;
@@ -100,7 +102,6 @@ public class WaveHandler : MonoBehaviour
         _timerTillNextSpawn = _currentWave.TimerNextWave;
         _deathsToSpawnNext = _currentWave.KillAmount;
         _waveDelay = _currentWave.WaveDelay;
-        _currentDelay = _waveDelay;
         _currentDied = 0;
 
         SetSpawnList();
@@ -179,9 +180,9 @@ public class WaveHandler : MonoBehaviour
     //When timer is up, the next wave will deploy
     void WaveDelayTimer()
     {
-        if (_currentDelay > 0)
+        if (_waveDelay > 0)
         {
-            _currentDelay -= Time.deltaTime;
+            _waveDelay -= Time.deltaTime;
         }
         else
         {

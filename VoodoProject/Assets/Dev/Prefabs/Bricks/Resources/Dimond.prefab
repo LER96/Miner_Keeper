@@ -16,12 +16,12 @@ PrefabInstance:
     - target: {fileID: 892406121267532602, guid: e5af79090abd4f64f804d6dbfb60045c,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -4.375
       objectReference: {fileID: 0}
     - target: {fileID: 892406121267532602, guid: e5af79090abd4f64f804d6dbfb60045c,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 35.625
       objectReference: {fileID: 0}
     - target: {fileID: 892406121267532602, guid: e5af79090abd4f64f804d6dbfb60045c,
         type: 3}
@@ -78,7 +78,7 @@ PrefabInstance:
     - target: {fileID: 4524291054933520150, guid: e5af79090abd4f64f804d6dbfb60045c,
         type: 3}
       propertyPath: m_Name
-      value: XP_Variant
+      value: Dimond
       objectReference: {fileID: 0}
     - target: {fileID: 6220922484050908747, guid: e5af79090abd4f64f804d6dbfb60045c,
         type: 3}
@@ -106,7 +106,7 @@ PrefabInstance:
     - target: {fileID: 8010741161693259992, guid: e5af79090abd4f64f804d6dbfb60045c,
         type: 3}
       propertyPath: _reviveDelay
-      value: 80
+      value: 15
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
