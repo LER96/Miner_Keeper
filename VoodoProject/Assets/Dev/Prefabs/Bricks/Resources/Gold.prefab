@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &7206699647654758322
+--- !u!1001 &4176936914105888368
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -8,6 +8,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 739460658925265505, guid: e5af79090abd4f64f804d6dbfb60045c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 892406121267532602, guid: e5af79090abd4f64f804d6dbfb60045c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -62,46 +67,46 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 2128883532, guid: 8429cee74e353b7479066428bcdf228a,
+      objectReference: {fileID: -1614092796, guid: 21e7c8073bbbf9343a31d9e7e4f0d78d,
         type: 3}
     - target: {fileID: 2882813606127446663, guid: e5af79090abd4f64f804d6dbfb60045c,
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 1491022685, guid: 8429cee74e353b7479066428bcdf228a,
+      objectReference: {fileID: -1521071400, guid: 21e7c8073bbbf9343a31d9e7e4f0d78d,
         type: 3}
     - target: {fileID: 4524291054933520150, guid: e5af79090abd4f64f804d6dbfb60045c,
         type: 3}
       propertyPath: m_Name
-      value: XP_Variant
+      value: Iron_Variant
       objectReference: {fileID: 0}
     - target: {fileID: 6220922484050908747, guid: e5af79090abd4f64f804d6dbfb60045c,
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: -2138349959, guid: 8429cee74e353b7479066428bcdf228a,
+      objectReference: {fileID: 1438299341, guid: 21e7c8073bbbf9343a31d9e7e4f0d78d,
         type: 3}
     - target: {fileID: 6223664534702998101, guid: e5af79090abd4f64f804d6dbfb60045c,
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 163970616, guid: 8429cee74e353b7479066428bcdf228a,
+      objectReference: {fileID: -1694202258, guid: 21e7c8073bbbf9343a31d9e7e4f0d78d,
         type: 3}
     - target: {fileID: 8010741161693259992, guid: e5af79090abd4f64f804d6dbfb60045c,
         type: 3}
       propertyPath: _itemData
       value: 
-      objectReference: {fileID: 11400000, guid: 7cbae308e8d449d4cb27224882afdca1,
+      objectReference: {fileID: 11400000, guid: 87c66457bcc96fc469373631a9fe64f2,
         type: 2}
     - target: {fileID: 8010741161693259992, guid: e5af79090abd4f64f804d6dbfb60045c,
         type: 3}
       propertyPath: _reviveTime
-      value: 5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8010741161693259992, guid: e5af79090abd4f64f804d6dbfb60045c,
         type: 3}
       propertyPath: _reviveDelay
-      value: 80
+      value: 60
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
