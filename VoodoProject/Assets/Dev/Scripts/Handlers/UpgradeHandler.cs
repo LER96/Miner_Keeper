@@ -17,6 +17,7 @@ public class UpgradeHandler : MonoBehaviour
     [SerializeField] Transform _xpPoint;
     [SerializeField] Slider _xpSlider;
     [SerializeField] TMP_Text _xpText;
+    [SerializeField] TMP_Text _xpLevelText;
     [SerializeField] float _duration;
 
     [Header("Upgrades")]
@@ -24,7 +25,7 @@ public class UpgradeHandler : MonoBehaviour
     [SerializeField] List<UpgradeCard> _cards = new List<UpgradeCard>();
     private List<UpgradeSO> _collectUpgrades = new List<UpgradeSO>();
 
-    int index=0;
+    private bool _isMaxXP;
     private int _currentLevel;
     private XpSO _currentXPData;
     private float _currentXP;
@@ -57,6 +58,9 @@ public class UpgradeHandler : MonoBehaviour
         _currentLevel = index;
         if(index>_xpLevel.Count)
         {
+            _isMaxXP = true;
+            _currentXP = _maxXP;
+            UpdateXPBar();
             return;
         }
         _currentXPData = _xpLevel[index-1];
@@ -85,12 +89,15 @@ public class UpgradeHandler : MonoBehaviour
 
     void SetDestination(ItemSO item, ItemDrop drop)
     {
-        Vector3 playerPos = Camera.main.WorldToScreenPoint(PlayerManger.Instance.PlayerHandler.transform.position);
+            Vector3 playerPos = Camera.main.WorldToScreenPoint(PlayerManger.Instance.PlayerHandler.transform.position);
         switch (item.ItemName)
         {
             case "Sapphire":
-                _currentXP += item.Value;
-                UpdateXP();
+                if (!_isMaxXP)
+                {
+                    _currentXP += item.Value;
+                    UpdateXP();
+                }
                 drop.SetDestination(_xpPoint.position, _duration);
                 break;
             default:
@@ -105,15 +112,20 @@ public class UpgradeHandler : MonoBehaviour
         {
             float _tempXP = _currentXP - _maxXP;
             Upgrade();
-            SetData(_currentLevel + 1);
             _currentXP = _tempXP;
+            SetData(_currentLevel + 1);
         }
         UpdateXPBar();
     }
 
     void UpdateXPBar()
     {
-        _xpText.text = $"{_maxXP - _currentXP}";
+        _xpLevelText.text = $"Level:{_currentLevel}";
+        if (_isMaxXP)
+            _xpText.text = $"MAX";
+        else
+            _xpText.text = $"{_maxXP - _currentXP}";
+
         _xpSlider.value = _currentXP / _maxXP;
     }
 
